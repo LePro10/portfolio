@@ -14,6 +14,8 @@ REPO_URL=${REPO_URL:-https://github.com/LePro10/portfolio.git}
 BASE=/opt/portfolio
 
 [[ $EUID -eq 0 ]] || { echo "Bitte als root ausführen." >&2; exit 1; }
+# Das Debian-Template hat nur die C-Locale; ohne das warnen apt und perl bei jedem Schritt.
+export LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 echo "── Pakete"
 export DEBIAN_FRONTEND=noninteractive
@@ -41,7 +43,8 @@ if [[ ! -d $BASE/repo/.git ]]; then
 fi
 runuser -u portfolio -- git -C "$BASE/repo" fetch --quiet origin main
 SRC=$(mktemp -d)
-git -C "$BASE/repo" archive origin/main deploy | tar -x -C "$SRC"
+# Als Besitzer lesen: git verweigert root ein fremdes Repo ("dubious ownership").
+runuser -u portfolio -- git -C "$BASE/repo" archive origin/main deploy | tar -x -C "$SRC"
 
 echo "── Caddy und systemd"
 install -m 755 "$SRC/deploy/update.sh" /usr/local/bin/portfolio-update

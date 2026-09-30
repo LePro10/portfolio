@@ -20,8 +20,8 @@ laufende Version stehen.
 ```bash
 journalctl -u portfolio-update -n 50        # was zuletzt passiert ist
 systemctl start portfolio-update            # sofort prüfen statt auf den Timer warten
-sudo -u portfolio portfolio-update --force  # aktuellen Stand neu bauen
-sudo -u portfolio portfolio-update --rollback
+runuser -u portfolio -- portfolio-update --force     # aktuellen Stand neu bauen
+runuser -u portfolio -- portfolio-update --rollback
 ls -l /opt/portfolio/current                # aktives Release (= Commit-SHA)
 ```
 
