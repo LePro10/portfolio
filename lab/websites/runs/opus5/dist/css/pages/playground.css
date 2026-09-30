@@ -1,0 +1,193 @@
+/* ==========================================================================
+   NOETIC — playground
+   ========================================================================== */
+
+.ns-note {
+  margin-top: var(--s-5);
+  padding: var(--s-4);
+  border: 1px solid color-mix(in oklab, var(--am-500) 40%, transparent);
+  border-radius: var(--r-md);
+  color: var(--am-500);
+  font-size: var(--t-sm);
+}
+
+.demo__head { max-width: 58ch; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.demo__head h2 { font-size: var(--t-xl); margin-bottom: var(--s-4); }
+.demo__head p { color: var(--tx-mid); }
+.demo__head em { color: var(--cy-400); font-style: normal; }
+
+/* ---- Frame -------------------------------------------------------------- */
+.demo__frame {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(165deg,
+      color-mix(in oklab, var(--ink-850) 82%, transparent),
+      color-mix(in oklab, var(--ink-950) 90%, transparent));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  box-shadow: 0 50px 110px -60px #000;
+}
+
+.demo__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink-900) 55%, transparent);
+}
+.demo__bar input[type="text"],
+.demo__bar select {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: color-mix(in oklab, var(--ink-950) 70%, transparent);
+  color: var(--tx-hi);
+  font-size: var(--t-sm);
+  transition: border-color var(--d-fast) var(--e-swift), box-shadow var(--d-fast) var(--e-swift);
+}
+.demo__bar select { flex: 0 1 22rem; cursor: pointer; }
+.demo__bar input[type="text"]:focus,
+.demo__bar select:focus {
+  outline: none;
+  border-color: var(--cy-500);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--cy-500) 15%, transparent);
+}
+.demo__reset { padding: 0.6em 1.1em; font-size: var(--t-xs); }
+
+.demo__stage {
+  position: relative;
+  background:
+    radial-gradient(70% 60% at 50% 0%, color-mix(in oklab, var(--vi-600) 12%, transparent), transparent 70%),
+    color-mix(in oklab, var(--ink-1000) 55%, transparent);
+}
+.demo__stage canvas {
+  display: block;
+  width: 100%;
+  height: clamp(15rem, 34svh, 24rem);
+}
+.demo__stage--tall canvas { height: clamp(20rem, 52svh, 34rem); cursor: grab; }
+.demo__stage--tall canvas:active { cursor: grabbing; }
+
+.demo__foot {
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--line);
+  color: var(--tx-dim);
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+
+/* Floating tooltip over a canvas */
+.demo__tip {
+  position: absolute;
+  z-index: 2;
+  padding: var(--s-2) var(--s-3);
+  border: 1px solid color-mix(in oklab, var(--cy-500) 40%, transparent);
+  border-radius: var(--r-sm);
+  background: color-mix(in oklab, var(--ink-1000) 88%, transparent);
+  color: var(--tx-hi);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  pointer-events: none;
+  transform: translate(-50%, -150%);
+  white-space: nowrap;
+  box-shadow: var(--glow-cy);
+}
+
+/* ---- Token stream ------------------------------------------------------- */
+.stream { display: grid; }
+@media (min-width: 56rem) {
+  .stream { grid-template-columns: minmax(0, 1fr) 17rem; }
+}
+
+.stream__out {
+  padding: var(--s-6);
+  min-height: 15rem;
+  font-size: var(--t-md);
+  line-height: 1.75;
+  color: var(--tx-hi);
+}
+.stream__placeholder { color: var(--tx-dim); font-size: var(--t-sm); }
+.stream__placeholder b { color: var(--cy-400); font-weight: 500; }
+
+/* Each emitted token pops in and cools from cyan to normal text colour. */
+.tok {
+  display: inline;
+  animation: tok-in 520ms var(--e-out) both;
+}
+@keyframes tok-in {
+  0%   { color: var(--cy-400); text-shadow: 0 0 14px color-mix(in oklab, var(--cy-500) 70%, transparent); }
+  100% { color: var(--tx-hi);  text-shadow: none; }
+}
+
+.stream__side {
+  padding: var(--s-5);
+  border-left: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink-900) 45%, transparent);
+}
+@media (max-width: 56rem) {
+  .stream__side { border-left: 0; border-top: 1px solid var(--line); }
+}
+.stream__side h4 {
+  color: var(--tx-lo);
+  font-weight: 500;
+  margin-bottom: var(--s-4);
+}
+.cands { display: grid; gap: var(--s-3); }
+.cand {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-1);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+}
+.cand span { color: var(--tx-hi); }
+.cand i {
+  display: block;
+  height: 3px;
+  border-radius: var(--r-full);
+  background: var(--grad-signal);
+  width: calc(var(--p, 0) * 1%);
+  transition: width 240ms var(--e-out);
+}
+.cand b { color: var(--tx-dim); font-weight: 400; }
+.cand:first-child i { box-shadow: 0 0 10px color-mix(in oklab, var(--cy-500) 60%, transparent); }
+.stream__meta {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+  color: var(--tx-dim);
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Shader lab --------------------------------------------------------- */
+.shaderlab { display: grid; }
+@media (min-width: 56rem) {
+  .shaderlab { grid-template-columns: minmax(0, 1fr) 19rem; }
+}
+.shaderlab__stage canvas { height: clamp(18rem, 46svh, 30rem); }
+.shaderlab__controls {
+  display: grid;
+  align-content: start;
+  gap: var(--s-5);
+  padding: var(--s-5);
+  border-left: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink-900) 45%, transparent);
+}
+@media (max-width: 56rem) {
+  .shaderlab__controls { border-left: 0; border-top: 1px solid var(--line); }
+}
+.shaderlab__note {
+  color: var(--tx-dim);
+  text-transform: none;
+  letter-spacing: 0.05em;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+.str-temp { flex: 0 1 12rem; }

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS AI - The Future of Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header-hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+  <div id="custom-cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <div id="loading-screen">
+    <div class="loader-ring" style="position: relative;"></div>
+    <div class="loader-text">NEXUS AI</div>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">NEXUS AI</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="capabilities.html" class="nav-link">Capabilities</a></li>
+          <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-gradient-orb"></div>
+      <div class="hero-gradient-orb"></div>
+      <div class="hero-gradient-orb"></div>
+    </div>
+
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Next Generation AI Platform</div>
+      <h1 class="hero-title">
+        <span class="glitch-text" data-text="The Future">The Future</span><br>
+        <span class="gradient-text">of Intelligence</span>
+      </h1>
+      <p class="hero-description">
+        Experience the next evolution of artificial intelligence. Powerful, intuitive, and designed to transform how you work, create, and innovate.
+      </p>
+      <div class="hero-buttons">
+        <a href="capabilities.html" class="btn btn-primary"><span>Explore Capabilities</span></a>
+        <a href="about.html" class="btn btn-secondary"><span>Learn More</span></a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse"></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="container">
+      <h2 class="section-title">What is NEXUS AI?</h2>
+      <p class="section-subtitle">Redefining the boundaries of artificial intelligence with cutting-edge technology</p>
+
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="about-image-wrapper">
+            <div class="about-image-inner">
+              <canvas id="about-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="about-content">
+          <h3>Intelligence Reimagined</h3>
+          <p>NEXUS AI represents the pinnacle of artificial intelligence research, combining advanced neural networks with intuitive interfaces to deliver unprecedented capabilities.</p>
+          <p>Our platform processes millions of data points in real-time, learning and adapting to provide solutions that evolve with your needs.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <div>
+                <strong>Neural Architecture</strong>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">Advanced deep learning models</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div>
+                <strong>Real-time Processing</strong>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">Lightning-fast computations</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <strong>Enterprise Security</strong>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">Bank-grade encryption & privacy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <h2 class="section-title">By The Numbers</h2>
+      <p class="section-subtitle">Our AI platform delivers measurable results at scale</p>
+
+      <div class="stats-grid">
+        <div class="stat-card glass-card">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Accuracy Rate</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">500M+</div>
+          <div class="stat-label">Data Points Processed</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Enterprise Clients</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">50ms</div>
+          <div class="stat-label">Average Response Time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="capabilities-section">
+    <div class="container">
+      <h2 class="section-title">Core Capabilities</h2>
+      <p class="section-subtitle">Discover what our AI can do for you</p>
+
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Natural Language</h3>
+          <p>Understand and generate human-like text with unprecedented accuracy and context awareness.</p>
+          <span class="capability-tag">NLP</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <h3>Computer Vision</h3>
+          <p>Analyze images and video with superhuman precision for object detection and scene understanding.</p>
+          <span class="capability-tag">Vision</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/></svg>
+          </div>
+          <h3>Predictive Analytics</h3>
+          <p>Forecast trends and behaviors with advanced machine learning models trained on massive datasets.</p>
+          <span class="capability-tag">Analytics</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Security & Privacy</h3>
+          <p>Enterprise-grade security with end-to-end encryption and compliance with global standards.</p>
+          <span class="capability-tag">Security</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Automation</h3>
+          <p>Streamline workflows and automate repetitive tasks with intelligent process automation.</p>
+          <span class="capability-tag">Automation</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Knowledge Graph</h3>
+          <p>Build and query complex knowledge graphs for semantic search and reasoning applications.</p>
+          <span class="capability-tag">Knowledge</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">NEXUS AI</a>
+          <p>Pioneering the future of artificial intelligence with cutting-edge technology and innovative solutions.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="capabilities.html">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NEXUS AI. All rights reserved.</p>
+        <p>Crafted with intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

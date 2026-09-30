@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethics — SYNAPSE AI</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ethics.css">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body class="scan-lines">
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">SYNAPSE</div>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-percent">0%</div>
+  </div>
+  
+  <!-- Page Transition -->
+  <div class="page-transition">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <span class="glitch-text">INITIALIZING...</span>
+  </div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">SYNAPSE</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="ethics.html">Ethics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- HERO SECTION -->
+  <section class="ethics-hero" style="padding: 0; max-width: 100%; min-height: 70vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.08), transparent 70%);"></div>
+    
+    <!-- Scan line overlay specifically for hero -->
+    <div class="scan-overlay" style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 240, 255, 0.03) 2px, rgba(0, 240, 255, 0.03) 4px); pointer-events: none; z-index: 1;"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 4rem;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1.5rem; color: var(--neon-accent); letter-spacing: 0.2em;">04 — RESPONSIBLE AI</span>
+      <h1 class="display-h1" style="margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; text-transform: uppercase; letter-spacing: 0.05em;" data-scramble>
+        Ethics First<br>
+        <span class="text-gradient">Always</span>
+      </h1>
+      <p class="body-text reveal" style="margin: 0 auto; max-width: 600px;">
+        We believe the most powerful AI is the one that operates within the strongest ethical framework. 
+        Transparency, accountability, and human welfare guide every decision we make.
+      </p>
+    </div>
+  </section>
+  
+  <!-- PRINCIPLES SECTION -->
+  <section class="principles-section" style="position: relative; max-width: 1000px;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">05 — CORE PRINCIPLES</span>
+      <h2 class="display-h2" data-scramble>Our Commitment</h2>
+    </div>
+    
+    <div class="principles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      <div class="principle-card reveal-left glass" style="padding: 2.5rem; border-radius: 1rem; position: relative; overflow: hidden; border-left: 3px solid var(--neon-accent);">
+        <div class="principle-number" style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--neon-accent); opacity: 0.2; position: absolute; top: 1rem; right: 1.5rem;">01</div>
+        <h3 class="display-h3" style="font-size: 1.35rem; margin-bottom: 1rem;">Transparency</h3>
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">We publish our research, methodologies, and limitations. No black boxes. Every decision is explainable and auditable.</p>
+      </div>
+      
+      <div class="principle-card reveal-right glass" style="padding: 2.5rem; border-radius: 1rem; position: relative; overflow: hidden; border-left: 3px solid var(--nebula-purple);">
+        <div class="principle-number" style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.2; position: absolute; top: 1rem; right: 1.5rem;">02</div>
+        <h3 class="display-h3" style="font-size: 1.35rem; margin-bottom: 1rem;">Privacy</h3>
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Your data belongs to you. Zero retention by default. End-to-end encryption. No training on personal data without explicit consent.</p>
+      </div>
+      
+      <div class="principle-card reveal-left glass" style="padding: 2.5rem; border-radius: 1rem; position: relative; overflow: hidden; border-left: 3px solid var(--neon-accent);">
+        <div class="principle-number" style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--neon-accent); opacity: 0.2; position: absolute; top: 1rem; right: 1.5rem;">03</div>
+        <h3 class="display-h3" style="font-size: 1.35rem; margin-bottom: 1rem;">Safety</h3>
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Rigorous red-teaming, automated safety evaluations, and human oversight ensure our systems cannot be misused for harm.</p>
+      </div>
+      
+      <div class="principle-card reveal-right glass" style="padding: 2.5rem; border-radius: 1rem; position: relative; overflow: hidden; border-left: 3px solid var(--nebula-purple);">
+        <div class="principle-number" style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.2; position: absolute; top: 1rem; right: 1.5rem;">04</div>
+        <h3 class="display-h3" style="font-size: 1.35rem; margin-bottom: 1rem;">Fairness</h3>
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Continuous bias testing and mitigation. We actively work to ensure our AI treats all people equitably regardless of background.</p>
+      </div>
+      
+      <div class="principle-card reveal-left glass" style="padding: 2.5rem; border-radius: 1rem; position: relative; overflow: hidden; border-left: 3px solid var(--neon-accent);">
+        <div class="principle-number" style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--neon-accent); opacity: 0.2; position: absolute; top: 1rem; right: 1.5rem;">05</div>
+        <h3 class="display-h3" style="font-size: 1.35rem; margin-bottom: 1rem;">Accountability</h3>
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Clear chains of responsibility. Independent ethics board. External audits. We hold ourselves to the highest standards.</p>
+      </div>
+      
+      <div class="principle-card reveal-right glass" style="padding: 2.5rem; border-radius: 1rem; position: relative; overflow: hidden; border-left: 3px solid var(--nebula-purple);">
+        <div class="principle-number" style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.2; position: absolute; top: 1rem; right: 1.5rem;">06</div>
+        <h3 class="display-h3" style="font-size: 1.35rem; margin-bottom: 1rem;">Human Control</h3>
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">AI should augment, not replace, human judgment. Kill switches, manual overrides, and human-in-the-loop for critical decisions.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- MANIFESTO SECTION -->
+  <section class="manifesto-section" style="position: relative; max-width: 100%; min-height: 60vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--deep-space);">
+    <div class="grid-pattern" style="position: absolute; inset: 0;"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 6rem 2rem; max-width: 800px;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 2rem; color: var(--neon-accent); letter-spacing: 0.3em;">06 — THE SYNAPSE MANIFESTO</span>
+      
+      <div class="manifesto-text reveal" style="text-align: left;">
+        <p class="body-text" style="font-size: 1.25rem; line-height: 2; margin-bottom: 2rem; max-width: 100%; font-style: italic;">
+          "We build artificial intelligence not to replace human thought, but to amplify it. 
+          Every line of code we write carries the weight of ethical responsibility. 
+          Every model we train must earn the trust it receives.
+        </p>
+        <p class="body-text" style="font-size: 1.25rem; line-height: 2; margin-bottom: 2rem; max-width: 100%; font-style: italic;">
+          The future of AI is not predetermined. It is shaped by the choices we make today. 
+          We choose transparency over opacity. Safety over speed. Humanity over hype.
+        </p>
+        <p class="body-text" style="font-size: 1.25rem; line-height: 2; max-width: 100%; font-style: italic;">
+          This is our commitment. This is SYNAPSE."
+        </p>
+      </div>
+      
+      <div class="reveal" style="margin-top: 3rem;">
+        <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-primary);">— The SYNAPSE Ethics Board</div>
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Est. 2024</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="marquee-container">
+      <div class="marquee">
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+      </div>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">SYNAPSE</div>
+        <p>Pioneering the next generation of artificial intelligence. Where human ingenuity meets machine precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="intelligence.html">Intelligence</a></li>
+          <li><a href="capabilities.html">Capabilities</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="ethics.html">Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 SYNAPSE AI. All rights reserved.</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem;">v2.0.1-stable</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Scan line intensity animation on scroll
+      const scanOverlay = document.querySelector('.scan-overlay');
+      if (scanOverlay && typeof gsap !== 'undefined') {
+        gsap.to(scanOverlay, {
+          opacity: 0.5,
+          duration: 0.1,
+          repeat: -1,
+          yoyo: true,
+          ease: 'none'
+        });
+      }
+      
+      // Principle card hover effects
+      document.querySelectorAll('.principle-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-5px)';
+          card.style.borderColor = 'var(--neon-accent)';
+          
+          const number = card.querySelector('.principle-number');
+          if (number) {
+            number.style.opacity = '0.4';
+            number.style.transform = 'scale(1.2)';
+            number.style.transition = 'all 0.4s var(--transition-smooth)';
+          }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.borderColor = '';
+          
+          const number = card.querySelector('.principle-number');
+          if (number) {
+            number.style.opacity = '0.2';
+            number.style.transform = 'scale(1)';
+          }
+        });
+      });
+      
+      // Manifesto text reveal word by word
+      if (typeof gsap !== 'undefined') {
+        document.querySelectorAll('.manifesto-text p').forEach(p => {
+          const text = p.textContent;
+          p.innerHTML = text.split(' ').map(word => `<span style="display: inline-block; opacity: 0.3; transition: opacity 0.5s;">${word}</span>`).join(' ');
+          
+          const words = p.querySelectorAll('span');
+          words.forEach((word, i) => {
+            ScrollTrigger.create({
+              trigger: word,
+              start: 'top 85%',
+              once: true,
+              onEnter: () => {
+                gsap.to(word, {
+                  opacity: 1,
+                  duration: 0.5,
+                  delay: i * 0.05
+                });
+              }
+            });
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

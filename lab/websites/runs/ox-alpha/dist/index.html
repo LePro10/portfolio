@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEURA — Inside the Machine Mind</title>
+<meta name="description" content="An immersive descent into artificial intelligence — from spark to superintelligence. Six chapters of WebGL, motion and machine poetry."/>
+<meta name="theme-color" content="#050507"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='.5' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%23ff2ea6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2l3.8 10.2L30 16l-10.2 3.8L16 30l-3.8-10.2L2 16l10.2-3.8z' fill='url(%23g)'/%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script>document.documentElement.classList.add('is-booting')</script>
+  <script type="module" crossorigin src="/assets/main-Dbt68BfR.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-CAm9PJTZ.css">
+</head>
+<body data-page="home">
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
+<div class="overlay" aria-hidden="true">
+  <div class="overlay__cols"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="overlay__brand">
+    <span class="overlay__logo">NEURA</span>
+    <span class="overlay__counter">000</span>
+    <span class="overlay__tag">INITIALIZING NEURAL LATTICE</span>
+  </div>
+</div>
+
+<header class="nav">
+  <a class="nav__logo" href="/index.html"><i></i>NEURA</a>
+  <ul class="nav__links">
+    <li><a href="/origins.html" data-nav="origins">Origins</a></li>
+    <li><a href="/mind.html" data-nav="mind">The Mind</a></li>
+    <li><a href="/gallery.html" data-nav="gallery">Capabilities</a></li>
+    <li><a href="/future.html" data-nav="future">Horizon</a></li>
+    <li><a href="/contact.html" data-nav="contact">Contact</a></li>
+  </ul>
+  <button class="burger" aria-label="Toggle menu"><span></span><span></span></button>
+</header>
+
+<nav class="menu" aria-label="Main menu">
+  <ul>
+    <li><a href="/index.html"><em>00</em>Genesis</a></li>
+    <li><a href="/origins.html"><em>01</em>Origins</a></li>
+    <li><a href="/mind.html"><em>02</em>The Mind</a></li>
+    <li><a href="/gallery.html"><em>03</em>Capabilities</a></li>
+    <li><a href="/future.html"><em>04</em>Horizon</a></li>
+    <li><a href="/contact.html"><em>05</em>Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<section class="hero">
+  <div class="webgl" id="hero-canvas"></div>
+  <div class="container hero__inner">
+    <p class="kicker" data-scramble>[ Layer 00 — Genesis ]</p>
+    <h1 class="h-display hero__title" data-split>Machines that <span class="grad">dream</span></h1>
+    <p class="hero__sub" data-reveal>This is not a website about artificial intelligence. It is a descent through one — six layers deep, from the first spark to whatever comes after us.</p>
+    <div class="hero__cta" data-reveal>
+      <a class="btn btn--solid" href="#journey" data-magnetic>Begin the descent
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
+      </a>
+      <a class="btn" href="/origins.html" data-magnetic>Start at 1943</a>
+    </div>
+  </div>
+
+  <div class="badge-spin" aria-hidden="true">
+    <svg viewBox="0 0 100 100">
+      <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+      <text fill="rgba(242,242,248,0.55)" font-family="IBM Plex Mono, monospace" font-size="7" letter-spacing="2.4">
+        <textPath href="#circ">SCROLL TO DESCEND ✦ LAYER ZERO ✦ SCROLL ✦</textPath>
+      </text>
+    </svg>
+    <span class="badge-spin__arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
+    </span>
+  </div>
+
+  <div class="scroll-hint"><i></i>Descend</div>
+</section>
+
+<section class="section" id="journey">
+  <div class="container">
+    <p class="scrub-text">Artificial intelligence is not a product. It is a <b>geological event</b> — seventy years of pressure, heat and computation compressing thought itself into something you can hold in your hand. You are standing on the fault line.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head">
+      <p class="kicker" data-scramble>[ The descent ]</p>
+      <h2 class="h-section" data-split>Six layers. Choose your depth.</h2>
+    </div>
+
+    <div class="rows" id="chapters">
+      <a class="row" href="/origins.html" data-bg="radial-gradient(120% 130% at 20% 15%, rgba(0,240,255,.5), transparent 60%), linear-gradient(140deg,#061420,#0a2c44)">
+        <span class="row__idx">01</span>
+        <span class="row__title">Origins</span>
+        <span class="row__meta">1943 → Now · Horizontal time travel</span>
+        <span class="row__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+      </a>
+      <a class="row" href="/mind.html" data-bg="radial-gradient(120% 130% at 80% 20%, rgba(123,92,255,.55), transparent 60%), linear-gradient(140deg,#0e0920,#1c1148)">
+        <span class="row__idx">02</span>
+        <span class="row__title">The Mind</span>
+        <span class="row__meta">Interactive neural lattice</span>
+        <span class="row__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+      </a>
+      <a class="row" href="/gallery.html" data-bg="radial-gradient(120% 130% at 30% 80%, rgba(255,46,166,.45), transparent 62%), linear-gradient(140deg,#180714,#300d28)">
+        <span class="row__idx">03</span>
+        <span class="row__title">Capabilities</span>
+        <span class="row__meta">Six living portraits</span>
+        <span class="row__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+      </a>
+      <a class="row" href="/future.html" data-bg="radial-gradient(100% 110% at 70% 30%, rgba(0,240,255,.35), transparent 60%), radial-gradient(90% 100% at 25% 75%, rgba(255,46,166,.35), transparent 60%), linear-gradient(140deg,#07101c,#170f33)">
+        <span class="row__idx">04</span>
+        <span class="row__title">Horizon</span>
+        <span class="row__meta">A draggable piece of tomorrow</span>
+        <span class="row__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+      </a>
+      <a class="row" href="/contact.html" data-bg="radial-gradient(120% 130% at 50% 10%, rgba(123,92,255,.4), transparent 60%), linear-gradient(140deg,#12060c,#26081c)">
+        <span class="row__idx">05</span>
+        <span class="row__title">Contact</span>
+        <span class="row__meta">Open a channel</span>
+        <span class="row__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="preview" id="preview" aria-hidden="true"></div>
+
+<section aria-hidden="true">
+  <div class="marquee marquee--big">
+    <div class="marquee__track">
+      <span>Synthetic intelligence <i>✦</i> Deep learning <i>✦</i> Neural networks <i>✦</i> Emergence <i>✦</i> Backpropagation <i>✦</i> Attention <i>✦</i></span>
+      <span>Synthetic intelligence <i>✦</i> Deep learning <i>✦</i> Neural networks <i>✦</i> Emergence <i>✦</i> Backpropagation <i>✦</i> Attention <i>✦</i></span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="sec-head">
+      <p class="kicker" data-scramble>[ Measured in awe ]</p>
+      <h2 class="h-section" data-split>The scale of the thing</h2>
+    </div>
+    <div class="stats">
+      <div class="stat" data-reveal>
+        <div class="stat__num grad"><span data-count="1.8" data-decimals="1" data-suffix="T">0T</span></div>
+        <div class="stat__label">Parameters in frontier models</div>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="stat__num grad"><span data-count="70">0</span></div>
+        <div class="stat__label">Years since Dartmouth, 1956</div>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="stat__num grad"><span data-count="240" data-suffix="K+">0</span></div>
+        <div class="stat__label">AI papers published per year</div>
+      </div>
+      <div class="stat" data-reveal>
+        <div class="stat__num grad"><span data-count="100" data-suffix="M">0</span></div>
+        <div class="stat__label">Users gained in 60 days flat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a class="footer__word" href="#" data-text="NEURA">NEURA</a>
+    <div class="footer__grid">
+      <div>
+        <a class="nav__logo" href="/index.html"><i></i>NEURA</a>
+        <p>A museum of machine intelligence, built entirely from code, math and obsession.</p>
+      </div>
+      <div class="footer__col">
+        <b>Chapters</b>
+        <ul>
+          <li><a href="/origins.html">Origins</a></li>
+          <li><a href="/mind.html">The Mind</a></li>
+          <li><a href="/gallery.html">Capabilities</a></li>
+          <li><a href="/future.html">Horizon</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <b>Signals</b>
+        <ul>
+          <li><a href="/contact.html">Open a channel</a></li>
+          <li><a href="#">X / Twitter</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Are.na</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 NEURA SYSTEMS</span>
+      <span>BUILT FROM PARTICLES &amp; GRADIENT DESCENT</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

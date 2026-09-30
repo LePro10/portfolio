@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showcase - NEXUS AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header-hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <style>
+    .showcase-item-bg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      background: linear-gradient(135deg, var(--color-bg-tertiary), var(--color-bg-secondary));
+    }
+
+    .showcase-item:nth-child(1) .showcase-item-bg { background: linear-gradient(135deg, #0a1628, #1a0a28); }
+    .showcase-item:nth-child(2) .showcase-item-bg { background: linear-gradient(135deg, #0a2818, #0a1828); }
+    .showcase-item:nth-child(3) .showcase-item-bg { background: linear-gradient(135deg, #281a0a, #280a1a); }
+    .showcase-item:nth-child(4) .showcase-item-bg { background: linear-gradient(135deg, #0a1828, #1a280a); }
+    .showcase-item:nth-child(5) .showcase-item-bg { background: linear-gradient(135deg, #1a0a28, #0a2828); }
+    .showcase-item:nth-child(6) .showcase-item-bg { background: linear-gradient(135deg, #280a1a, #0a1828); }
+    .showcase-item:nth-child(7) .showcase-item-bg { background: linear-gradient(135deg, #0a2828, #281a0a); }
+    .showcase-item:nth-child(8) .showcase-item-bg { background: linear-gradient(135deg, #1a280a, #0a0a28); }
+  </style>
+</head>
+<body>
+  <div id="custom-cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <div id="loading-screen">
+    <div class="loader-ring" style="position: relative;"></div>
+    <div class="loader-text">NEXUS AI</div>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">NEXUS AI</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="capabilities.html" class="nav-link">Capabilities</a></li>
+          <li><a href="showcase.html" class="nav-link active">Showcase</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero" style="min-height: 60vh;">
+    <div class="hero-bg">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-gradient-orb"></div>
+      <div class="hero-gradient-orb"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">AI in Action</div>
+      <h1 class="hero-title">
+        <span class="gradient-text">Showcase</span>
+      </h1>
+      <p class="hero-description">
+        See how NEXUS AI is transforming industries and creating new possibilities across the globe.
+      </p>
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Explore real-world applications of our AI technology</p>
+
+      <div class="showcase-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+        <button class="filter-btn" data-filter="finance">Finance</button>
+        <button class="filter-btn" data-filter="creative">Creative</button>
+        <button class="filter-btn" data-filter="automation">Automation</button>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="showcase-item tall" data-category="healthcare">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" fill="none" stroke="url(#g1)" stroke-width="2"/>
+              <circle cx="50" cy="50" r="15" fill="url(#g1)"/>
+              <path d="M50 35 L50 65 M35 50 L65 50" stroke="#0a0a0f" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Medical Diagnosis AI</h3>
+            <p>AI-powered diagnostic system with 99.2% accuracy in detecting rare diseases</p>
+          </div>
+        </div>
+
+        <div class="showcase-item" data-category="finance">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="url(#g2)" stroke-width="2"/>
+              <path d="M30 60 L40 45 L50 55 L60 35 L70 50" fill="none" stroke="url(#g2)" stroke-width="3"/>
+              <circle cx="70" cy="50" r="4" fill="url(#g2)"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Trading Algorithm</h3>
+            <p>Real-time market prediction with 94% accuracy</p>
+          </div>
+        </div>
+
+        <div class="showcase-item" data-category="creative">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#ff006e;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <circle cx="35" cy="50" r="20" fill="none" stroke="url(#g3)" stroke-width="2"/>
+              <circle cx="65" cy="50" r="20" fill="none" stroke="url(#g3)" stroke-width="2"/>
+              <path d="M50 30 L50 70" stroke="url(#g3)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>AI Art Generator</h3>
+            <p>Create stunning artwork from text descriptions</p>
+          </div>
+        </div>
+
+        <div class="showcase-item" data-category="automation">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#00ff88;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="30" fill="none" stroke="url(#g4)" stroke-width="2"/>
+              <path d="M50 20 L50 50 L70 70" fill="none" stroke="url(#g4)" stroke-width="3"/>
+              <circle cx="50" cy="50" r="5" fill="url(#g4)"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Workflow Automation</h3>
+            <p>Automated enterprise workflows saving 1000+ hours/month</p>
+          </div>
+        </div>
+
+        <div class="showcase-item" data-category="healthcare">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <path d="M30 70 Q50 20 70 70" fill="none" stroke="url(#g5)" stroke-width="3"/>
+              <circle cx="50" cy="45" r="8" fill="url(#g5)"/>
+              <line x1="50" y1="53" x2="50" y2="80" stroke="url(#g5)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Drug Discovery</h3>
+            <p>Accelerating pharmaceutical research by 10x</p>
+          </div>
+        </div>
+
+        <div class="showcase-item tall" data-category="finance">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#ff006e;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <rect x="25" y="25" width="50" height="50" rx="5" fill="none" stroke="url(#g6)" stroke-width="2"/>
+              <path d="M35 50 L45 40 L55 55 L65 35" fill="none" stroke="url(#g6)" stroke-width="3"/>
+              <circle cx="35" cy="50" r="3" fill="url(#g6)"/>
+              <circle cx="45" cy="40" r="3" fill="url(#g6)"/>
+              <circle cx="55" cy="55" r="3" fill="url(#g6)"/>
+              <circle cx="65" cy="35" r="3" fill="url(#g6)"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Risk Assessment</h3>
+            <p>AI-driven risk analysis for banking institutions</p>
+          </div>
+        </div>
+
+        <div class="showcase-item" data-category="creative">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g7" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#ff006e;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#00f0ff;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <path d="M50 20 L80 80 L20 80 Z" fill="none" stroke="url(#g7)" stroke-width="2"/>
+              <circle cx="50" cy="55" r="10" fill="url(#g7)"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Music Composition</h3>
+            <p>AI-generated music indistinguishable from human composers</p>
+          </div>
+        </div>
+
+        <div class="showcase-item" data-category="automation">
+          <div class="showcase-item-bg">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <defs>
+                <linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00ff88;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#00f0ff;stop-opacity:0.8" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="25" fill="none" stroke="url(#g8)" stroke-width="2"/>
+              <circle cx="50" cy="50" r="15" fill="none" stroke="url(#g8)" stroke-width="2"/>
+              <circle cx="50" cy="50" r="5" fill="url(#g8)"/>
+              <line x1="50" y1="25" x2="50" y2="15" stroke="url(#g8)" stroke-width="2"/>
+              <line x1="50" y1="75" x2="50" y2="85" stroke="url(#g8)" stroke-width="2"/>
+              <line x1="25" y1="50" x2="15" y2="50" stroke="url(#g8)" stroke-width="2"/>
+              <line x1="75" y1="50" x2="85" y2="50" stroke="url(#g8)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="showcase-overlay">
+            <h3>Smart Manufacturing</h3>
+            <p>Predictive maintenance reducing downtime by 85%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <h2 class="section-title">Impact Stories</h2>
+      <p class="section-subtitle">Real results from real clients</p>
+
+      <div class="stats-grid">
+        <div class="stat-card glass-card">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Projects Deployed</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">85%</div>
+          <div class="stat-label">Cost Reduction</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">10x</div>
+          <div class="stat-label">Faster Processing</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">4.9/5</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">NEXUS AI</a>
+          <p>Pioneering the future of artificial intelligence with cutting-edge technology and innovative solutions.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="capabilities.html">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NEXUS AI. All rights reserved.</p>
+        <p>Crafted with intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

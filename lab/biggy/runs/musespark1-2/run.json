@@ -1,0 +1,6 @@
+{
+  "model": "musespark1.2",
+  "status": "failed",
+  "stack": "react-vite",
+  "note": "No usable static build."
+}

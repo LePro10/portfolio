@@ -1,0 +1,106 @@
+/* ========================================
+   SYNAPSE — Ethics Page Specific Styles
+   ======================================== */
+
+/* Ethics Hero with enhanced scan lines */
+.ethics-hero {
+  position: relative;
+}
+
+.ethics-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(107, 33, 168, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.ethics-hero h1 {
+  text-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
+}
+
+/* Scan line effect for body */
+body.scan-lines::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 240, 255, 0.02) 2px,
+    rgba(0, 240, 255, 0.02) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scan overlay animation */
+.scan-overlay {
+  animation: scanMove 8s linear infinite;
+}
+
+@keyframes scanMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Principle Cards */
+.principle-card {
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.principle-card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.principle-number {
+  transition: all 0.4s var(--transition-smooth);
+}
+
+/* Manifesto Section */
+.manifesto-section {
+  position: relative;
+}
+
+.manifesto-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(107, 33, 168, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(0, 240, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.manifesto-text p {
+  position: relative;
+}
+
+.manifesto-text p::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--neon-accent), var(--nebula-purple));
+  opacity: 0.3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .manifesto-text p::before {
+    left: -1rem;
+    width: 2px;
+  }
+  
+  .ethics-hero h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem) !important;
+  }
+}

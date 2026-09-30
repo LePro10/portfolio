@@ -1,0 +1,269 @@
+/* ==========================================================================
+   NOETIC — home page
+   ========================================================================== */
+
+/* ---- Hero --------------------------------------------------------------- */
+/* The track is tall; the .pin child sticks for its duration, giving the
+   particle field a long runway to morph through four formations. */
+.hero { height: 360svh; }
+@media (max-width: 62rem) { .hero { height: 300svh; } }
+
+.hero__pin { align-content: center; }
+
+.hero__inner {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-5);
+  padding-top: 4rem;
+}
+
+.hero__kicker { margin: 0; }
+
+.hero__title {
+  font-size: var(--t-4xl);
+  font-weight: 640;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  margin-block: var(--s-2) var(--s-4);
+  /* The per-line rule in components.css re-applies this to each moving line. */
+  background-image: linear-gradient(178deg, #fff 12%, #cfd8ff 46%, #8f7dff 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__lede {
+  font-size: var(--t-md);
+  color: var(--tx-mid);
+  max-width: 46ch;
+}
+.hero__lede strong { color: var(--tx-hi); font-weight: 600; }
+
+/* .hero__actions lives in components.css — every page uses it. */
+
+/* Morph-state readout, bottom-left of the pinned hero */
+.hero__readout {
+  margin-top: clamp(2rem, 7vh, 4.5rem);
+  width: min(100%, 34rem);
+  display: grid;
+  gap: var(--s-3);
+}
+.readout__bar {
+  height: 1px;
+  background: color-mix(in oklab, var(--tx-lo) 24%, transparent);
+  position: relative;
+}
+.readout__bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--grad-signal);
+  box-shadow: 0 0 10px var(--cy-500);
+}
+.readout__stages {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tx-dim);
+}
+.readout__stages li {
+  display: flex;
+  gap: var(--s-2);
+  align-items: baseline;
+  transition: color var(--d-med) var(--e-swift);
+}
+.readout__stages b { color: currentColor; font-weight: 500; opacity: 0.55; }
+.readout__stages li.is-on { color: var(--cy-400); }
+
+.hero__scrollcue {
+  position: absolute;
+  bottom: var(--s-6);
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tx-dim);
+}
+.hero__scrollcue i {
+  width: 1px; height: 3rem;
+  background: linear-gradient(180deg, var(--cy-500), transparent);
+  transform-origin: 50% 0;
+  animation: cue 2.2s var(--e-in-out) infinite;
+}
+@keyframes cue {
+  0%   { transform: scaleY(0); opacity: 0; }
+  35%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1) translateY(3rem); opacity: 0; }
+}
+
+/* ---- Statement ---------------------------------------------------------- */
+.statement {
+  font-size: var(--t-xl);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: var(--tr-snug);
+  color: var(--tx-hi);
+  max-width: 30ch;
+  margin-bottom: var(--s-6);
+}
+
+/* ---- Horizontal capability track ---------------------------------------- */
+.track-section { --track-h: 330svh; height: var(--track-h); position: relative; }
+.track-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-content: center;
+  gap: var(--s-5);
+  padding-block: var(--s-7);
+  overflow: hidden;
+}
+.track-head h2 { max-width: 20ch; }
+.track-head .eyebrow { margin-bottom: var(--s-3); }
+
+.track { overflow: hidden; display: flex; align-items: center; }
+.track__rail {
+  display: flex;
+  gap: var(--s-5);
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+
+.cap {
+  flex: none;
+  width: min(80vw, 25rem);
+  display: grid;
+  align-content: start;
+  gap: var(--s-3);
+  padding: var(--s-6);
+  min-height: 24rem;
+  transition: transform 0.5s var(--e-out), opacity 0.5s var(--e-out),
+              border-color var(--d-med) var(--e-swift);
+}
+/* horizontal.js writes --near (0..1) per card: 1 = dead centre of viewport. */
+.cap {
+  transform: scale(calc(0.9 + 0.1 * var(--near, 1))) translateY(calc((1 - var(--near, 1)) * 1.4rem));
+  opacity: calc(0.42 + 0.58 * var(--near, 1));
+}
+.cap h3 { margin-block: var(--s-2) 0; }
+.cap p { font-size: var(--t-sm); }
+
+/* Per-card mini visualisations, pure CSS */
+.cap__viz { margin-top: auto; padding-top: var(--s-5); }
+
+.cap__viz--steps { display: grid; gap: 7px; }
+.cap__viz--steps i {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad-signal);
+  transform-origin: 0 50%;
+  animation: step-draw 3.4s var(--e-out) infinite;
+}
+.cap__viz--steps i:nth-child(1) { width: 92%; animation-delay: 0s; }
+.cap__viz--steps i:nth-child(2) { width: 64%; animation-delay: 0.18s; }
+.cap__viz--steps i:nth-child(3) { width: 81%; animation-delay: 0.36s; }
+.cap__viz--steps i:nth-child(4) { width: 48%; animation-delay: 0.54s; }
+.cap__viz--steps i:nth-child(5) { width: 71%; animation-delay: 0.72s; }
+@keyframes step-draw {
+  0%, 100% { transform: scaleX(0.15); opacity: 0.35; }
+  40%, 70% { transform: scaleX(1); opacity: 1; }
+}
+
+.cap__viz--grid {
+  height: 5.5rem;
+  background-image:
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    linear-gradient(0deg, var(--line) 1px, transparent 1px);
+  background-size: 12.5% 25%;
+  position: relative;
+  overflow: hidden;
+}
+.cap__viz--grid::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(2rem 2rem at 22% 30%, color-mix(in oklab, var(--cy-500) 65%, transparent), transparent 70%),
+    radial-gradient(2.4rem 2.4rem at 68% 72%, color-mix(in oklab, var(--vi-500) 60%, transparent), transparent 70%),
+    radial-gradient(1.6rem 1.6rem at 86% 22%, color-mix(in oklab, var(--mg-500) 55%, transparent), transparent 70%);
+  animation: drift 7s var(--e-in-out) infinite;
+}
+
+.cap__viz--bars { display: flex; align-items: flex-end; gap: 5px; height: 5.5rem; }
+.cap__viz--bars i {
+  flex: 1;
+  height: var(--h);
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(180deg, var(--cy-500), color-mix(in oklab, var(--vi-500) 60%, transparent));
+  transform-origin: 50% 100%;
+  animation: bar-breathe 3s var(--e-in-out) infinite alternate;
+}
+.cap__viz--bars i:nth-child(2n) { animation-delay: -0.6s; }
+.cap__viz--bars i:nth-child(3n) { animation-delay: -1.2s; }
+@keyframes bar-breathe { to { transform: scaleY(0.55); } }
+
+.cap__viz--rings { display: flex; gap: var(--s-4); height: 5.5rem; align-items: center; }
+.cap__viz--rings i {
+  width: 3rem; height: 3rem;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, var(--cy-500) 55%, transparent);
+  animation: ring-out 2.8s var(--e-out) infinite;
+}
+.cap__viz--rings i:nth-child(2) { animation-delay: 0.4s; }
+.cap__viz--rings i:nth-child(3) { animation-delay: 0.8s; }
+@keyframes ring-out {
+  0%   { transform: scale(0.55); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+.cap__viz--pulse { height: 5.5rem; display: grid; place-items: center; }
+.cap__viz--pulse i {
+  width: 0.75rem; height: 0.75rem;
+  border-radius: 50%;
+  background: var(--cy-500);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--cy-500) 60%, transparent);
+  animation: pulse 2s var(--e-out) infinite;
+}
+
+.track-foot { width: 100%; }
+.track-bar {
+  height: 1px;
+  background: color-mix(in oklab, var(--tx-lo) 20%, transparent);
+  position: relative;
+}
+.track-bar i {
+  position: absolute; inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--grad-signal);
+}
+
+/* Small screens: the horizontal rail becomes a normal swipeable row. */
+@media (max-width: 48rem) {
+  .track-section { height: auto; }
+  .track-pin { position: static; height: auto; }
+  .track { overflow-x: auto; scroll-snap-type: x mandatory; }
+  .track__rail { transform: none !important; }
+  .cap { scroll-snap-align: center; opacity: 1; transform: none; }
+  .track-foot { display: none; }
+}
+
+/* ---- Numbers ------------------------------------------------------------ */
+.numbers { row-gap: var(--s-7); }
+
+/* ---- Mini meters inside model teaser cards ------------------------------ */
+.mini-meters { margin-top: var(--s-5); display: grid; gap: var(--s-1); }
+.mini-meters .meter { grid-template-columns: 6rem 1fr auto; }
+
+/* .paper-list and .cta live in components.css — shared with research.html
+   and every page's closing section. */

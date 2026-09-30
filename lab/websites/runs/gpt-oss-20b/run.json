@@ -1,0 +1,6 @@
+{
+  "model": "gpt-oss-20b",
+  "status": "failed",
+  "stack": "react-vite",
+  "note": "No usable static build."
+}

@@ -1,0 +1,15 @@
+[Unit]
+Description=Portfolio: main holen, bauen, live schalten
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=portfolio
+Group=portfolio
+Environment=HOME=/opt/portfolio
+Environment=COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+Environment=NEXT_TELEMETRY_DISABLED=1
+ExecStart=/usr/local/bin/portfolio-update
+TimeoutStartSec=20min
+Nice=10

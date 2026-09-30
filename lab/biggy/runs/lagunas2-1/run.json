@@ -1,0 +1,6 @@
+{
+  "model": "lagunas2.1",
+  "status": "failed",
+  "stack": "react-vite",
+  "note": "No usable static build."
+}

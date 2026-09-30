@@ -1,0 +1,388 @@
+
+/* Everything is namespaced (ds-*): the original ref/elements files inject global
+   .shiny-cta / --gradient-* / @keyframes rules that must never reach these buttons. */
+
+@property --ds-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@property --ds-angle-offset { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@property --ds-percent { syntax: '<percentage>'; initial-value: 5%; inherits: false; }
+@property --ds-shine { syntax: '<color>'; initial-value: #fff; inherits: false; }
+
+.ds-flame__button,
+.ds-shiny,
+.ds-rainbow {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  font-family: var(--font-button), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+}
+
+.ds-flame__button:focus-visible,
+.ds-shiny:focus-visible,
+.ds-rainbow:focus-visible {
+  outline: 1.5px solid rgb(255 255 255 / 0.75);
+  outline-offset: 3px;
+}
+
+/* ─── Flame ────────────────────────────────────────────────────────────── */
+
+.ds-flame {
+  --x: 50%;
+  --edge: 88%;
+  --flare: 0;
+  --h: 44px;
+  --fg: #eef1f4;
+  --border: rgb(255 255 255 / 0.09);
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  user-select: none;
+  border-radius: 9999px;
+}
+
+/* Edge flare: the original gradient and blur, fading in as the cursor nears an end. */
+.ds-flame__flare {
+  position: absolute;
+  inset: -6px;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse 44% 85% at var(--edge) 50%,
+    rgb(240 248 255) 0%,
+    rgb(165 200 255 / 0.9) 28%,
+    rgb(125 135 255 / 0.45) 50%,
+    rgb(125 135 255 / 0.1) 68%,
+    transparent 80%);
+  filter: blur(7px) saturate(1.1);
+  opacity: var(--flare);
+}
+
+.ds-flame__button {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: var(--h);
+  padding: 0 28px 0 32px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: inherit;
+  color: var(--fg);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: linear-gradient(100deg, #111213 0%, #151617 40%, #191b1c 70%, #1e2022 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 1px 2px rgb(0 0 0 / 0.6),
+    0 8px 20px -8px rgb(0 0 0 / 0.8);
+  transition: border-color 200ms ease-out, translate 120ms ease-out;
+}
+
+/* Light that follows the cursor: the original's two stacked radials, recoloured from flame
+   orange to cold white with an ice-blue cast to match the particle scenes; added with
+   plus-lighter, with saturation kept for the bright parts only (core rim, edge flare). */
+.ds-flame__light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: plus-lighter;
+  transition: opacity 150ms ease-out;
+}
+.ds-flame__light::before,
+.ds-flame__light::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: var(--x);
+  translate: -50% -50%;
+  border-radius: 50%;
+}
+.ds-flame__light::before {
+  width: 121px;
+  height: 121px;
+  background: radial-gradient(50% 50% at 50% 50%,
+    rgb(240 246 255 / 0.34) 3.5%,
+    rgb(200 220 255 / 0.2) 26.5%,
+    rgb(150 180 255 / 0.1) 42%,
+    rgb(120 140 255 / 0.04) 60%,
+    transparent 85%);
+}
+.ds-flame__light::after {
+  width: 204px;
+  height: 103px;
+  filter: blur(5px);
+  background: radial-gradient(43.3% 44.23% at 50% 49.51%,
+    rgb(245 250 255 / 0.07) 29%,
+    rgb(220 232 255 / 0.04) 48.5%,
+    transparent 100%);
+}
+
+/* Rim catches the same heat source (drawn inside the border: overflow clips at the padding box). */
+.ds-flame__button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(70px circle at var(--x) 50%,
+    rgb(235 244 255 / 0.95),
+    rgb(140 170 255 / 0.55) 40%,
+    transparent 75%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.ds-flame__label { position: relative; }
+.ds-flame__arrow {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  transition: translate 260ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) {
+  .ds-flame:hover .ds-flame__light,
+  .ds-flame:hover .ds-flame__button::after { opacity: 1; }
+  .ds-flame:hover .ds-flame__arrow { translate: 2px 0; }
+}
+.ds-flame__button:focus-visible .ds-flame__light,
+.ds-flame__button:focus-visible::after { opacity: 1; }
+.ds-flame__button:active { translate: 0 1px; }
+
+/* ─── Shiny ────────────────────────────────────────────────────────────── */
+
+.ds-shiny {
+  --bg: #0b0b0c;
+  --bg-subtle: #1d1d20;
+  --fg: #f6f6f7;
+  --rose: oklch(0.8 0.11 10);
+  --amber: oklch(0.88 0.09 78);
+  --mint: oklch(0.88 0.1 165);
+  --sky: oklch(0.8 0.1 240);
+  --violet: oklch(0.76 0.12 300);
+  --glass: rgb(255 255 255 / 0.14);
+  --animation: ds-shiny-angle linear infinite;
+  --duration: 3s;
+  --shadow-size: 2px;
+  --transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 28px;
+  border: 1px solid transparent;
+  border-radius: 360px;
+  color: var(--fg);
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    conic-gradient(
+      from calc(var(--ds-angle) - var(--ds-angle-offset)),
+      transparent,
+      var(--rose) var(--ds-percent),
+      var(--amber) calc(var(--ds-percent) * 1.5),
+      var(--ds-shine) calc(var(--ds-percent) * 2),
+      var(--sky) calc(var(--ds-percent) * 2.5),
+      var(--violet) calc(var(--ds-percent) * 3),
+      transparent calc(var(--ds-percent) * 4)
+    ) border-box;
+  box-shadow: inset 0 0 0 1px var(--bg-subtle), inset 0 1px 0 1px rgb(255 255 255 / 0);
+  transition: var(--transition);
+  transition-property: --ds-angle-offset, --ds-percent, --ds-shine, box-shadow;
+}
+
+.ds-shiny::before,
+.ds-shiny::after,
+.ds-shiny span::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+}
+
+.ds-shiny:active { translate: 0 1px; }
+
+/* Dot trail that follows the orbiting light. */
+.ds-shiny::before {
+  --size: calc(100% - var(--shadow-size) * 3);
+  --position: 2px;
+  --space: calc(var(--position) * 2);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle at var(--position) var(--position), #fff calc(var(--position) / 4), transparent 0) padding-box;
+  background-size: var(--space) var(--space);
+  background-repeat: space;
+  mask-image: conic-gradient(from calc(var(--ds-angle) + 45deg), black, transparent 10% 90%, black);
+  border-radius: inherit;
+  opacity: 0.3;
+}
+
+/* Inner shimmer: faint dispersion instead of the original solid blue. */
+.ds-shiny::after {
+  --animation: ds-shiny-rotate linear infinite;
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(-50deg,
+    transparent 22%,
+    rgb(255 190 215 / 0.2),
+    rgb(255 255 255 / 0.3),
+    rgb(185 210 255 / 0.2),
+    transparent 78%);
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: 0.55;
+}
+
+.ds-shiny span { z-index: 1; }
+
+/* Liquid-glass pool of light rising from the bottom edge. */
+.ds-shiny span::before {
+  --size: calc(100% + 1rem);
+  width: var(--size);
+  height: var(--size);
+  box-shadow: inset 0 -1ex 2rem 4px var(--glass);
+  opacity: 0;
+  transition: opacity var(--transition);
+  animation: calc(var(--duration) * 1.5) ds-shiny-breathe linear infinite;
+}
+
+.ds-shiny,
+.ds-shiny::before,
+.ds-shiny::after {
+  animation:
+    var(--animation) var(--duration),
+    var(--animation) calc(var(--duration) / 0.4) reverse paused;
+  animation-composition: add;
+}
+
+.ds-shiny:is(:hover, :focus-visible) {
+  --ds-percent: 20%;
+  --ds-angle-offset: 95deg;
+  --ds-shine: var(--mint);
+  box-shadow: inset 0 0 0 1px var(--bg-subtle), inset 0 1px 0 1px rgb(255 255 255 / 0.07);
+}
+.ds-shiny:is(:hover, :focus-visible),
+.ds-shiny:is(:hover, :focus-visible)::before,
+.ds-shiny:is(:hover, :focus-visible)::after { animation-play-state: running; }
+.ds-shiny:is(:hover, :focus-visible) span::before { opacity: 1; }
+
+@keyframes ds-shiny-angle { to { --ds-angle: 360deg; } }
+@keyframes ds-shiny-rotate { to { rotate: 360deg; } }
+@keyframes ds-shiny-breathe { from, to { scale: 1; } 50% { scale: 1.2; } }
+
+/* ─── Rainbow (achromatic) ─────────────────────────────────────────────── */
+
+.ds-rainbow {
+  --surface: #121213;
+  --bw: 1.28px;
+  --sheen: linear-gradient(90deg, #2e2e32, #cfcfd4, #4a4a50, #f5f5f7, #2e2e32);
+  --prox: 0;
+  --px: 50%;
+  --py: 50%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 30px;
+  border: var(--bw) solid transparent;
+  border-radius: 9999px;
+  color: #c9c9cd;
+  background:
+    linear-gradient(var(--surface), var(--surface)),
+    linear-gradient(var(--surface) 50%, rgb(18 18 19 / 0.6) 80%, rgb(18 18 19 / 0)),
+    var(--sheen);
+  background-size: 200%;
+  background-clip: padding-box, border-box, border-box;
+  background-origin: border-box;
+  box-shadow: 0 0 0 0.5px rgb(255 255 255 / 0.06);
+  animation: ds-rainbow 2.4s linear infinite paused;
+  transition: color 250ms ease-out;
+}
+
+/* Floor glow: the original's blurred underlight, in white and only on hover. */
+.ds-rainbow::before {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  z-index: 0;
+  width: 60%;
+  height: 20%;
+  translate: -50% 0;
+  background: var(--sheen);
+  background-size: 200%;
+  filter: blur(0.8rem);
+  opacity: 0;
+  pointer-events: none;
+  animation: ds-rainbow 2.4s linear infinite paused;
+  transition: opacity 400ms ease-out;
+}
+
+/* Proximity rim: the side facing the cursor lights up as it approaches. */
+.ds-rainbow::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--bw) * -1);
+  padding: var(--bw);
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(80px circle at var(--px) var(--py),
+    rgb(255 255 255 / 0.95),
+    rgb(255 255 255 / 0.3) 45%,
+    transparent 75%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: var(--prox);
+}
+
+@media (hover: hover) {
+  .ds-rainbow:hover { color: #fff; }
+  .ds-rainbow:hover,
+  .ds-rainbow:hover::before { animation-play-state: running; }
+  .ds-rainbow:hover::before { opacity: 0.85; }
+}
+.ds-rainbow:focus-visible { color: #fff; }
+.ds-rainbow:focus-visible::before { opacity: 0.85; }
+.ds-rainbow:active { translate: 0 1px; }
+
+@keyframes ds-rainbow { from { background-position: 0%; } to { background-position: 200%; } }
+
+/* ─── Shared ───────────────────────────────────────────────────────────── */
+
+.ds-flame__button:disabled,
+.ds-shiny:disabled,
+.ds-rainbow:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-shiny,
+  .ds-shiny::before,
+  .ds-shiny::after,
+  .ds-shiny span::before,
+  .ds-rainbow,
+  .ds-rainbow::before { animation: none; }
+  .ds-flame__arrow { transition: none; }
+}
+
+/* Als Link gerendert (href): gleiche Optik wie der Button. */
+a.ds-rainbow, a.ds-shiny, a.ds-flame__button { text-decoration: none; }

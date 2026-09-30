@@ -1,0 +1,37 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.4.1",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "dev": "pnpm lab:build && next dev",
+    "build": "pnpm lab:check && pnpm lab:build && next build",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "preview": "node scripts/preview.ts",
+    "validate": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "lab:check": "node scripts/lab.ts check",
+    "lab:build": "node scripts/lab.ts build",
+    "lab:add": "node scripts/lab.ts add"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.3.0",
+    "next": "16.3.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "0.180.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "typescript": "^5.9",
+    "vitest": "^4.1.8"
+  }
+}

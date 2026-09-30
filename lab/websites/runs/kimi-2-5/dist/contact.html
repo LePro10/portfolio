@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — SYNAPSE AI</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/contact.css">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">SYNAPSE</div>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-percent">0%</div>
+  </div>
+  
+  <!-- Page Transition -->
+  <div class="page-transition">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <span class="glitch-text">INITIALIZING...</span>
+  </div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">SYNAPSE</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="ethics.html">Ethics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- HERO SECTION -->
+  <section class="contact-hero" style="padding: 0; max-width: 100%; min-height: 50vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(107, 33, 168, 0.15), transparent 70%);"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 4rem;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1.5rem; color: var(--neon-accent);">05 — GET IN TOUCH</span>
+      <h1 class="display-h1" style="margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;" data-scramble>
+        Let's Build<br>
+        <span class="text-gradient">The Future Together</span>
+      </h1>
+      <p class="body-text reveal" style="margin: 0 auto; max-width: 600px;">
+        Ready to integrate SYNAPSE into your workflow? Have questions about our models or ethics framework? 
+        We're here to help.
+      </p>
+    </div>
+  </section>
+  
+  <!-- TERMINAL CONTACT SECTION -->
+  <section class="terminal-section" style="position: relative; max-width: 900px;">
+    <div class="terminal-container reveal glass" style="border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--glass-border);">
+      <!-- Terminal Header -->
+      <div class="terminal-header" style="padding: 1rem 1.5rem; background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; gap: 0.5rem;">
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></span>
+        <span style="margin-left: 1rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">synapse@contact:~</span>
+      </div>
+      
+      <!-- Terminal Body -->
+      <div class="terminal-body" style="padding: 2rem 1.5rem; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.8; min-height: 500px; position: relative;">
+        <!-- Matrix rain background -->
+        <canvas id="matrix-canvas" style="position: absolute; inset: 0; opacity: 0.05; pointer-events: none;"></canvas>
+        
+        <div style="position: relative; z-index: 2;">
+          <div style="color: var(--neon-accent); margin-bottom: 1rem;">
+            > synapse_contact --init<br>
+            <span style="color: var(--text-muted);">Loading contact module...</span>
+          </div>
+          
+          <div style="color: var(--text-secondary); margin-bottom: 2rem;">
+            > Welcome to SYNAPSE Contact Terminal v2.0.1<br>
+            > Type your message or use the form below to reach our team.
+          </div>
+          
+          <!-- Contact Form styled as terminal -->
+          <form class="terminal-form" style="display: grid; gap: 1.5rem;">
+            <div class="form-group">
+              <label style="display: block; color: var(--neon-accent); margin-bottom: 0.5rem;">
+                > user_name <span style="color: var(--text-muted);">--required</span>
+              </label>
+              <input type="text" placeholder="Enter your name..." required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.9rem; outline: none; transition: all 0.3s;">
+            </div>
+            
+            <div class="form-group">
+              <label style="display: block; color: var(--neon-accent); margin-bottom: 0.5rem;">
+                > user_email <span style="color: var(--text-muted);">--required</span>
+              </label>
+              <input type="email" placeholder="Enter your email..." required style="width: 100%; padding: 0.75rem 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.9rem; outline: none; transition: all 0.3s;">
+            </div>
+            
+            <div class="form-group">
+              <label style="display: block; color: var(--neon-accent); margin-bottom: 0.5rem;">
+                > inquiry_type <span style="color: var(--text-muted);">--select</span>
+              </label>
+              <select style="width: 100%; padding: 0.75rem 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.9rem; outline: none; transition: all 0.3s; cursor: pointer;">
+                <option value="" style="background: var(--deep-space);">-- SELECT INQUIRY TYPE --</option>
+                <option value="enterprise" style="background: var(--deep-space);">Enterprise Solutions</option>
+                <option value="api" style="background: var(--deep-space);">API Access</option>
+                <option value="research" style="background: var(--deep-space);">Research Collaboration</option>
+                <option value="press" style="background: var(--deep-space);">Press & Media</option>
+                <option value="careers" style="background: var(--deep-space);">Careers</option>
+                <option value="other" style="background: var(--deep-space);">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label style="display: block; color: var(--neon-accent); margin-bottom: 0.5rem;">
+                > message <span style="color: var(--text-muted);">--max_length 1000</span>
+              </label>
+              <textarea placeholder="Enter your message..." rows="5" style="width: 100%; padding: 0.75rem 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.9rem; outline: none; transition: all 0.3s; resize: vertical;"></textarea>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
+              <button type="submit" class="btn btn-primary" style="font-family: var(--font-mono); font-size: 0.9rem;">
+                > execute --send
+              </button>
+              <span style="color: var(--text-muted); font-size: 0.8rem;">Press Enter to submit</span>
+            </div>
+          </form>
+          
+          <div id="form-response" style="margin-top: 2rem; display: none;">
+            <div style="color: var(--neon-accent);">
+              > Processing...<br>
+              <span style="color: var(--text-muted);">Encrypting message...</span><br>
+              <span style="color: var(--nebula-purple);">✓ Message transmitted successfully!</span><br>
+              <span style="color: var(--text-secondary);">Expected response time: < 24 hours</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CONTACT INFO SECTION -->
+  <section class="contact-info" style="position: relative; max-width: 1000px;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">06 — OTHER CHANNELS</span>
+      <h2 class="display-h2" data-scramble>Connect With Us</h2>
+    </div>
+    
+    <div class="channels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+      <div class="channel-card reveal glass" style="padding: 2.5rem; border-radius: 1rem; text-align: center; transition: all 0.4s var(--transition-smooth);">
+        <div style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(107, 33, 168, 0.1)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem;">📧</div>
+        <h3 class="display-h3" style="font-size: 1.25rem; margin-bottom: 0.75rem;">Email</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--neon-accent); margin-bottom: 0.5rem;">hello@synapse.ai</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">For general inquiries</p>
+      </div>
+      
+      <div class="channel-card reveal glass" style="padding: 2.5rem; border-radius: 1rem; text-align: center; transition: all 0.4s var(--transition-smooth);">
+        <div style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.2), rgba(0, 240, 255, 0.1)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem;">💬</div>
+        <h3 class="display-h3" style="font-size: 1.25rem; margin-bottom: 0.75rem;">Discord</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--neon-accent); margin-bottom: 0.5rem;">discord.gg/synapse</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Community & support</p>
+      </div>
+      
+      <div class="channel-card reveal glass" style="padding: 2.5rem; border-radius: 1rem; text-align: center; transition: all 0.4s var(--transition-smooth);">
+        <div style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(107, 33, 168, 0.1)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem;">🐦</div>
+        <h3 class="display-h3" style="font-size: 1.25rem; margin-bottom: 0.75rem;">Twitter / X</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--neon-accent); margin-bottom: 0.5rem;">@synapse_ai</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Updates & announcements</p>
+      </div>
+      
+      <div class="channel-card reveal glass" style="padding: 2.5rem; border-radius: 1rem; text-align: center; transition: all 0.4s var(--transition-smooth);">
+        <div style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.2), rgba(0, 240, 255, 0.1)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem;">🐙</div>
+        <h3 class="display-h3" style="font-size: 1.25rem; margin-bottom: 0.75rem;">GitHub</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--neon-accent); margin-bottom: 0.5rem;">github.com/synapse-ai</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Open source projects</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="marquee-container">
+      <div class="marquee">
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+      </div>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">SYNAPSE</div>
+        <p>Pioneering the next generation of artificial intelligence. Where human ingenuity meets machine precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="intelligence.html">Intelligence</a></li>
+          <li><a href="capabilities.html">Capabilities</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="ethics.html">Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 SYNAPSE AI. All rights reserved.</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem;">v2.0.1-stable</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Matrix rain effect
+      const canvas = document.getElementById('matrix-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        const terminalBody = canvas.parentElement;
+        
+        function resizeCanvas() {
+          canvas.width = terminalBody.offsetWidth;
+          canvas.height = terminalBody.offsetHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        const chars = 'SYNAPSE01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = [];
+        
+        for (let i = 0; i < columns; i++) {
+          drops[i] = Math.random() * -100;
+        }
+        
+        function drawMatrix() {
+          ctx.fillStyle = 'rgba(5, 5, 8, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          
+          ctx.fillStyle = '#00f0ff';
+          ctx.font = fontSize + 'px monospace';
+          
+          for (let i = 0; i < drops.length; i++) {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+            
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+              drops[i] = 0;
+            }
+            drops[i]++;
+          }
+        }
+        
+        setInterval(drawMatrix, 50);
+      }
+      
+      // Terminal form interactions
+      const form = document.querySelector('.terminal-form');
+      const formInputs = form.querySelectorAll('input, textarea, select');
+      
+      formInputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          input.style.borderColor = 'var(--neon-accent)';
+          input.style.boxShadow = '0 0 20px rgba(0, 240, 255, 0.1)';
+        });
+        
+        input.addEventListener('blur', () => {
+          input.style.borderColor = '';
+          input.style.boxShadow = '';
+        });
+      });
+      
+      // Form submission
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const response = document.getElementById('form-response');
+        response.style.display = 'block';
+        
+        if (typeof gsap !== 'undefined') {
+          gsap.fromTo(response, 
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5 }
+          );
+        }
+        
+        // Disable form
+        formInputs.forEach(input => input.disabled = true);
+        form.querySelector('button').style.opacity = '0.5';
+        form.querySelector('button').style.pointerEvents = 'none';
+      });
+      
+      // Channel card hover effects
+      document.querySelectorAll('.channel-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-5px)';
+          card.style.borderColor = 'var(--neon-accent)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.borderColor = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

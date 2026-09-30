@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEURAL — The Future is Thinking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ░░ LOADER ░░ -->
+  <div id="loader">
+    <canvas id="binary-rain"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">NEURAL</div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar"><div class="loader-progress"></div></div>
+        <span class="loader-percent">0%</span>
+      </div>
+      <div class="loader-tagline">Initializing Intelligence...</div>
+    </div>
+  </div>
+
+  <!-- ░░ GRAIN OVERLAY ░░ -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- ░░ CUSTOM CURSOR ░░ -->
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">NEURAL</a>
+    <div class="nav-links">
+      <a href="#what-is-ai" class="nav-link">What is AI</a>
+      <a href="#timeline" class="nav-link">History</a>
+      <a href="#capabilities" class="nav-link">Capabilities</a>
+      <a href="#neural-net" class="nav-link">Explore</a>
+      <a href="#contact" class="nav-link nav-link--cta">Contact</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- ░░░░░░░░░░ SECTION 1 — HERO ░░░░░░░░░░ -->
+    <section id="hero">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-content">
+        <div class="hero-badge reveal-up">Welcome to the Intelligence Era</div>
+        <h1 class="hero-title reveal-up">
+          <span class="glitch" data-text="NEURAL">NEURAL</span>
+        </h1>
+        <p class="hero-subtitle reveal-up">The Future is Thinking</p>
+        <p class="hero-desc reveal-up">
+          An immersive exploration of artificial intelligence —<br />
+          from its origins to the infinite possibilities that lie ahead.
+        </p>
+        <a href="#what-is-ai" class="magnetic-btn reveal-up">
+          <span>Begin Journey</span>
+        </a>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-text">SCROLL</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 2 — WHAT IS AI ░░░░░░░░░░ -->
+    <section id="what-is-ai">
+      <div class="wai-pin-wrapper">
+        <div class="wai-inner">
+          <div class="wai-visual">
+            <div class="wai-orb"></div>
+            <div class="wai-rings">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+            </div>
+            <svg class="wai-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#00F5FF" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#00F5FF" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="blur-glow">
+                  <feGaussianBlur stdDeviation="3" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Lines -->
+              <g class="svg-lines" stroke="rgba(0,245,255,0.25)" stroke-width="1">
+                <line x1="150" y1="30"  x2="270" y2="120"/>
+                <line x1="150" y1="30"  x2="60"  y2="120"/>
+                <line x1="150" y1="30"  x2="150" y2="150"/>
+                <line x1="270" y1="120" x2="60"  y2="120"/>
+                <line x1="270" y1="120" x2="220" y2="250"/>
+                <line x1="60"  y1="120" x2="100" y2="250"/>
+                <line x1="150" y1="150" x2="220" y2="250"/>
+                <line x1="150" y1="150" x2="100" y2="250"/>
+                <line x1="220" y1="250" x2="100" y2="250"/>
+                <line x1="150" y1="30"  x2="220" y2="250"/>
+              </g>
+              <!-- Nodes -->
+              <g class="svg-nodes" filter="url(#blur-glow)">
+                <circle cx="150" cy="30"  r="6" fill="#00F5FF"/>
+                <circle cx="270" cy="120" r="5" fill="#7B5EA7"/>
+                <circle cx="60"  cy="120" r="5" fill="#7B5EA7"/>
+                <circle cx="150" cy="150" r="8" fill="#00F5FF"/>
+                <circle cx="220" cy="250" r="5" fill="#FF2D78"/>
+                <circle cx="100" cy="250" r="5" fill="#FF2D78"/>
+                <circle cx="200" cy="80"  r="3" fill="#00F5FF" opacity="0.6"/>
+                <circle cx="110" cy="85"  r="3" fill="#7B5EA7" opacity="0.6"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="wai-text">
+            <h2 class="wai-heading">What is <span class="highlight">AI?</span></h2>
+            <p class="wai-p" data-index="0">
+              Artificial Intelligence is the science of making machines <em>think</em>. Not just calculate — but reason, learn, and create.
+            </p>
+            <p class="wai-p" data-index="1">
+              At its core, AI is pattern recognition at a scale no human brain can match — trillions of connections, iterating at the speed of light.
+            </p>
+            <p class="wai-p" data-index="2">
+              From diagnosing cancer to composing symphonies, AI is reshaping every dimension of human experience. And we are just at the beginning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 3 — TIMELINE ░░░░░░░░░░ -->
+    <section id="timeline">
+      <div class="timeline-sticky">
+        <div class="timeline-header">
+          <h2>The <span class="highlight">Evolution</span> of Intelligence</h2>
+          <p>Scroll to travel through time</p>
+        </div>
+        <div class="timeline-track-wrap">
+          <div class="timeline-track">
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">1950</div>
+                <div class="tl-icon">◈</div>
+                <h3>The Turing Test</h3>
+                <p>Alan Turing proposes a test for machine intelligence — if a machine can converse indistinguishably from a human, it thinks.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">1956</div>
+                <div class="tl-icon">◉</div>
+                <h3>Birth of AI</h3>
+                <p>The Dartmouth Conference coins the term "Artificial Intelligence." A field — and an era — is born.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">1997</div>
+                <div class="tl-icon">◈</div>
+                <h3>Deep Blue Wins</h3>
+                <p>IBM's Deep Blue defeats world chess champion Garry Kasparov — the first time a machine defeats a reigning world champion.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">2012</div>
+                <div class="tl-icon">◉</div>
+                <h3>Deep Learning Explosion</h3>
+                <p>AlexNet wins ImageNet by a massive margin. Deep neural networks rewrite computer vision overnight.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">2016</div>
+                <div class="tl-icon">◈</div>
+                <h3>AlphaGo</h3>
+                <p>DeepMind defeats the world champion at Go — a game with more legal moves than atoms in the observable universe.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">2020</div>
+                <div class="tl-icon">◉</div>
+                <h3>GPT-3</h3>
+                <p>OpenAI's GPT-3 writes essays, code, and poetry indistinguishable from human output. Language models enter the mainstream.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">2022</div>
+                <div class="tl-icon">◈</div>
+                <h3>Generative AI</h3>
+                <p>DALL-E, Stable Diffusion, and ChatGPT reach 100M users in 60 days. Creativity itself is augmented.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-year">2025</div>
+                <div class="tl-icon">◉</div>
+                <h3>Agents Take Over</h3>
+                <p>Autonomous AI agents plan, code, research, and execute multi-step tasks. The line between tool and collaborator blurs.</p>
+              </div>
+            </div>
+
+            <div class="tl-item tl-item--future">
+              <div class="tl-card tl-card--future">
+                <div class="tl-year">2030 ?</div>
+                <div class="tl-icon">∞</div>
+                <h3>AGI Horizon</h3>
+                <p>Artificial General Intelligence — a machine that can learn any intellectual task a human can. The question is no longer if, but when.</p>
+              </div>
+            </div>
+
+          </div><!-- /.timeline-track -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 4 — CAPABILITIES ░░░░░░░░░░ -->
+    <section id="capabilities">
+      <div class="cap-header">
+        <h2>What AI <span class="highlight">Can Do</span></h2>
+        <p>Six domains where artificial intelligence is rewriting the rules</p>
+      </div>
+      <div class="cap-grid">
+
+        <div class="cap-card" data-color="#00F5FF">
+          <div class="cap-bg-glow"></div>
+          <div class="cap-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#00F5FF" stroke-width="1.5"/><ellipse cx="24" cy="24" rx="8" ry="16" stroke="#00F5FF" stroke-width="1" opacity="0.5"/><circle cx="24" cy="24" r="4" fill="#00F5FF" opacity="0.7"/></svg>
+          </div>
+          <h3>Computer Vision</h3>
+          <p>Seeing and interpreting the visual world with superhuman precision — from medical imaging to autonomous vehicles.</p>
+          <div class="cap-chip">98.7% accuracy</div>
+        </div>
+
+        <div class="cap-card" data-color="#7B5EA7">
+          <div class="cap-bg-glow"></div>
+          <div class="cap-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="16" width="32" height="20" rx="4" stroke="#7B5EA7" stroke-width="1.5"/><circle cx="16" cy="26" r="2.5" fill="#7B5EA7"/><circle cx="24" cy="26" r="2.5" fill="#7B5EA7"/><circle cx="32" cy="26" r="2.5" fill="#7B5EA7"/><path d="M24 16 L24 10" stroke="#7B5EA7" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Natural Language</h3>
+          <p>Reading, writing, translating, and understanding human language with contextual nuance across 100+ languages.</p>
+          <div class="cap-chip">100+ languages</div>
+        </div>
+
+        <div class="cap-card" data-color="#FF2D78">
+          <div class="cap-bg-glow"></div>
+          <div class="cap-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><polyline points="8,36 16,20 24,28 32,12 40,24" stroke="#FF2D78" stroke-width="1.5" stroke-linejoin="round"/><circle cx="32" cy="12" r="3" fill="#FF2D78"/></svg>
+          </div>
+          <h3>Predictive Analytics</h3>
+          <p>Forecasting markets, weather, and disease outbreaks by finding patterns invisible to the human eye.</p>
+          <div class="cap-chip">10× faster insights</div>
+        </div>
+
+        <div class="cap-card" data-color="#00F5FF">
+          <div class="cap-bg-glow"></div>
+          <div class="cap-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#00F5FF" stroke-width="1.5"/><line x1="24" y1="10" x2="24" y2="38" stroke="#00F5FF" stroke-width="1" opacity="0.4"/><line x1="10" y1="24" x2="38" y2="24" stroke="#00F5FF" stroke-width="1" opacity="0.4"/><circle cx="24" cy="24" r="5" fill="#00F5FF" opacity="0.5"/></svg>
+          </div>
+          <h3>Robotics</h3>
+          <p>Physical AI navigating factories, performing surgery, exploring other planets — and soon living alongside us.</p>
+          <div class="cap-chip">Sub-mm precision</div>
+        </div>
+
+        <div class="cap-card" data-color="#7B5EA7">
+          <div class="cap-bg-glow"></div>
+          <div class="cap-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 8 L40 36 L8 36 Z" stroke="#7B5EA7" stroke-width="1.5" stroke-linejoin="round"/><circle cx="24" cy="26" r="4" fill="#7B5EA7" opacity="0.6"/><line x1="24" y1="8" x2="24" y2="22" stroke="#7B5EA7" stroke-width="1" opacity="0.4"/></svg>
+          </div>
+          <h3>Generative AI</h3>
+          <p>Creating images, music, code, and video from text prompts — AI as a creative collaborator and co-creator.</p>
+          <div class="cap-chip">∞ creative output</div>
+        </div>
+
+        <div class="cap-card" data-color="#FF2D78">
+          <div class="cap-bg-glow"></div>
+          <div class="cap-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 8 C14 8 8 15 8 24 C8 35 18 40 24 40 C30 40 40 35 40 24 C40 15 34 8 24 8Z" stroke="#FF2D78" stroke-width="1.5"/><path d="M16 24 C16 20 32 20 32 24" stroke="#FF2D78" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <h3>Reasoning & Planning</h3>
+          <p>Multi-step problem solving, logical deduction, and long-horizon planning — the hallmarks of true intelligence.</p>
+          <div class="cap-chip">PhD-level reasoning</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 5 — NEURAL NET LIVE ░░░░░░░░░░ -->
+    <section id="neural-net">
+      <div class="nn-header">
+        <h2>Live <span class="highlight">Neural Network</span></h2>
+        <p>Click canvas to add neurons &nbsp;·&nbsp; Drag to move &nbsp;·&nbsp; Watch signals fire</p>
+      </div>
+      <canvas id="neural-canvas"></canvas>
+      <div class="nn-controls">
+        <button id="btn-add-node" class="ctrl-btn">+ Neuron</button>
+        <button id="btn-fire"     class="ctrl-btn">Fire All</button>
+        <button id="btn-reset"    class="ctrl-btn">Reset</button>
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 6 — NUMBERS ░░░░░░░░░░ -->
+    <section id="numbers">
+      <canvas id="grid-canvas" class="numbers-grid-canvas"></canvas>
+      <div class="numbers-inner">
+        <h2 class="numbers-title">AI <span class="highlight">By The Numbers</span></h2>
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <span class="stat-num" data-target="1800000000000" data-suffix="">0</span>
+              <span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Parameters in latest frontier models</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <span class="stat-num" data-target="100" data-suffix="">0</span>
+              <span class="stat-suffix">M</span>
+            </div>
+            <div class="stat-label">ChatGPT users in just 60 days</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <span class="stat-num" data-target="407" data-suffix="">0</span>
+              <span class="stat-suffix">B$</span>
+            </div>
+            <div class="stat-label">Global AI market value by 2027</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <span class="stat-num" data-target="97" data-suffix="">0</span>
+              <span class="stat-suffix">%</span>
+            </div>
+            <div class="stat-label">Image recognition accuracy achieved</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <span class="stat-num" data-target="800" data-suffix="">0</span>
+              <span class="stat-suffix">M</span>
+            </div>
+            <div class="stat-label">Jobs to be transformed by 2030</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <span class="stat-num" data-target="86" data-suffix="">0</span>
+              <span class="stat-suffix">B</span>
+            </div>
+            <div class="stat-label">Neurons in the human brain</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 7 — THE FUTURE ░░░░░░░░░░ -->
+    <section id="future">
+      <canvas id="star-canvas"></canvas>
+      <div class="future-inner">
+        <div class="future-words-cloud" aria-hidden="true">
+          <span class="fw" style="--x:15%;  --y:15%;  --s:1.1; --d:0.0s">AGI</span>
+          <span class="fw" style="--x:65%;  --y:10%;  --s:0.8; --d:0.2s">Singularity</span>
+          <span class="fw" style="--x:80%;  --y:30%;  --s:1.0; --d:0.4s">Consciousness</span>
+          <span class="fw" style="--x:10%;  --y:45%;  --s:0.7; --d:0.6s">Evolution</span>
+          <span class="fw" style="--x:75%;  --y:60%;  --s:0.9; --d:0.8s">Transcendence</span>
+          <span class="fw" style="--x:20%;  --y:75%;  --s:1.2; --d:1.0s">Discovery</span>
+          <span class="fw" style="--x:55%;  --y:80%;  --s:0.8; --d:1.2s">Connection</span>
+          <span class="fw" style="--x:40%;  --y:25%;  --s:0.6; --d:1.4s">Creativity</span>
+        </div>
+        <div class="future-center">
+          <h2 class="future-title">The Future <span class="highlight">is Now</span></h2>
+          <p class="future-sub">We stand at the most consequential moment<br />in all of human history.</p>
+          <a href="#contact" class="magnetic-btn future-btn">
+            <span>Be Part of It</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░░░░░░░ SECTION 8 — CONTACT ░░░░░░░░░░ -->
+    <section id="contact">
+      <div class="contact-particles" aria-hidden="true"></div>
+      <div class="contact-glass">
+        <div class="contact-badge">Get Involved</div>
+        <h2>Shape the <span class="highlight">Future</span></h2>
+        <p>The development of AI is the most important project humanity has ever undertaken. Be part of the story.</p>
+        <div class="contact-actions">
+          <a href="#" class="magnetic-btn">
+            <span>Research</span>
+          </a>
+          <a href="#" class="magnetic-btn magnetic-btn--outline">
+            <span>Collaborate</span>
+          </a>
+        </div>
+        <div class="contact-divider"></div>
+        <p class="contact-footer">© 2025 NEURAL &nbsp;·&nbsp; Exploring the frontiers of artificial intelligence</p>
+      </div>
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ░░ SCRIPTS ░░ -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/hero-three.js"></script>
+  <script src="js/neural.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

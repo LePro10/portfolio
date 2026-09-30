@@ -1,0 +1,6 @@
+{
+  "model": "qwen-3.6-35B-a3b",
+  "status": "template",
+  "stack": "react-vite",
+  "note": "Shipped the framework's default template instead of a site."
+}

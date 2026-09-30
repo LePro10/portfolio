@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08090f" />
+    <meta name="description" content="LUMINA — an atlas of machine imagination." />
+    <title>LUMINA — Machine Imagination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader__mark">
+        <span class="loader-ring loader-ring--one"></span>
+        <span class="loader-ring loader-ring--two"></span>
+        <span class="loader-dot"></span>
+      </div>
+      <div class="preloader__label"><span>Initializing</span><span>LUMINA / 001</span></div>
+    </div>
+
+    <div class="page-wash" aria-hidden="true"></div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"><span></span></div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand magnetic" href="#home" data-route="home" aria-label="Lumina home">
+          <span class="brand__symbol"><i></i><i></i><i></i></span>
+          <span>LUMINA</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#home" data-route="home" class="nav-link is-active"><span>01</span>Home</a>
+          <a href="#engine" data-route="engine" class="nav-link"><span>02</span>The engine</a>
+          <a href="#lab" data-route="lab" class="nav-link"><span>03</span>Prompt lab</a>
+          <a href="#dispatches" data-route="dispatches" class="nav-link"><span>04</span>Dispatches</a>
+          <a href="#manifesto" data-route="manifesto" class="nav-link"><span>05</span>Manifesto</a>
+        </nav>
+
+        <button class="menu-toggle magnetic" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+
+        <div class="header-status"><span class="status-pulse"></span><span>System online</span><b>24.07.∞</b></div>
+      </header>
+
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu__inner">
+          <span class="eyebrow">Navigate / 00—05</span>
+          <a href="#home" data-route="home">Home <em>01</em></a>
+          <a href="#engine" data-route="engine">The engine <em>02</em></a>
+          <a href="#lab" data-route="lab">Prompt lab <em>03</em></a>
+          <a href="#dispatches" data-route="dispatches">Dispatches <em>04</em></a>
+          <a href="#manifesto" data-route="manifesto">Manifesto <em>05</em></a>
+          <div class="mobile-menu__foot">Human curiosity / Machine scale</div>
+        </div>
+      </div>
+
+      <main>
+        <section class="page page--home is-active" data-page="home" id="page-home">
+          <div class="hero section-pad">
+            <div class="hero__topline reveal">
+              <span class="eyebrow">An atlas of machine imagination</span>
+              <span class="hero__coordinates">47°22' N &nbsp; 8°32' E <i></i> LIVE</span>
+            </div>
+
+            <div class="hero__content">
+              <div class="hero__copy">
+                <p class="hero__index reveal">01 <span>/</span> 05</p>
+                <h1 class="hero__title">
+                  <span class="line reveal reveal--delay-1">Intelligence</span>
+                  <span class="line line--indent reveal reveal--delay-2"><i>is</i> becoming</span>
+                  <span class="line reveal reveal--delay-3">a medium<span class="title-dot">.</span></span>
+                </h1>
+                <div class="hero__bottom reveal reveal--delay-4">
+                  <p class="hero__description">A living field guide to the systems that see, reason, and dream alongside us.</p>
+                  <div class="hero__actions">
+                    <a class="button button--light magnetic" href="#engine" data-route="engine"><span>Enter the atlas</span><b>↗</b></a>
+                    <button class="play-button magnetic" type="button" data-scroll-to="journey"><span class="play-icon">↓</span><span>Scroll to explore</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-orb" data-tilt>
+                <div class="orb-halo orb-halo--outer"></div>
+                <div class="orb-halo orb-halo--inner"></div>
+                <div class="orb-rings"><span></span><span></span><span></span></div>
+                <div class="orb-core"><div class="core-glow"></div><span>∞</span></div>
+                <div class="orb-node orb-node--one"></div>
+                <div class="orb-node orb-node--two"></div>
+                <div class="orb-node orb-node--three"></div>
+                <div class="orb-label orb-label--one"><span>latent</span><b>0.981</b></div>
+                <div class="orb-label orb-label--two"><span>signal</span><b>∞ / ∞</b></div>
+                <div class="orb-label orb-label--three"><span>curiosity</span><b>active</b></div>
+                <div class="orb-caption"><span class="status-pulse"></span> A pattern is forming</div>
+              </div>
+            </div>
+
+            <div class="hero__scroll-cue reveal reveal--delay-4"><span class="scroll-line"></span><span>Begin descent</span><span>↘</span></div>
+          </div>
+
+          <div class="marquee" aria-hidden="true">
+            <div class="marquee__track"><span>PERCEPTION</span><i>✳</i><span>REASONING</span><i>✳</i><span>CREATION</span><i>✳</i><span>COLLABORATION</span><i>✳</i><span>PERCEPTION</span><i>✳</i><span>REASONING</span><i>✳</i></div>
+          </div>
+
+          <section class="journey section-pad" id="journey">
+            <div class="section-heading reveal">
+              <span class="eyebrow">02 / The descent</span>
+              <p>Every system begins as a question.<br />Every answer opens another.</p>
+            </div>
+            <div class="journey__layout">
+              <div class="journey__statement">
+                <div class="sticky-block">
+                  <span class="mini-label">The intelligence stack</span>
+                  <h2>From raw<br /><em>signal</em> to<br /><strong>meaning.</strong></h2>
+                  <div class="tiny-orbit"><span></span><span></span><span></span></div>
+                </div>
+              </div>
+              <div class="journey__cards">
+                <article class="journey-card journey-card--violet reveal" data-tilt>
+                  <div class="card-top"><span>01 — Perception</span><span class="card-arrow">↗</span></div>
+                  <div class="card-art card-art--eye"><div class="eye-ring"></div><div class="eye-pupil"></div></div>
+                  <div class="card-copy"><h3>First, it notices.</h3><p>Patterns hiding in noise become visible. The world gains edges, rhythm, and a new vocabulary.</p></div>
+                  <span class="card-coordinate">INPUT / 001</span>
+                </article>
+                <article class="journey-card journey-card--blue reveal reveal--delay-1" data-tilt>
+                  <div class="card-top"><span>02 — Reasoning</span><span class="card-arrow">↗</span></div>
+                  <div class="card-art card-art--logic"><span></span><span></span><span></span><span></span><i></i></div>
+                  <div class="card-copy"><h3>Then, it connects.</h3><p>Facts become relationships. Relationships become possibilities. Possibilities become a point of view.</p></div>
+                  <span class="card-coordinate">LATENT / 247</span>
+                </article>
+                <article class="journey-card journey-card--coral reveal reveal--delay-2" data-tilt>
+                  <div class="card-top"><span>03 — Creation</span><span class="card-arrow">↗</span></div>
+                  <div class="card-art card-art--bloom"><div></div><div></div><div></div><div></div><div></div></div>
+                  <div class="card-copy"><h3>Finally, it makes.</h3><p>The gap between having an idea and holding it in your hands gets wonderfully, radically small.</p></div>
+                  <span class="card-coordinate">OUTPUT / ∞</span>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="signal-section section-pad">
+            <div class="signal-card reveal">
+              <div class="signal-card__head"><span class="eyebrow">A small proof of life</span><span>RUNNING IN REAL TIME <i class="status-pulse"></i></span></div>
+              <div class="signal-card__body"><h2>What happens when<br /><em>curiosity</em> gets scale?</h2><a href="#lab" data-route="lab" class="circle-link magnetic"><span>Try it</span><b>↗</b></a></div>
+              <div class="signal-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="page page--engine" data-page="engine" id="page-engine">
+          <div class="page-hero section-pad">
+            <div class="page-hero__meta reveal"><span class="eyebrow">02 / The engine</span><span>Inside the latent space</span></div>
+            <div class="page-hero__title-wrap"><p class="hero__index reveal">A map of possible</p><h1 class="page-title reveal reveal--delay-1">The <em>engine</em><span class="title-dot">.</span></h1><p class="page-intro reveal reveal--delay-2">AI is less like a machine with a single purpose and more like an atmosphere — a field where perception, reasoning, and creation are always in motion.</p></div>
+          </div>
+
+          <section class="engine-map section-pad">
+            <div class="engine-map__header reveal"><span class="eyebrow">Select a layer</span><span class="engine-map__hint">Tap a node to inspect the signal <b>↘</b></span></div>
+            <div class="engine-map__visual">
+              <div class="map-grid"></div><div class="map-axis map-axis--x"></div><div class="map-axis map-axis--y"></div>
+              <div class="map-core"><span>∞</span><small>latent<br />space</small></div>
+              <button class="engine-node engine-node--perception is-selected magnetic" type="button" data-engine="perception"><i></i><span>Perception</span><small>01</small></button>
+              <button class="engine-node engine-node--reasoning magnetic" type="button" data-engine="reasoning"><i></i><span>Reasoning</span><small>02</small></button>
+              <button class="engine-node engine-node--creation magnetic" type="button" data-engine="creation"><i></i><span>Creation</span><small>03</small></button>
+              <button class="engine-node engine-node--memory magnetic" type="button" data-engine="memory"><i></i><span>Memory</span><small>04</small></button>
+              <div class="map-readout"><span>COORDINATES</span><b id="engine-coordinate">04.82 / 91.07</b><i></i><span id="engine-readout">reading the visible world</span></div>
+            </div>
+            <div class="engine-detail reveal" id="engine-detail"><div class="engine-detail__number">01</div><div><span class="eyebrow">Perception / The first pass</span><h2>It sees the<br /><em>shape</em> of things.</h2></div><p id="engine-description">Before an answer, there is attention. AI can read a room, find a rhythm, trace the gesture inside an image — and make the invisible available to us.</p><a class="text-link magnetic" href="#lab" data-route="lab">Take it further <b>↗</b></a></div>
+          </section>
+
+          <section class="engine-stats section-pad">
+            <div class="section-heading reveal"><span class="eyebrow">The scale of the field</span><p>More than a tool.<br />A new material.</p></div>
+            <div class="stats-grid"><div class="stat reveal"><strong data-counter="175">0</strong><span>billion parameters<br />in a single glance</span></div><div class="stat reveal reveal--delay-1"><strong data-counter="92">0</strong><span>languages held<br />in one conversation</span></div><div class="stat reveal reveal--delay-2"><strong data-counter="∞">∞</strong><span>directions an idea<br />can take from here</span></div></div>
+          </section>
+        </section>
+
+        <section class="page page--lab" data-page="lab" id="page-lab">
+          <div class="page-hero section-pad"><div class="page-hero__meta reveal"><span class="eyebrow">03 / Prompt lab</span><span>Make something new</span></div><div class="page-hero__title-wrap"><p class="hero__index reveal">A conversation with possibility</p><h1 class="page-title reveal reveal--delay-1">The <em>lab</em><span class="title-dot">.</span></h1><p class="page-intro reveal reveal--delay-2">The best prompt is not a command. It is an invitation to go somewhere neither of you has been before.</p></div></div>
+          <section class="lab section-pad">
+            <div class="lab__sidebar reveal"><div class="lab__label"><span class="status-pulse"></span> Playground / Online</div><h2>Start with a<br /><em>spark.</em></h2><p>Choose a direction, or leave the door open. The machine is listening.</p><div class="prompt-seeds"><span>Try a seed</span><button type="button" data-seed="A city that remembers every dream">A city that remembers every dream <b>↗</b></button><button type="button" data-seed="Design a ritual for the year 2049">Design a ritual for the year 2049 <b>↗</b></button><button type="button" data-seed="What does silence look like?">What does silence look like? <b>↗</b></button></div></div>
+            <div class="lab__window reveal reveal--delay-1"><div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>lumina / generative session</span><span>⌁ 02:41:08</span></div><form class="prompt-form" id="prompt-form"><label for="prompt-input">Your prompt</label><textarea id="prompt-input" spellcheck="false">Describe a future where technology feels like a garden.</textarea><div class="prompt-controls"><div class="control-group"><span>Texture</span><button class="select-chip is-active" type="button" data-style="luminous">Luminous</button><button class="select-chip" type="button" data-style="raw">Raw</button><button class="select-chip" type="button" data-style="quiet">Quiet</button></div><button class="generate-button magnetic" type="submit"><span>Generate signal</span><b>↗</b></button></div></form><div class="lab-output" id="lab-output"><div class="output-header"><span><i class="status-pulse"></i> Signal returned / 0.84s</span><button type="button" id="copy-result">Copy result</button></div><div class="output-art" id="output-art"><div class="output-art__sun"></div><div class="output-art__horizon"></div><div class="output-art__rings"><i></i><i></i><i></i></div><span class="output-art__word">grow<br />beyond</span><span class="output-art__stamp">FIELD NOTE / 032</span></div><div class="output-caption"><div><span class="eyebrow">Response / 001</span><p id="output-text">A garden of soft machines, growing light instead of leaves. Their roots remember every hand that has ever reached for them.</p></div><span class="output-caption__score">SYNTHESIS<br /><b>98.2%</b></span></div></div></div>
+          </section>
+        </section>
+
+        <section class="page page--dispatches" data-page="dispatches" id="page-dispatches">
+          <div class="page-hero section-pad"><div class="page-hero__meta reveal"><span class="eyebrow">04 / Dispatches</span><span>Field notes from the frontier</span></div><div class="page-hero__title-wrap"><p class="hero__index reveal">Signals from everywhere</p><h1 class="page-title reveal reveal--delay-1">In the <em>wild</em><span class="title-dot">.</span></h1><p class="page-intro reveal reveal--delay-2">The most interesting things happen where disciplines overlap — where a new tool meets an old question.</p></div></div>
+          <section class="dispatches section-pad"><div class="dispatches__top reveal"><span class="eyebrow">Selected transmissions / 2024—∞</span><span>Scroll to move through the archive <b>→</b></span></div><div class="dispatch-grid"><article class="dispatch-card dispatch-card--large reveal" data-tilt><div class="dispatch-art dispatch-art--forest"><div class="forest-sun"></div><div class="forest-lines"></div><span class="dispatch-art__label">FIELD / 01</span></div><div class="dispatch-card__meta"><span>Biology × Computation</span><span>06 min read</span></div><h2>Teaching a machine<br /><em>to notice a forest.</em></h2><a href="#manifesto" data-route="manifesto" class="text-link magnetic">Open dispatch <b>↗</b></a></article><article class="dispatch-card reveal reveal--delay-1" data-tilt><div class="dispatch-art dispatch-art--sound"><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="dispatch-art__label">FIELD / 02</span></div><div class="dispatch-card__meta"><span>Music × Memory</span><span>04 min read</span></div><h2>What does a<br /><em>memory sound like?</em></h2><a href="#manifesto" data-route="manifesto" class="text-link magnetic">Open dispatch <b>↗</b></a></article><article class="dispatch-card reveal reveal--delay-2" data-tilt><div class="dispatch-art dispatch-art--matter"><div class="matter-orbit matter-orbit--one"></div><div class="matter-orbit matter-orbit--two"></div><div class="matter-core"></div><span class="dispatch-art__label">FIELD / 03</span></div><div class="dispatch-card__meta"><span>Materials × Imagination</span><span>08 min read</span></div><h2>Objects that<br /><em>think back.</em></h2><a href="#manifesto" data-route="manifesto" class="text-link magnetic">Open dispatch <b>↗</b></a></article></div></section>
+          <section class="archive-line section-pad"><div class="archive-line__track"><span>MORE SIGNALS INCOMING</span><i>✳</i><span>MORE SIGNALS INCOMING</span><i>✳</i><span>MORE SIGNALS INCOMING</span></div></section>
+        </section>
+
+        <section class="page page--manifesto" data-page="manifesto" id="page-manifesto">
+          <div class="page-hero section-pad"><div class="page-hero__meta reveal"><span class="eyebrow">05 / Manifesto</span><span>Human curiosity / Machine scale</span></div><div class="page-hero__title-wrap"><p class="hero__index reveal">A note to the future</p><h1 class="page-title reveal reveal--delay-1">Keep the<br /><em>question.</em></h1><p class="page-intro reveal reveal--delay-2">The future does not belong to the machines. It belongs to the questions we are brave enough to ask them.</p></div></div>
+          <section class="manifesto section-pad"><div class="manifesto__quote reveal"><span class="quote-mark">“</span><p>Technology becomes meaningful at the exact moment it gives something back to the person using it.</p><span class="quote-byline">— LUMINA / PRINCIPLE 001</span></div><div class="principles"><div class="principle reveal"><span>01</span><h2>Stay curious.</h2><p>Wonder is not a soft skill. It is the original interface.</p><b>↗</b></div><div class="principle reveal reveal--delay-1"><span>02</span><h2>Make room.</h2><p>The most useful intelligence leaves space for yours.</p><b>↗</b></div><div class="principle reveal reveal--delay-2"><span>03</span><h2>Go together.</h2><p>Every good future is a collaboration between many kinds of minds.</p><b>↗</b></div></div></section>
+          <section class="closing section-pad"><div class="closing__orb"><div class="orb-core--small"><span>∞</span></div></div><span class="eyebrow">The atlas is open</span><h2>Bring your<br /><em>question.</em></h2><a href="#lab" data-route="lab" class="button button--light magnetic"><span>Enter the lab</span><b>↗</b></a></section>
+        </section>
+      </main>
+
+      <footer class="site-footer section-pad"><div class="footer__top"><a class="brand" href="#home" data-route="home"><span class="brand__symbol"><i></i><i></i><i></i></span><span>LUMINA</span></a><p>A living field guide<br />to machine imagination.</p><a class="footer-back magnetic" href="#home" data-route="home">Back to top <b>↥</b></a></div><div class="footer__bottom"><span>© 2024—∞ Lumina research unit</span><span>Built for the endlessly curious</span><span>47°22' N / 8°32' E</span></div></footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

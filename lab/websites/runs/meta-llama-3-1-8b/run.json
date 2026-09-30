@@ -1,0 +1,6 @@
+{
+  "model": "meta-llama-3.1-8B",
+  "status": "failed",
+  "stack": "unknown",
+  "note": "No usable static build."
+}

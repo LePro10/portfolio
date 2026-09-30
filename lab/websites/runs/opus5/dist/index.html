@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOETIC — Intelligence, made legible</title>
+<meta name="description" content="NOETIC is a fictional frontier research lab building Noema, a family of models designed to be understood as well as used.">
+<meta name="theme-color" content="#04050c">
+<meta property="og:title" content="NOETIC — Intelligence, made legible">
+<meta property="og:description" content="A frontier research lab building models whose reasoning can be read.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/pages/home.css">
+<script>(function(){var d=document.documentElement,k='noetic:motion';d.classList.remove('no-js');d.classList.add('js');try{var q=new URLSearchParams(location.search).get('motion'),m=localStorage.getItem(k);if(q==='full'||q==='reduced'){localStorage.setItem(k,q);m=q}else if(q==='auto'){localStorage.removeItem(k);m=null}var r=m==='reduced'||(m!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);d.classList.add(r?'motion-reduced':'motion-full')}catch(e){d.classList.add('motion-full')}})();</script>
+</head>
+<body data-page="home">
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="index.html" aria-label="NOETIC — home">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle class="brand__ring" cx="16" cy="16" r="13" stroke="url(#bg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+        <circle cx="16" cy="16" r="4.2" fill="url(#bg1)"/>
+        <circle cx="16" cy="3.2" r="1.9" fill="#22e0ff"/>
+        <circle cx="27.2" cy="22.4" r="1.6" fill="#7c5cff"/>
+        <circle cx="4.8" cy="22.4" r="1.6" fill="#ff4ecd"/>
+        <path d="M16 3.2 16 16 27.2 22.4M16 16 4.8 22.4" stroke="#7c5cff" stroke-width="0.8" opacity="0.55"/>
+        <defs><linearGradient id="bg1" x1="0" y1="0" x2="32" y2="32">
+          <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="brand__word">Noetic</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li style="--i:0"><a class="nav__link" href="index.html" aria-current="page" data-scramble>Index</a></li>
+        <li style="--i:1"><a class="nav__link" href="research.html" data-scramble>Research</a></li>
+        <li style="--i:2"><a class="nav__link" href="models.html" data-scramble>Models</a></li>
+        <li style="--i:3"><a class="nav__link" href="playground.html" data-scramble>Playground</a></li>
+        <li style="--i:4"><a class="nav__link" href="manifesto.html" data-scramble>Manifesto</a></li>
+        <li style="--i:5"><a class="btn btn--ghost nav__cta" href="contact.html">Work with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<canvas class="fx-layer" id="field" aria-hidden="true"></canvas>
+
+<div id="viewport"><div id="scroll">
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero pin-track" id="hero" aria-label="Introduction">
+    <div class="pin hero__pin">
+      <div class="wrap hero__inner">
+
+        <p class="hero__kicker" data-reveal="fade" style="--rd:200ms">
+          <span class="tag tag--live"><span class="dot"></span>Noema-1 is live</span>
+        </p>
+
+        <h1 class="hero__title" data-reveal="mask" data-split="lines">
+          Intelligence,<br>made legible.
+        </h1>
+
+        <p class="hero__lede" data-reveal="fade-up" style="--rd:520ms">
+          NOETIC is a research lab building <strong>Noema</strong> — a family of models
+          engineered so that their reasoning can be read, traced and argued with,
+          not merely trusted.
+        </p>
+
+        <div class="hero__actions" data-reveal="fade-up" style="--rd:640ms">
+          <a class="btn btn--primary btn--lg" href="models.html">
+            Meet Noema
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h11M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+          </a>
+          <a class="btn btn--ghost btn--lg" href="playground.html">Open the playground</a>
+        </div>
+
+        <!-- Readout that tracks the particle field's morph state -->
+        <div class="hero__readout" aria-hidden="true">
+          <div class="readout__bar"><i id="readout-fill"></i></div>
+          <ol class="readout__stages" id="readout-stages">
+            <li class="is-on"><b>01</b> Diffuse</li>
+            <li><b>02</b> Structure</li>
+            <li><b>03</b> Symbol</li>
+            <li><b>04</b> Lattice</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="hero__scrollcue" aria-hidden="true">
+        <span>Scroll</span>
+        <i></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TICKER ============================ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Interpretability first</span><span>340B parameters</span><span>1.2M token context</span>
+      <span>Open weights for Noema-Micro</span><span>Attention you can read</span><span>Founded 2021</span>
+      <span>Zurich · Lisbon · Remote</span>
+    </div>
+    <div class="marquee__track">
+      <span>Interpretability first</span><span>340B parameters</span><span>1.2M token context</span>
+      <span>Open weights for Noema-Micro</span><span>Attention you can read</span><span>Founded 2021</span>
+      <span>Zurich · Lisbon · Remote</span>
+    </div>
+  </div>
+
+  <!-- ============================ STATEMENT ============================ -->
+  <section class="section section--tall" aria-labelledby="statement-h">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow" data-reveal="fade">The position</p>
+      <h2 class="statement" id="statement-h" data-reveal="words" data-split="words">
+        Every frontier model is a black box we agreed to stop opening.
+        We think that trade was premature — and that legibility is not a tax
+        on capability but a source of it.
+      </h2>
+      <a class="btn btn--quiet" href="manifesto.html" data-reveal="fade-up">
+        Read the manifesto
+        <svg class="btn__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 7h11M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.4"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================ CAPABILITIES (horizontal) ============ -->
+  <section class="section--flush track-section" id="capabilities" aria-labelledby="cap-h">
+    <div class="track-pin">
+      <div class="wrap track-head">
+        <p class="eyebrow">Capabilities</p>
+        <h2 id="cap-h">Five things we refuse to hand-wave.</h2>
+      </div>
+
+      <div class="track" id="track">
+        <ol class="track__rail" id="track-rail">
+          <li class="cap panel">
+            <span class="panel__index">01 / Reasoning</span>
+            <h3>It shows its work</h3>
+            <p>Noema emits a structured derivation alongside every answer. Each step
+               carries the evidence it consumed, so a wrong conclusion can be located
+               rather than merely noticed.</p>
+            <div class="cap__viz cap__viz--steps" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </li>
+          <li class="cap panel">
+            <span class="panel__index">02 / Attention</span>
+            <h3>Attention you can read</h3>
+            <p>Every head is named, grouped and stable across fine-tunes. Our probe
+               tooling maps them to human-legible functions — coreference, arithmetic
+               carry, quotation boundary.</p>
+            <div class="cap__viz cap__viz--grid" aria-hidden="true"></div>
+          </li>
+          <li class="cap panel">
+            <span class="panel__index">03 / Memory</span>
+            <h3>Memory that persists</h3>
+            <p>A 1.2M-token working context with explicit eviction. Nothing silently
+               falls out of scope; the model tells you what it forgot and why.</p>
+            <div class="cap__viz cap__viz--bars" aria-hidden="true">
+              <i style="--h:38%"></i><i style="--h:72%"></i><i style="--h:54%"></i>
+              <i style="--h:88%"></i><i style="--h:61%"></i><i style="--h:96%"></i>
+              <i style="--h:44%"></i><i style="--h:79%"></i>
+            </div>
+          </li>
+          <li class="cap panel">
+            <span class="panel__index">04 / Alignment</span>
+            <h3>Constraints, not vibes</h3>
+            <p>Behaviour is specified as auditable predicates checked at decode time.
+               When Noema declines, it cites the clause — and you can read the clause.</p>
+            <div class="cap__viz cap__viz--rings" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+          </li>
+          <li class="cap panel">
+            <span class="panel__index">05 / Efficiency</span>
+            <h3>Small enough to own</h3>
+            <p>Noema-Micro runs the same interpretability stack in 3.1B parameters,
+               on a laptop, offline, with open weights.</p>
+            <div class="cap__viz cap__viz--pulse" aria-hidden="true"><i></i></div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="wrap track-foot" aria-hidden="true">
+        <div class="track-bar"><i id="track-fill"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ NUMBERS ============================ -->
+  <section class="section section--ruled" aria-labelledby="num-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal="fade">By the numbers</p>
+          <h2 id="num-h" data-reveal="mask" data-split="lines">Scale is a means. Here is the means.</h2>
+        </div>
+        <p data-reveal="fade-up">Figures describe the Noema-1 production checkpoint as of the
+           latest release. All numbers on this site are illustrative — NOETIC is a
+           fictional lab built as a design exercise.</p>
+      </div>
+
+      <div class="grid grid--4 numbers" data-stagger data-reveal="fade-up">
+        <div class="stat"><span class="stat__num" data-count="340" data-suffix="B">340B</span><span class="stat__label">Parameters</span></div>
+        <div class="stat"><span class="stat__num" data-count="1.2" data-decimals="1" data-suffix="M">1.2M</span><span class="stat__label">Context window</span></div>
+        <div class="stat"><span class="stat__num" data-count="12" data-suffix="T">12T</span><span class="stat__label">Training tokens</span></div>
+        <div class="stat"><span class="stat__num" data-count="47" data-suffix="">47</span><span class="stat__label">Published probes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ MODELS TEASER ============================ -->
+  <section class="section section--ruled" aria-labelledby="mt-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal="fade">The family</p>
+          <h2 id="mt-h" data-reveal="mask" data-split="lines">One architecture, four temperaments.</h2>
+        </div>
+        <a class="btn btn--quiet" href="models.html" data-reveal="fade">
+          All models
+          <svg class="btn__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 7h11M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.4"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid--2" data-stagger data-reveal="fade-up">
+        <a class="panel card-link tilt" href="models.html#noema-1">
+          <span class="tag tag--live"><span class="dot"></span>Production</span>
+          <h3>Noema&#8209;1</h3>
+          <p>Frontier reasoning with a full derivation trace. Our largest and most
+             deliberate model.</p>
+          <div class="mini-meters" aria-hidden="true">
+            <div class="meter"><span class="meter__label">Reasoning</span><span class="meter__track"><i class="meter__fill" style="--v:94;--i:0"></i></span><span class="meter__val">94</span></div>
+            <div class="meter"><span class="meter__label">Legibility</span><span class="meter__track"><i class="meter__fill" style="--v:88;--i:1"></i></span><span class="meter__val">88</span></div>
+          </div>
+        </a>
+        <a class="panel card-link tilt" href="models.html#noema-micro">
+          <span class="tag tag--research">Open weights</span>
+          <h3>Noema&#8209;Micro</h3>
+          <p>3.1B parameters, the entire probe stack intact, running offline on
+             consumer hardware.</p>
+          <div class="mini-meters" aria-hidden="true">
+            <div class="meter"><span class="meter__label">Latency</span><span class="meter__track"><i class="meter__fill" style="--v:97;--i:0"></i></span><span class="meter__val">97</span></div>
+            <div class="meter"><span class="meter__label">Legibility</span><span class="meter__track"><i class="meter__fill" style="--v:82;--i:1"></i></span><span class="meter__val">82</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ RESEARCH TEASER ============================ -->
+  <section class="section section--ruled" aria-labelledby="rt-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Recent work</p>
+          <h2 id="rt-h" data-reveal="mask" data-split="lines">From the lab.</h2>
+        </div>
+        <a class="btn btn--quiet" href="research.html" data-reveal="fade">
+          All research
+          <svg class="btn__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 7h11M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.4"/>
+          </svg>
+        </a>
+      </div>
+
+      <ul class="paper-list" data-stagger data-reveal="fade-up">
+        <li><a class="paper" href="research.html">
+          <span class="paper__date">2026 · 04</span>
+          <span class="paper__title">Carry Heads: arithmetic circuits that survive fine-tuning</span>
+          <span class="paper__tag">Interpretability</span>
+        </a></li>
+        <li><a class="paper" href="research.html">
+          <span class="paper__date">2026 · 02</span>
+          <span class="paper__title">Declining with a citation: auditable refusal predicates</span>
+          <span class="paper__tag">Alignment</span>
+        </a></li>
+        <li><a class="paper" href="research.html">
+          <span class="paper__date">2025 · 11</span>
+          <span class="paper__title">Eviction is a user interface: explicit forgetting at 1.2M tokens</span>
+          <span class="paper__tag">Systems</span>
+        </a></li>
+        <li><a class="paper" href="research.html">
+          <span class="paper__date">2025 · 09</span>
+          <span class="paper__title">Naming the heads: a stable taxonomy across 40 checkpoints</span>
+          <span class="paper__tag">Interpretability</span>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section section--tall cta" aria-labelledby="cta-h">
+    <div class="wrap wrap--narrow cta__inner">
+      <h2 class="cta__title" id="cta-h" data-reveal="chars" data-split="chars">Come look inside.</h2>
+      <p data-reveal="fade-up">We are hiring interpretability researchers, systems engineers and
+         one very patient technical writer.</p>
+      <div class="hero__actions" data-reveal="fade-up">
+        <a class="btn btn--primary btn--lg" href="contact.html">Open roles</a>
+        <a class="btn btn--ghost btn--lg" href="playground.html">Play with the tools</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="NOETIC — home">
+          <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="url(#fg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+            <circle cx="16" cy="16" r="4.2" fill="url(#fg1)"/>
+            <defs><linearGradient id="fg1" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+            </linearGradient></defs>
+          </svg>
+          <span class="brand__word">Noetic</span>
+        </a>
+        <p class="footer__blurb">A research lab for models that can be read.
+           Zurich · Lisbon · Remote.</p>
+      </div>
+      <div>
+        <h5>Lab</h5>
+        <ul>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="playground.html">Playground</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="manifesto.html">Manifesto</a></li>
+          <li><a href="contact.html">Careers</a></li>
+          <li><a href="contact.html#contact-form">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="contact.html">Newsletter</a></li>
+          <li><a href="contact.html">Press kit</a></li>
+          <li><a href="contact.html">Status</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__glyph" aria-hidden="true">NOETIC</p>
+    <div class="footer__note">
+      <span>© 2026 NOETIC Research — a fictional lab, built as a web design exercise.</span>
+      <span>No real products, people or benchmarks are described here.</span>
+      <button class="motion-switch" id="motion-switch" type="button" aria-pressed="false">Motion</button>
+    </div>
+  </div>
+</footer>
+
+</div></div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div><div class="cursor__dot"></div>
+</div>
+<div class="veil" id="veil" aria-hidden="true"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

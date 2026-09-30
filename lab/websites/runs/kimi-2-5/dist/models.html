@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Models — SYNAPSE AI</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/models.css">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">SYNAPSE</div>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-percent">0%</div>
+  </div>
+  
+  <!-- Page Transition -->
+  <div class="page-transition">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <span class="glitch-text">INITIALIZING...</span>
+  </div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">SYNAPSE</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="ethics.html">Ethics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- HERO SECTION -->
+  <section class="models-hero" style="padding: 0; max-width: 100%; min-height: 60vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(107, 33, 168, 0.15), transparent 70%);"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 4rem;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1.5rem; color: var(--neon-accent);">03 — MODEL FAMILY</span>
+      <h1 class="display-h1" style="margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;" data-scramble>
+        Engineered for<br>
+        <span class="text-gradient">Peak Performance</span>
+      </h1>
+      <p class="body-text reveal" style="margin: 0 auto; max-width: 600px;">
+        From lightweight edge models to massive cloud-based systems, find the perfect AI for your needs.
+      </p>
+    </div>
+  </section>
+  
+  <!-- 3D CARD SECTION -->
+  <section class="models-section" style="position: relative; max-width: 1200px;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">04 — MODEL COMPARISON</span>
+      <h2 class="display-h2" data-scramble>Choose Your Power</h2>
+    </div>
+    
+    <div class="models-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; perspective: 1000px;">
+      <!-- Model Card 1 -->
+      <div class="model-card reveal-scale" style="padding: 3rem; border-radius: 1.5rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.15), rgba(0, 240, 255, 0.05)); border: 1px solid var(--glass-border); position: relative; overflow: hidden; transform-style: preserve-3d; transition: transform 0.1s;">
+        <div class="model-badge" style="position: absolute; top: 1.5rem; right: 1.5rem; padding: 0.25rem 0.75rem; border-radius: 100px; background: rgba(0, 240, 255, 0.1); border: 1px solid var(--neon-accent); font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-accent);">POPULAR</div>
+        
+        <div class="model-icon" style="width: 70px; height: 70px; border-radius: 1.25rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1.5rem;">⚡</div>
+        
+        <h3 class="display-h3" style="font-size: 1.75rem; margin-bottom: 0.5rem;">SYNAPSE Pro</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">v2.0.1 — 175B Parameters</p>
+        
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%; margin-bottom: 2rem;">Our flagship model. Unmatched reasoning, creativity, and problem-solving capabilities for enterprise-grade applications.</p>
+        
+        <div class="model-specs" style="margin-bottom: 2rem;">
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Context Window</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">128K tokens</span>
+          </div>
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Response Time</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">< 200ms</span>
+          </div>
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0;">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Accuracy</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">99.2%</span>
+          </div>
+        </div>
+        
+        <a href="contact.html" class="btn" style="width: 100%; justify-content: center;">Get Started</a>
+        
+        <!-- 3D glow effect -->
+        <div class="model-glow" style="position: absolute; top: 50%; left: 50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(107, 33, 168, 0.3), transparent 70%); transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.4s;"></div>
+      </div>
+      
+      <!-- Model Card 2 -->
+      <div class="model-card reveal-scale" style="padding: 3rem; border-radius: 1.5rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(107, 33, 168, 0.05)); border: 1px solid var(--glass-border); position: relative; overflow: hidden; transform-style: preserve-3d; transition: transform 0.1s;">
+        <div class="model-icon" style="width: 70px; height: 70px; border-radius: 1.25rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(107, 33, 168, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1.5rem;">🔥</div>
+        
+        <h3 class="display-h3" style="font-size: 1.75rem; margin-bottom: 0.5rem;">SYNAPSE Flash</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">v1.5.2 — 70B Parameters</p>
+        
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%; margin-bottom: 2rem;">Optimized for speed without sacrificing quality. Perfect for real-time applications and high-throughput scenarios.</p>
+        
+        <div class="model-specs" style="margin-bottom: 2rem;">
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Context Window</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">64K tokens</span>
+          </div>
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Response Time</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">< 50ms</span>
+          </div>
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0;">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Accuracy</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">97.8%</span>
+          </div>
+        </div>
+        
+        <a href="contact.html" class="btn btn-glow" style="width: 100%; justify-content: center;">Get Started</a>
+        
+        <div class="model-glow" style="position: absolute; top: 50%; left: 50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0, 240, 255, 0.3), transparent 70%); transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.4s;"></div>
+      </div>
+      
+      <!-- Model Card 3 -->
+      <div class="model-card reveal-scale" style="padding: 3rem; border-radius: 1.5rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.1), rgba(0, 240, 255, 0.1)); border: 1px solid var(--glass-border); position: relative; overflow: hidden; transform-style: preserve-3d; transition: transform 0.1s;">
+        <div class="model-badge" style="position: absolute; top: 1.5rem; right: 1.5rem; padding: 0.25rem 0.75rem; border-radius: 100px; background: rgba(107, 33, 168, 0.1); border: 1px solid var(--nebula-purple); font-family: var(--font-mono); font-size: 0.75rem; color: var(--nebula-purple);">EDGE</div>
+        
+        <div class="model-icon" style="width: 70px; height: 70px; border-radius: 1.25rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1.5rem;">📱</div>
+        
+        <h3 class="display-h3" style="font-size: 1.75rem; margin-bottom: 0.5rem;">SYNAPSE Nano</h3>
+        <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">v1.0.0 — 7B Parameters</p>
+        
+        <p class="body-text" style="font-size: 0.95rem; max-width: 100%; margin-bottom: 2rem;">Lightweight and efficient. Runs on-device with minimal resources while maintaining impressive capabilities.</p>
+        
+        <div class="model-specs" style="margin-bottom: 2rem;">
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Context Window</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">32K tokens</span>
+          </div>
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Response Time</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">< 20ms</span>
+          </div>
+          <div class="spec-item" style="display: flex; justify-content: space-between; padding: 0.75rem 0;">
+            <span style="color: var(--text-secondary); font-size: 0.9rem;">Accuracy</span>
+            <span style="font-family: var(--font-mono); color: var(--neon-accent); font-size: 0.9rem;">94.5%</span>
+          </div>
+        </div>
+        
+        <a href="contact.html" class="btn" style="width: 100%; justify-content: center;">Get Started</a>
+        
+        <div class="model-glow" style="position: absolute; top: 50%; left: 50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(107, 33, 168, 0.3), transparent 70%); transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.4s;"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- DATA VISUALIZATION SECTION -->
+  <section class="data-viz-section" style="position: relative; max-width: 1000px;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">05 — PERFORMANCE METRICS</span>
+      <h2 class="display-h2" data-scramble>Benchmark Results</h2>
+    </div>
+    
+    <div class="benchmarks reveal glass" style="padding: 3rem; border-radius: 1.5rem;">
+      <div class="benchmark-item" style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-family: var(--font-body); font-weight: 600; color: var(--text-primary);">MMLU (Reasoning)</span>
+          <span style="font-family: var(--font-mono); color: var(--neon-accent);">92.4%</span>
+        </div>
+        <div class="benchmark-bar" style="height: 8px; background: var(--glass-bg); border-radius: 4px; overflow: hidden;">
+          <div class="benchmark-fill" data-width="92.4" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--nebula-purple), var(--neon-accent)); border-radius: 4px; transition: width 1.5s var(--transition-smooth);"></div>
+        </div>
+      </div>
+      
+      <div class="benchmark-item" style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-family: var(--font-body); font-weight: 600; color: var(--text-primary);">HumanEval (Code)</span>
+          <span style="font-family: var(--font-mono); color: var(--neon-accent);">88.7%</span>
+        </div>
+        <div class="benchmark-bar" style="height: 8px; background: var(--glass-bg); border-radius: 4px; overflow: hidden;">
+          <div class="benchmark-fill" data-width="88.7" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-accent), var(--nebula-purple)); border-radius: 4px; transition: width 1.5s var(--transition-smooth);"></div>
+        </div>
+      </div>
+      
+      <div class="benchmark-item" style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-family: var(--font-body); font-weight: 600; color: var(--text-primary);">GSM8K (Math)</span>
+          <span style="font-family: var(--font-mono); color: var(--neon-accent);">95.1%</span>
+        </div>
+        <div class="benchmark-bar" style="height: 8px; background: var(--glass-bg); border-radius: 4px; overflow: hidden;">
+          <div class="benchmark-fill" data-width="95.1" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--nebula-purple), var(--neon-accent)); border-radius: 4px; transition: width 1.5s var(--transition-smooth);"></div>
+        </div>
+      </div>
+      
+      <div class="benchmark-item" style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-family: var(--font-body); font-weight: 600; color: var(--text-primary);">HellaSwag (Common Sense)</span>
+          <span style="font-family: var(--font-mono); color: var(--neon-accent);">89.3%</span>
+        </div>
+        <div class="benchmark-bar" style="height: 8px; background: var(--glass-bg); border-radius: 4px; overflow: hidden;">
+          <div class="benchmark-fill" data-width="89.3" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-accent), var(--nebula-purple)); border-radius: 4px; transition: width 1.5s var(--transition-smooth);"></div>
+        </div>
+      </div>
+      
+      <div class="benchmark-item">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-family: var(--font-body); font-weight: 600; color: var(--text-primary);">MATH (Advanced)</span>
+          <span style="font-family: var(--font-mono); color: var(--neon-accent);">76.8%</span>
+        </div>
+        <div class="benchmark-bar" style="height: 8px; background: var(--glass-bg); border-radius: 4px; overflow: hidden;">
+          <div class="benchmark-fill" data-width="76.8" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--nebula-purple), var(--neon-accent)); border-radius: 4px; transition: width 1.5s var(--transition-smooth);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="marquee-container">
+      <div class="marquee">
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+      </div>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">SYNAPSE</div>
+        <p>Pioneering the next generation of artificial intelligence. Where human ingenuity meets machine precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="intelligence.html">Intelligence</a></li>
+          <li><a href="capabilities.html">Capabilities</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="ethics.html">Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 SYNAPSE AI. All rights reserved.</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem;">v2.0.1-stable</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 3D Tilt Effect for model cards
+      if (!window.matchMedia('(pointer: coarse)').matches) {
+        document.querySelectorAll('.model-card').forEach(card => {
+          const glow = card.querySelector('.model-glow');
+          
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            
+            // Move glow with mouse
+            if (glow) {
+              glow.style.opacity = '1';
+              glow.style.left = x + 'px';
+              glow.style.top = y + 'px';
+              glow.style.transform = 'translate(-50%, -50%)';
+            }
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            if (glow) {
+              glow.style.opacity = '0';
+            }
+          });
+        });
+      }
+      
+      // Animated benchmark bars
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        document.querySelectorAll('.benchmark-fill').forEach(bar => {
+          const width = bar.dataset.width;
+          gsap.to(bar, {
+            width: width + '%',
+            duration: 1.5,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: bar,
+              start: 'top 85%',
+              once: true
+            }
+          });
+        });
+      } else {
+        // Fallback
+        setTimeout(() => {
+          document.querySelectorAll('.benchmark-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>

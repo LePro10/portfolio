@@ -1,0 +1,6 @@
+{
+  "model": "ling3tiny",
+  "status": "failed",
+  "stack": "react-vite",
+  "note": "No usable static build."
+}

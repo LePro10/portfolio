@@ -1,0 +1,6 @@
+{
+  "model": "qwen2.5-32B",
+  "status": "failed",
+  "stack": "unknown",
+  "note": "No usable static build."
+}

@@ -1,0 +1,13 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Gemini placeholder mark</title>
+  <rect width="160" height="160" rx="42" fill="#080A2A"/>
+  <path d="M80 18C86 52 108 74 142 80C108 86 86 108 80 142C74 108 52 86 18 80C52 74 74 52 80 18Z" fill="url(#paint0_linear)"/>
+  <path d="M80 48C83 65 95 77 112 80C95 83 83 95 80 112C77 95 65 83 48 80C65 77 77 65 80 48Z" fill="white" fill-opacity="0.76"/>
+  <defs>
+    <linearGradient id="paint0_linear" x1="18" y1="18" x2="142" y2="142" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5EC7FF"/>
+      <stop offset="0.5" stop-color="#8D5CFF"/>
+      <stop offset="1" stop-color="#F28CFF"/>
+    </linearGradient>
+  </defs>
+</svg>

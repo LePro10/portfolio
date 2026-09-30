@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capabilities — SYNAPSE AI</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/capabilities.css">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">SYNAPSE</div>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-percent">0%</div>
+  </div>
+  
+  <!-- Page Transition -->
+  <div class="page-transition">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <span class="glitch-text">INITIALIZING...</span>
+  </div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">SYNAPSE</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="ethics.html">Ethics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- HERO SECTION -->
+  <section class="capabilities-hero" style="padding: 0; max-width: 100%; min-height: 60vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.1), transparent 70%);"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 4rem;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1.5rem; color: var(--neon-accent);">02 — WHAT WE CAN DO</span>
+      <h1 class="display-h1" style="margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;" data-scramble>
+        Capabilities<br>
+        <span class="text-gradient">Without Boundaries</span>
+      </h1>
+      <p class="body-text reveal" style="margin: 0 auto; max-width: 600px;">
+        From creative generation to complex problem solving, discover the full spectrum of what SYNAPSE can achieve.
+      </p>
+    </div>
+  </section>
+  
+  <!-- BENTO GRID SECTION -->
+  <section class="bento-section" style="position: relative; max-width: 1200px;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">03 — FEATURED CAPABILITIES</span>
+      <h2 class="display-h2" data-scramble>Explore the Grid</h2>
+    </div>
+    
+    <div class="bento-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 280px); gap: 1.5rem;">
+      <!-- Large card - Vision -->
+      <div class="bento-card bento-large reveal-scale glass" style="grid-column: span 2; grid-row: span 2; padding: 3rem; border-radius: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.5s var(--transition-smooth);">
+        <div class="bento-bg" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.1)); opacity: 0.5; transition: opacity 0.4s;"></div>
+        <div style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="bento-icon" style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem;">👁️</div>
+            <h3 class="display-h3" style="font-size: 2rem; margin-bottom: 1rem;">Computer Vision</h3>
+            <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Analyze, understand, and generate visual content with human-level perception. Object detection, image synthesis, video analysis, and more.</p>
+          </div>
+          <div class="bento-stats" style="display: flex; gap: 2rem; margin-top: 2rem;">
+            <div>
+              <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--neon-accent);">99.7%</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">Accuracy</div>
+            </div>
+            <div>
+              <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--neon-accent);">< 50ms</div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">Latency</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Medium card - Language -->
+      <div class="bento-card bento-medium reveal-scale glass" style="grid-column: span 2; padding: 2.5rem; border-radius: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.5s var(--transition-smooth);">
+        <div class="bento-bg" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(107, 33, 168, 0.1)); opacity: 0.5; transition: opacity 0.4s;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div class="bento-icon" style="width: 50px; height: 50px; border-radius: 0.75rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(107, 33, 168, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1rem;">💬</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 0.75rem;">Natural Language</h3>
+          <p class="body-text" style="font-size: 0.9rem; max-width: 100%;">Understand context, nuance, and intent across 50+ languages with native-level fluency.</p>
+        </div>
+      </div>
+      
+      <!-- Small card - Code -->
+      <div class="bento-card bento-small reveal-scale glass" style="padding: 2rem; border-radius: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.5s var(--transition-smooth);">
+        <div class="bento-bg" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(107, 33, 168, 0.2), rgba(0, 240, 255, 0.1)); opacity: 0.5; transition: opacity 0.4s;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div class="bento-icon" style="width: 45px; height: 45px; border-radius: 0.75rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 0.75rem;">💻</div>
+          <h3 class="display-h3" style="font-size: 1.25rem; margin-bottom: 0.5rem;">Code Generation</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Write, debug, and optimize code in any language.</p>
+        </div>
+      </div>
+      
+      <!-- Small card - Audio -->
+      <div class="bento-card bento-small reveal-scale glass" style="padding: 2rem; border-radius: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.5s var(--transition-smooth);">
+        <div class="bento-bg" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(107, 33, 168, 0.1)); opacity: 0.5; transition: opacity 0.4s;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div class="bento-icon" style="width: 45px; height: 45px; border-radius: 0.75rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(107, 33, 168, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 0.75rem;">🎵</div>
+          <h3 class="display-h3" style="font-size: 1.25rem; margin-bottom: 0.5rem;">Audio Processing</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Speech recognition, synthesis, and music generation.</p>
+        </div>
+      </div>
+      
+      <!-- Medium card - Creativity -->
+      <div class="bento-card bento-medium reveal-scale glass" style="grid-column: span 2; padding: 2.5rem; border-radius: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.5s var(--transition-smooth);">
+        <div class="bento-bg" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(107, 33, 168, 0.2), rgba(0, 240, 255, 0.2)); opacity: 0.5; transition: opacity 0.4s;"></div>
+        <div style="position: relative; z-index: 2;">
+          <div class="bento-icon" style="width: 50px; height: 50px; border-radius: 0.75rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1rem;">🎨</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 0.75rem;">Creative Generation</h3>
+          <p class="body-text" style="font-size: 0.9rem; max-width: 100%;">Generate original art, music, stories, and designs. AI that doesn't just compute — it creates.</p>
+        </div>
+      </div>
+      
+      <!-- Full width card - Research -->
+      <div class="bento-card bento-full reveal-scale glass" style="grid-column: span 4; padding: 3rem; border-radius: 1.5rem; position: relative; overflow: hidden; cursor: pointer; transition: all 0.5s var(--transition-smooth);">
+        <div class="bento-bg" style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(107, 33, 168, 0.15)); opacity: 0.5; transition: opacity 0.4s;"></div>
+        <div style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+          <div style="flex: 1; min-width: 300px;">
+            <div class="bento-icon" style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(107, 33, 168, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem;">🔬</div>
+            <h3 class="display-h3" style="font-size: 2rem; margin-bottom: 1rem;">Research & Analysis</h3>
+            <p class="body-text" style="font-size: 0.95rem; max-width: 500px;">Process millions of documents, extract insights, identify patterns, and generate comprehensive research reports in seconds.</p>
+          </div>
+          <div style="display: flex; gap: 3rem; flex-wrap: wrap;">
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--neon-accent);">10M+</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Docs/Min</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--nebula-purple);">99.9%</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Precision</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--neon-accent);">24/7</div>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Availability</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- INTERACTIVE DEMO SECTION -->
+  <section class="demo-section" style="position: relative; max-width: 100%; background: var(--deep-space); padding: 8rem 3rem;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">04 — TRY IT YOURSELF</span>
+      <h2 class="display-h2" data-scramble>See It In Action</h2>
+    </div>
+    
+    <div class="demo-container reveal glass" style="max-width: 900px; margin: 0 auto; padding: 3rem; border-radius: 1.5rem; position: relative; overflow: hidden;">
+      <div class="demo-tabs" style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; flex-wrap: wrap;">
+        <button class="demo-tab active" data-tab="vision" style="padding: 0.75rem 1.5rem; border-radius: 100px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; cursor: none; transition: all 0.3s;">Vision</button>
+        <button class="demo-tab" data-tab="language" style="padding: 0.75rem 1.5rem; border-radius: 100px; border: 1px solid var(--glass-border); background: transparent; color: var(--text-secondary); font-family: var(--font-body); font-size: 0.9rem; cursor: none; transition: all 0.3s;">Language</button>
+        <button class="demo-tab" data-tab="code" style="padding: 0.75rem 1.5rem; border-radius: 100px; border: 1px solid var(--glass-border); background: transparent; color: var(--text-secondary); font-family: var(--font-body); font-size: 0.9rem; cursor: none; transition: all 0.3s;">Code</button>
+      </div>
+      
+      <div class="demo-content">
+        <div class="demo-panel active" id="vision-panel">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+            <div class="demo-input" style="aspect-ratio: 4/3; border-radius: 1rem; border: 2px dashed var(--glass-border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--text-muted);">
+              <div style="font-size: 3rem;">🖼️</div>
+              <p style="font-family: var(--font-mono); font-size: 0.85rem;">Drop an image or click to upload</p>
+            </div>
+            <div class="demo-output" style="font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8; color: var(--text-secondary);">
+              <div style="margin-bottom: 1rem; color: var(--neon-accent);">> Analyzing image...</div>
+              <div style="margin-bottom: 0.5rem;">✓ Object detection: 5 objects found</div>
+              <div style="margin-bottom: 0.5rem;">✓ Scene classification: Indoor office</div>
+              <div style="margin-bottom: 0.5rem;">✓ Text extraction: "SYNAPSE AI"</div>
+              <div style="margin-bottom: 0.5rem;">✓ Sentiment: Professional, modern</div>
+              <div style="color: var(--nebula-purple); margin-top: 1rem;">> Analysis complete in 0.3s</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="demo-panel" id="language-panel" style="display: none;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div class="demo-input" style="padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+              "Explain quantum computing to a 5-year-old:"
+            </div>
+            <div class="demo-output" style="padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--glass-border); background: rgba(0, 240, 255, 0.05); font-family: var(--font-body); font-size: 0.95rem; color: var(--text-primary); line-height: 1.8;">
+              Imagine you have a magical coin that can be heads AND tails at the same time until you look at it. Quantum computers use this magic to solve really hard puzzles super fast!
+            </div>
+          </div>
+        </div>
+        
+        <div class="demo-panel" id="code-panel" style="display: none;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div class="demo-input" style="padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;">
+              // Write a function to find prime numbers<br>
+              function findPrimes(n) {<br>
+              &nbsp;&nbsp;// ...<br>
+              }
+            </div>
+            <div class="demo-output" style="padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--glass-border); background: rgba(0, 240, 255, 0.05); font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-accent); line-height: 1.6;">
+              function findPrimes(n) {<br>
+              &nbsp;&nbsp;const primes = [];<br>
+              &nbsp;&nbsp;for (let i = 2; i <= n; i++) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;let isPrime = true;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;for (let j = 2; j <= Math.sqrt(i); j++) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (i % j === 0) isPrime = false;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;if (isPrime) primes.push(i);<br>
+              &nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;return primes;<br>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="marquee-container">
+      <div class="marquee">
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+      </div>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">SYNAPSE</div>
+        <p>Pioneering the next generation of artificial intelligence. Where human ingenuity meets machine precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="intelligence.html">Intelligence</a></li>
+          <li><a href="capabilities.html">Capabilities</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="ethics.html">Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 SYNAPSE AI. All rights reserved.</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem;">v2.0.1-stable</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Bento card interactions
+      document.querySelectorAll('.bento-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          // Dim other cards
+          document.querySelectorAll('.bento-card').forEach(other => {
+            if (other !== card) {
+              other.style.opacity = '0.5';
+              other.style.transform = 'scale(0.98)';
+            }
+          });
+          
+          // Enhance current card
+          card.style.transform = 'scale(1.02)';
+          card.style.zIndex = '10';
+          const bg = card.querySelector('.bento-bg');
+          if (bg) bg.style.opacity = '0.8';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          // Reset all cards
+          document.querySelectorAll('.bento-card').forEach(other => {
+            other.style.opacity = '1';
+            other.style.transform = '';
+            other.style.zIndex = '';
+          });
+          
+          const bg = card.querySelector('.bento-bg');
+          if (bg) bg.style.opacity = '0.5';
+        });
+      });
+      
+      // Demo tabs
+      document.querySelectorAll('.demo-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active from all tabs
+          document.querySelectorAll('.demo-tab').forEach(t => {
+            t.classList.remove('active');
+            t.style.background = 'transparent';
+            t.style.color = 'var(--text-secondary)';
+          });
+          
+          // Hide all panels
+          document.querySelectorAll('.demo-panel').forEach(p => {
+            p.style.display = 'none';
+          });
+          
+          // Activate clicked tab
+          tab.classList.add('active');
+          tab.style.background = 'var(--glass-bg)';
+          tab.style.color = 'var(--text-primary)';
+          
+          // Show corresponding panel
+          const panelId = tab.dataset.tab + '-panel';
+          const panel = document.getElementById(panelId);
+          if (panel) {
+            panel.style.display = 'block';
+            
+            // Animate panel entrance
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(panel, 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+              );
+            }
+          }
+        });
+      });
+      
+      // Demo input hover effect
+      document.querySelectorAll('.demo-input').forEach(input => {
+        input.addEventListener('mouseenter', () => {
+          input.style.borderColor = 'var(--neon-accent)';
+          input.style.boxShadow = '0 0 30px rgba(0, 240, 255, 0.1)';
+        });
+        input.addEventListener('mouseleave', () => {
+          input.style.borderColor = '';
+          input.style.boxShadow = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

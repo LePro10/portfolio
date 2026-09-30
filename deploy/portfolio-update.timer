@@ -1,0 +1,10 @@
+[Unit]
+Description=Portfolio alle 2 Minuten auf neue Commits prüfen
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,6 @@
+{
+  "model": "qwen-3.7-plus",
+  "status": "failed",
+  "stack": "react-vite",
+  "note": "No usable static build."
+}

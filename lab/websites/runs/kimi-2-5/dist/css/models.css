@@ -1,0 +1,113 @@
+/* ========================================
+   SYNAPSE — Models Page Specific Styles
+   ======================================== */
+
+/* Models Hero */
+.models-hero {
+  position: relative;
+}
+
+.models-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(107, 33, 168, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(0, 240, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Model Cards */
+.models-grid {
+  perspective: 1000px;
+}
+
+.model-card {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+}
+
+.model-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--transition-smooth);
+  pointer-events: none;
+}
+
+.model-card:hover::before {
+  opacity: 1;
+}
+
+.model-card .model-icon {
+  transition: transform 0.4s var(--transition-smooth);
+}
+
+.model-card:hover .model-icon {
+  transform: scale(1.1);
+}
+
+.model-card .spec-item {
+  position: relative;
+  transition: background 0.3s;
+}
+
+.model-card:hover .spec-item {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Benchmark Bars */
+.benchmark-item {
+  position: relative;
+}
+
+.benchmark-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.benchmark-fill {
+  position: relative;
+}
+
+.benchmark-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .model-card {
+    padding: 2rem !important;
+  }
+  
+  .model-icon {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}

@@ -1,0 +1,6 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Mistral placeholder mark</title>
+  <rect width="160" height="160" rx="42" fill="#171006"/>
+  <path d="M35 116V44H57L80 79L103 44H125V116H104V79L84 108H76L56 79V116H35Z" fill="#FFCF5A"/>
+  <path d="M35 44H125" stroke="#FFF3B0" stroke-width="7" stroke-linecap="round"/>
+</svg>

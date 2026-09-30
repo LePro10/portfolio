@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab — NEXUS AI</title>
+<meta name="description" content="The NEXUS Lab — interactive demos that show what's possible. Play. Break things.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='1' stop-color='%23ff00aa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Crect x='28' y='28' width='44' height='44' rx='10' fill='%23050610'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="loader">
+  <div class="brand"><span class="brand-mark"></span><span>NEXUS AI</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-text">Spinning Up Demos · <span class="loader-percent">000</span></div>
+</div>
+
+<div class="noise"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"></span><span>NEXUS AI</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="technology.html">Technology</a></li>
+      <li><a href="lab.html">Lab</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta magnetic" data-magnet="0.3">Get Access →</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="min-height: 70vh;">
+  <div class="hero-bg"><div class="grid-bg"></div></div>
+  <div class="container hero-content" style="max-width: 900px;">
+    <div class="eyebrow" style="margin-bottom: 1.5rem;">Lab / The Playground</div>
+    <h1 class="h-display">
+      Play with the<br>
+      <span class="grad-text" data-scramble="future.|model.|impossible.|truth.">future.</span>
+    </h1>
+    <p class="lead" style="max-width: 620px; margin-top: 2rem;">
+      Four interactive demos, running right here in your browser. Type, click, drag — and watch NEXUS respond.
+      <span style="color: var(--fg-faint); font-size: 0.9rem; display:block; margin-top: 1rem;">psst… try the konami code: ↑ ↑ ↓ ↓ ← → ← → B A</span>
+    </p>
+  </div>
+</section>
+
+<!-- LAB DEMOS -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="lab-grid reveal-stagger">
+
+      <!-- Text generation -->
+      <div class="lab-panel">
+        <h3>◊ Text Generation <span class="pill"><span class="pill-dot"></span>LIVE</span></h3>
+        <p>Ask NEXUS something. It will respond with one of its trademark cryptic insights.</p>
+        <div class="lab-input">
+          <input type="text" id="lab-text-input" placeholder="What is consciousness?">
+          <button id="lab-text-btn">Send</button>
+        </div>
+        <div class="lab-output" id="lab-text-output">> awaiting prompt...</div>
+      </div>
+
+      <!-- Image generation -->
+      <div class="lab-panel">
+        <h3>★ Image Synthesis <span class="pill"><span class="pill-dot"></span>LIVE</span></h3>
+        <p>Click generate. Watch latent space resolve into something visual.</p>
+        <div class="gen-img-preview" id="lab-img-preview" style="height: 180px; margin-bottom: 1rem;"></div>
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <button id="lab-img-btn" class="btn btn-primary" style="padding: 0.6rem 1.2rem;">Generate</button>
+          <span id="lab-img-status" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.15em;">READY</span>
+        </div>
+      </div>
+
+      <!-- Theme generator -->
+      <div class="lab-panel">
+        <h3>⌘ Theme Generator <span class="pill"><span class="pill-dot"></span>LIVE</span></h3>
+        <p>Recolor the entire site live. Watch CSS variables ripple through the design system.</p>
+        <div class="color-swatch-grid" id="lab-theme-grid"></div>
+        <button id="lab-theme-btn" class="btn btn-primary" style="margin-top: 1.5rem; padding: 0.6rem 1.2rem;">Cycle palette</button>
+      </div>
+
+      <!-- Shader -->
+      <div class="lab-panel">
+        <h3>▦ Shader Playground <span class="pill"><span class="pill-dot"></span>LIVE</span></h3>
+        <p>A simple animated canvas. Slide to control the velocity of the lattice.</p>
+        <canvas id="lab-shader-canvas" style="width: 100%; height: 180px; border-radius: 12px; background: #000; margin-bottom: 1rem;"></canvas>
+        <label style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg-dim); display: block; margin-bottom: 0.5rem;">SPEED</label>
+        <input type="range" id="lab-shader-input" min="0" max="4" step="0.1" value="1" style="width: 100%; accent-color: var(--cyan);">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BIG QUOTE -->
+<section>
+  <div class="container">
+    <div class="reveal" style="max-width: 980px; margin: 0 auto; text-align: center;">
+      <p style="font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.75rem); font-weight: 500; line-height: 1.3; color: var(--fg);">
+        "Demos are <span class="grad-text">arguments</span>. The best ones make you say —<br>'wait, do that again'."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- API teaser -->
+<section>
+  <div class="container">
+    <div class="split">
+      <div class="split-label">[ 02 ] API</div>
+      <div class="reveal" style="width: 100%;">
+        <h2 class="h-xl" style="margin-bottom: 2rem;">Three lines. Real intelligence.</h2>
+        <pre class="code-block" style="font-size: 0.95rem; padding: 2rem;"><span class="cmt"># Install</span>
+<span class="kw">pip</span> install nexus-ai
+
+<span class="cmt"># Use</span>
+<span class="kw">from</span> nexus <span class="kw">import</span> Model
+model = <span class="fn">Model</span>(<span class="str">"nexus-v4.7"</span>)
+response = model.<span class="fn">ask</span>(<span class="str">"Why do we sleep?"</span>)
+<span class="fn">print</span>(response.text)</pre>
+        <div style="margin-top: 2rem;">
+          <a href="contact.html" class="btn magnetic" data-magnet="0.25">Get an API key <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand" style="margin-bottom: 1.5rem;"><span class="brand-mark"></span><span>NEXUS AI</span></div><p style="max-width: 320px; font-size: 0.9rem;">A cognitive substrate for the post-prompt era.</p></div>
+      <div><h4>Product</h4><ul><li><a href="capabilities.html">Capabilities</a></li><li><a href="technology.html">Technology</a></li><li><a href="lab.html">Lab</a></li><li><a href="#">API</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Research</a></li><li><a href="#">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="#">Twitter</a></li><li><a href="#">GitHub</a></li><li><a href="#">Discord</a></li><li><a href="#">Newsletter</a></li></ul></div>
+    </div>
+    <div class="footer-mega">PLAY</div>
+    <div class="footer-bottom"><div>© 2026 NEXUS AI · ALL RIGHTS RESERVED</div><div>BUILT IN THE LATTICE · v4.7</div></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/effects.js"></script>
+</body>
+</html>

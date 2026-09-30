@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Mind — NEURA</title>
+<meta name="description" content="Fire a neuron and watch a thought propagate — an interactive anatomy of artificial neural networks."/>
+<meta name="theme-color" content="#050507"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='.5' stop-color='%237b5cff'/%3E%3Cstop offset='1' stop-color='%23ff2ea6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2l3.8 10.2L30 16l-10.2 3.8L16 30l-3.8-10.2L2 16l10.2-3.8z' fill='url(%23g)'/%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script>document.documentElement.classList.add('is-booting')</script>
+  <script type="module" crossorigin src="/assets/main-Dbt68BfR.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-CAm9PJTZ.css">
+</head>
+<body data-page="mind">
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
+<div class="overlay" aria-hidden="true">
+  <div class="overlay__cols"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="overlay__brand">
+    <span class="overlay__logo">NEURA</span>
+    <span class="overlay__counter">000</span>
+    <span class="overlay__tag">WIRING SYNAPSES</span>
+  </div>
+</div>
+
+<header class="nav">
+  <a class="nav__logo" href="/index.html"><i></i>NEURA</a>
+  <ul class="nav__links">
+    <li><a href="/origins.html" data-nav="origins">Origins</a></li>
+    <li><a href="/mind.html" data-nav="mind">The Mind</a></li>
+    <li><a href="/gallery.html" data-nav="gallery">Capabilities</a></li>
+    <li><a href="/future.html" data-nav="future">Horizon</a></li>
+    <li><a href="/contact.html" data-nav="contact">Contact</a></li>
+  </ul>
+  <button class="burger" aria-label="Toggle menu"><span></span><span></span></button>
+</header>
+
+<nav class="menu" aria-label="Main menu">
+  <ul>
+    <li><a href="/index.html"><em>00</em>Genesis</a></li>
+    <li><a href="/origins.html"><em>01</em>Origins</a></li>
+    <li><a href="/mind.html"><em>02</em>The Mind</a></li>
+    <li><a href="/gallery.html"><em>03</em>Capabilities</a></li>
+    <li><a href="/future.html"><em>04</em>Horizon</a></li>
+    <li><a href="/contact.html"><em>05</em>Contact</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container hero__inner">
+    <p class="kicker" data-scramble>[ Chapter 02 — The Mind ]</p>
+    <h1 class="h-display" data-split>Anatomy of a <span class="grad">thought</span></h1>
+    <p class="hero__sub" data-reveal>Every idea you've ever had was just electricity finding a path. So is every idea a machine will ever have. Below: a living network. Poke it.</p>
+  </div>
+  <div class="scroll-hint"><i></i>Scroll</div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="net-stage" data-reveal>
+      <canvas id="net"></canvas>
+      <span class="net-hint">Click any neuron to fire it</span>
+    </div>
+    <div class="net-controls">
+      <button class="btn" id="net-fire" data-magnetic>Fire random
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4.5 12.5H11l-1 9.5L19.5 11H13l0-9z"/></svg>
+      </button>
+      <button class="btn" id="net-storm" data-magnetic>Synaptic storm</button>
+      <button class="btn btn--solid" id="net-reset" data-magnetic>Reset</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="sec-head">
+      <p class="kicker" data-scramble>[ Five laws of the machine ]</p>
+      <h2 class="h-section" data-split>How a network learns to see, speak &amp; dream</h2>
+    </div>
+
+    <div class="stack" id="stack">
+      <article class="stack-card" style="--i:0">
+        <div class="stack-card__idx"><span>LAW 01</span><span>INPUT</span></div>
+        <h3>Everything is a number</h3>
+        <p>Words become tokens, pixels become brightness values, sound becomes pressure samples. Before a model can think about the world, the world must be flattened into arithmetic.</p>
+      </article>
+      <article class="stack-card" style="--i:1">
+        <div class="stack-card__idx"><span>LAW 02</span><span>WEIGHTS</span></div>
+        <h3>Knowledge is a weight</h3>
+        <p>A connection carries a number that says how much to care. Multiply, sum, repeat a few trillion times — that's not a metaphor for understanding. In these systems, that is understanding.</p>
+      </article>
+      <article class="stack-card" style="--i:2">
+        <div class="stack-card__idx"><span>LAW 03</span><span>ACTIVATION</span></div>
+        <h3>Neurons vote, nonlinearly</h3>
+        <p>An activation function decides whether a neuron fires. Without this small nonlinearity, a thousand layers would collapse into one boring equation. Curvature is where intelligence hides.</p>
+      </article>
+      <article class="stack-card" style="--i:3">
+        <div class="stack-card__idx"><span>LAW 04</span><span>BACKPROP</span></div>
+        <h3>Error flows backward</h3>
+        <p>When the network guesses wrong, blame travels backwards through every layer, nudging every weight by a tiny gradient. Do this a few billion times and chaos becomes competence.</p>
+      </article>
+      <article class="stack-card" style="--i:4">
+        <div class="stack-card__idx"><span>LAW 05</span><span>EMERGENCE</span></div>
+        <h3>Nobody programmed this</h3>
+        <p>At sufficient scale, abilities appear that no engineer designed: translation, reasoning, code. We built the vessel. The capabilities emerged on their own — and we're still writing the safety manual.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <a class="footer__word" href="#" data-text="NEURA">NEURA</a>
+    <div class="footer__grid">
+      <div>
+        <a class="nav__logo" href="/index.html"><i></i>NEURA</a>
+        <p>A museum of machine intelligence, built entirely from code, math and obsession.</p>
+      </div>
+      <div class="footer__col">
+        <b>Chapters</b>
+        <ul>
+          <li><a href="/origins.html">Origins</a></li>
+          <li><a href="/mind.html">The Mind</a></li>
+          <li><a href="/gallery.html">Capabilities</a></li>
+          <li><a href="/future.html">Horizon</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <b>Signals</b>
+        <ul>
+          <li><a href="/contact.html">Open a channel</a></li>
+          <li><a href="#">X / Twitter</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Are.na</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 NEURA SYSTEMS</span>
+      <span>BUILT FROM PARTICLES &amp; GRADIENT DESCENT</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

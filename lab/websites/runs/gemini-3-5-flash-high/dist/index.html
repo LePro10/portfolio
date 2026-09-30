@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aetheris AI - An immersive, interactive simulation demonstrating cognitive computing, genetic evolution sandboxes, and custom neural networks.">
+    <title>Aetheris AI // The Neural Web Experience</title>
+    
+    <!-- Typography & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Neural Network Canvas Background -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Retro-Futuristic Scanlines CRT overlay -->
+    <div class="scanlines"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Immersive Custom Dual-Ring Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- Glowing Cybernetic HUD Header -->
+    <header class="hud-header">
+        <div class="hud-brand">
+            <div class="brand-logo">
+                <span class="logo-core"></span>
+            </div>
+            <div class="brand-text">
+                <h1 class="logo-title">AETHERIS</h1>
+                <span class="logo-sub">NEURAL SUITE v3.5</span>
+            </div>
+        </div>
+        
+        <div class="hud-diagnostics">
+            <div class="diag-item">
+                <span class="diag-label">SYSTEM</span>
+                <span class="diag-val pulse-green">SECURE</span>
+            </div>
+            <div class="diag-item desktop-only">
+                <span class="diag-label">CORE LOAD</span>
+                <span class="diag-val text-cyan" id="core-load-val">12%</span>
+            </div>
+            <div class="diag-item desktop-only">
+                <span class="diag-label">NET CONNS</span>
+                <span class="diag-val text-purple" id="neural-connections-val">42</span>
+            </div>
+        </div>
+
+        <button class="hud-audio-toggle" id="audio-toggle" aria-label="Toggle Cybernetic Audio">
+            <span class="audio-wave">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            <span class="audio-text">AUDIO OFF</span>
+        </button>
+    </header>
+
+    <!-- Side Navigation HUD indicators -->
+    <nav class="hud-nav" aria-label="System View Selector">
+        <ul class="nav-list">
+            <li>
+                <a href="#hero" class="nav-item active" data-section="hero">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">COGNITIVE START</span>
+                </a>
+            </li>
+            <li>
+                <a href="#modalities" class="nav-item" data-section="modalities">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">CORE HUB</span>
+                </a>
+            </li>
+            <li>
+                <a href="#playground" class="nav-item" data-section="playground">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">NEURAL PLAYGROUND</span>
+                </a>
+            </li>
+            <li>
+                <a href="#timeline" class="nav-item" data-section="timeline">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">CHRONOS TIMELINE</span>
+                </a>
+            </li>
+            <li>
+                <a href="#codex" class="nav-item" data-section="codex">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">CORE CODEX</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Active Main Viewport Wrap -->
+    <main class="viewport-container">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="viewport-section active">
+            <div class="section-overlay-grid"></div>
+            <div class="section-content hero-content">
+                <div class="hero-tech-badge">NEURAL NETWORK INITIALIZED // PROTOCOL 77</div>
+                <h2 class="hero-title glitch" data-text="EVOLUTION OF COGNITION">EVOLUTION OF COGNITION</h2>
+                <p class="hero-desc">
+                    Welcome to <span class="text-cyan">Aetheris</span>. Witness AI in motion. An autonomous, interactive bio-digital neural network operates in real-time beneath your viewport. Engage with evolutionary simulations, design custom networks, and peer into the digital frontier.
+                </p>
+
+                <!-- Interactive Prompt Console simulator -->
+                <div class="cyber-terminal terminal-hover-effect">
+                    <div class="terminal-header">
+                        <span class="term-dot red"></span>
+                        <span class="term-dot yellow"></span>
+                        <span class="term-dot green"></span>
+                        <span class="term-title">AETHERIS_PROMPT_INTERPRETER.EXE</span>
+                        <span class="term-status">LINKED</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-output" id="terminal-out">
+                            <p class="terminal-line system">> Initializing Aetheris prompt system... OK</p>
+                            <p class="terminal-line system">> All systems functional. Select operational protocol to run:</p>
+                        </div>
+                        <div class="terminal-input-row">
+                            <span class="terminal-prompt">AETHERIS ></span>
+                            <div class="terminal-input-container">
+                                <span class="terminal-input-display" id="terminal-display-input"></span><span class="terminal-cursor">_</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="terminal-controls">
+                        <button class="terminal-btn-tag" data-cmd="INIT_NEURAL_SYNAPSE">INIT_NEURAL_SYNAPSE</button>
+                        <button class="terminal-btn-tag" data-cmd="MUTATE_GENOME_CORE">MUTATE_GENOME_CORE</button>
+                        <button class="terminal-btn-tag" data-cmd="DECODE_QUANTUM_STREAM">DECODE_QUANTUM_STREAM</button>
+                        <button class="terminal-btn-tag" data-cmd="BOOT_AUDIO_SYNTH">BOOT_AUDIO_SYNTH</button>
+                    </div>
+                </div>
+
+                <div class="hero-action-buttons">
+                    <a href="#playground" class="btn btn-primary magnet-effect">
+                        <span class="btn-glow"></span>
+                        <span class="btn-text">ENTER PLAYGROUND</span>
+                    </a>
+                    <a href="#modalities" class="btn btn-secondary magnet-effect">
+                        <span class="btn-text">EXPLORE ARCHITECTURE</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CORE MODALITIES SECTION -->
+        <section id="modalities" class="viewport-section">
+            <div class="section-overlay-grid"></div>
+            <div class="section-content">
+                <div class="section-header">
+                    <span class="section-tag">// MODULE STRUCTURE</span>
+                    <h2 class="section-title">COGNITIVE MODALITIES</h2>
+                    <p class="section-desc">The core branches of machine synthesis powering the Aetheris intelligence infrastructure.</p>
+                </div>
+
+                <div class="modalities-grid">
+                    <!-- Modality Card 1 -->
+                    <div class="modality-card card-glow-cyan" id="modality-vision">
+                        <div class="card-icon-container">
+                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M3 12c0-3 9-9 9-9s9 6 9 9-9 9-9 9-9-6-9-9z" />
+                                <path d="M5 5l2 2m12-2l-2 2m2 12l-2-2M5 19l2-2" />
+                            </svg>
+                            <span class="icon-ring"></span>
+                        </div>
+                        <h3 class="card-title">Computer Vision</h3>
+                        <p class="card-desc">Translating visual environments into numerical tensors. Powered by deep convolutional meshes and semantic spatial mapping.</p>
+                        <div class="card-metric-hud">
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">FPS</span>
+                                <span class="hud-cell-val text-cyan">142</span>
+                            </div>
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">LATENCY</span>
+                                <span class="hud-cell-val text-cyan">4.2ms</span>
+                            </div>
+                        </div>
+                        <div class="card-cyber-decoration">
+                            <span class="deco-corner top-right"></span>
+                            <span class="deco-corner bottom-left"></span>
+                        </div>
+                    </div>
+
+                    <!-- Modality Card 2 -->
+                    <div class="modality-card card-glow-purple" id="modality-nlp">
+                        <div class="card-icon-container">
+                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                <path d="M8 7h8M8 11h6" />
+                            </svg>
+                            <span class="icon-ring"></span>
+                        </div>
+                        <h3 class="card-title">Synthesis NLP</h3>
+                        <p class="card-desc">Advanced multi-head transformer networks processing semantics, syntax, and generative speech pathways in high dimensions.</p>
+                        <div class="card-metric-hud">
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">TOK/S</span>
+                                <span class="hud-cell-val text-purple">1,240</span>
+                            </div>
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">ATTN HEADS</span>
+                                <span class="hud-cell-val text-purple">96</span>
+                            </div>
+                        </div>
+                        <div class="card-cyber-decoration">
+                            <span class="deco-corner top-right"></span>
+                            <span class="deco-corner bottom-left"></span>
+                        </div>
+                    </div>
+
+                    <!-- Modality Card 3 -->
+                    <div class="modality-card card-glow-pink" id="modality-bio">
+                        <div class="card-icon-container">
+                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4.5 10.5c.7-1.3 1.9-2.3 3.3-2.8M19.5 13.5c-.7 1.3-1.9 2.3-3.3 2.8" />
+                                <path d="M12 2v20M4.5 5.5l15 13M4.5 18.5l15-13" />
+                            </svg>
+                            <span class="icon-ring"></span>
+                        </div>
+                        <h3 class="card-title">Bio-Synaptic Fuse</h3>
+                        <p class="card-desc">Fusing digital architecture with simulated neurological circuits, combining synthetic synapses and physical hardware loops.</p>
+                        <div class="card-metric-hud">
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">SYN_FREQ</span>
+                                <span class="hud-cell-val text-pink">8.4GHz</span>
+                            </div>
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">VOLTAGE</span>
+                                <span class="hud-cell-val text-pink">1.22mV</span>
+                            </div>
+                        </div>
+                        <div class="card-cyber-decoration">
+                            <span class="deco-corner top-right"></span>
+                            <span class="deco-corner bottom-left"></span>
+                        </div>
+                    </div>
+
+                    <!-- Modality Card 4 -->
+                    <div class="modality-card card-glow-amber" id="modality-quantum">
+                        <div class="card-icon-container">
+                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                                <path d="M12 6v12M6 12h12" />
+                                <circle cx="12" cy="12" r="1.5" />
+                            </svg>
+                            <span class="icon-ring"></span>
+                        </div>
+                        <h3 class="card-title">Quantum Cognition</h3>
+                        <p class="card-desc">Utilizing quantum probability vectors and state matrices to form complex, non-deterministic reasoning pathways.</p>
+                        <div class="card-metric-hud">
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">QUBITS</span>
+                                <span class="hud-cell-val text-amber">1,024</span>
+                            </div>
+                            <div class="hud-cell">
+                                <span class="hud-cell-lbl">COHERENCE</span>
+                                <span class="hud-cell-val text-amber">99.98%</span>
+                            </div>
+                        </div>
+                        <div class="card-cyber-decoration">
+                            <span class="deco-corner top-right"></span>
+                            <span class="deco-corner bottom-left"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. NEURAL PLAYGROUND SECTION -->
+        <section id="playground" class="viewport-section">
+            <div class="section-overlay-grid"></div>
+            <div class="section-content sandbox-content">
+                <div class="section-header">
+                    <span class="section-tag">// ACTIVE EXPERIMENTS</span>
+                    <h2 class="section-title">THE NEURAL PLAYGROUND</h2>
+                    <p class="section-desc">Interact directly with live machine intelligence models running in real-time execution loops.</p>
+                </div>
+
+                <div class="playground-layout">
+                    <!-- Simulator A: Neural Network Architect -->
+                    <div class="simulator-card card-glow-cyan">
+                        <div class="sim-header">
+                            <div class="sim-meta">
+                                <span class="sim-badge text-cyan">ACTIVE ENGINE</span>
+                                <h3 class="sim-title">Neural Network Architect</h3>
+                            </div>
+                            <div class="sim-diagnostics">
+                                <div class="sim-diag-val">Loss: <span id="nn-loss-val" class="text-cyan">0.245</span></div>
+                                <div class="sim-diag-val">Epoch: <span id="nn-epoch-val" class="text-cyan">0</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Visual training canvas area -->
+                        <div class="nn-visualizer-container">
+                            <canvas id="nn-canvas"></canvas>
+                            
+                            <!-- Graph representation Overlay in the corner -->
+                            <div class="nn-graph-overlay">
+                                <canvas id="nn-loss-graph"></canvas>
+                                <span class="nn-graph-lbl">Loss Curve</span>
+                            </div>
+                        </div>
+
+                        <!-- Neural Controls Panel -->
+                        <div class="sim-controls">
+                            <div class="control-row">
+                                <div class="control-col">
+                                    <label class="control-lbl">HIDDEN NODES</label>
+                                    <div class="stepper-control">
+                                        <button class="step-btn" id="nn-node-dec" aria-label="Decrease Hidden Nodes">-</button>
+                                        <span class="step-val" id="nn-node-val">4</span>
+                                        <button class="step-btn" id="nn-node-inc" aria-label="Increase Hidden Nodes">+</button>
+                                    </div>
+                                </div>
+                                <div class="control-col">
+                                    <label class="control-lbl">DATASET PATTERN</label>
+                                    <select class="cyber-select" id="nn-dataset">
+                                        <option value="linear">Linear Split</option>
+                                        <option value="sine">Sine Wave</option>
+                                        <option value="circle">Circular Boundary</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-sm magnet-effect" id="nn-train-btn">
+                                    <span class="btn-text">TRAIN NETWORK</span>
+                                </button>
+                                <button class="btn btn-secondary btn-sm magnet-effect" id="nn-reset-btn">
+                                    <span class="btn-text">RESET WEIGHTS</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulator B: Genetic Evolution Sandbox -->
+                    <div class="simulator-card card-glow-purple">
+                        <div class="sim-header">
+                            <div class="sim-meta">
+                                <span class="sim-badge text-purple">EVOLUTION SEED</span>
+                                <h3 class="sim-title">Genetic Sandbox</h3>
+                            </div>
+                            <div class="sim-diagnostics">
+                                <div class="sim-diag-val">Pop: <span id="gen-pop-val" class="text-purple">12</span></div>
+                                <div class="sim-diag-val">Gen: <span id="gen-max-val" class="text-purple">0</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Ecosystem canvas space -->
+                        <div class="genetic-sandbox-container">
+                            <canvas id="evolution-canvas"></canvas>
+                            
+                            <!-- Genetic readouts overlay -->
+                            <div class="gen-stats-overlay">
+                                <div class="gen-stat-row">
+                                    <span class="lbl">Avg Speed:</span>
+                                    <span class="val text-purple" id="gen-stat-speed">0.0px</span>
+                                </div>
+                                <div class="gen-stat-row">
+                                    <span class="lbl">Avg Perception:</span>
+                                    <span class="val text-purple" id="gen-stat-sight">0.0px</span>
+                                </div>
+                                <div class="gen-stat-row">
+                                    <span class="lbl">Traits Dominant:</span>
+                                    <span class="val text-cyan" id="gen-stat-trait">Agility</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Genetic Controls Panel -->
+                        <div class="sim-controls">
+                            <div class="control-row">
+                                <div class="control-col">
+                                    <label class="control-lbl">MUTATION LEVEL</label>
+                                    <div class="slider-container">
+                                        <input type="range" class="cyber-slider" id="gen-mutation-slider" min="1" max="100" value="15">
+                                        <span class="slider-val text-purple" id="gen-mutation-val">15%</span>
+                                    </div>
+                                </div>
+                                <div class="control-col">
+                                    <label class="control-lbl">SIM SPEED</label>
+                                    <div class="stepper-control">
+                                        <button class="step-btn" id="gen-speed-dec" aria-label="Decrease Simulation Speed">-</button>
+                                        <span class="step-val" id="gen-speed-val">1x</span>
+                                        <button class="step-btn" id="gen-speed-inc" aria-label="Increase Simulation Speed">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-sm magnet-effect" id="gen-spawn-btn">
+                                    <span class="btn-text">INJECT SPECIMENS</span>
+                                </button>
+                                <button class="btn btn-secondary btn-sm magnet-effect" id="gen-wipe-btn">
+                                    <span class="btn-text">FORCE EXTINCTION</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CHRONOS TIMELINE SECTION -->
+        <section id="timeline" class="viewport-section">
+            <div class="section-overlay-grid"></div>
+            <div class="section-content">
+                <div class="section-header">
+                    <span class="section-tag">// ARCHIVE MEMORY</span>
+                    <h2 class="section-title">THE CHRONOS TIMELINE</h2>
+                    <p class="section-desc">Charting the evolutionary epochs of computational logic, from biological mechanics to quantum emergence.</p>
+                </div>
+
+                <div class="timeline-wrapper">
+                    <!-- Pulse connection guide line -->
+                    <div class="timeline-line">
+                        <div class="timeline-line-progress" id="timeline-scroll-bar"></div>
+                    </div>
+
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item left scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card card-glow-cyan">
+                            <span class="timeline-year text-cyan">1950</span>
+                            <h3 class="timeline-title">The Turing Spark</h3>
+                            <p class="timeline-desc">Alan Turing posits the imitation game. Symbolic logic and arithmetic engines establish the initial theoretical blueprint for computing intelligence.</p>
+                            <span class="timeline-decor"></span>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item right scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card card-glow-purple">
+                            <span class="timeline-year text-purple">2012</span>
+                            <h3 class="timeline-title">Deep Vision Awakening</h3>
+                            <p class="timeline-desc">Convolutional Neural Networks crush performance metrics in spatial processing, transforming digital architectures from manual logic to adaptive pattern recognition.</p>
+                            <span class="timeline-decor"></span>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item left scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card card-glow-pink">
+                            <span class="timeline-year text-pink">2020</span>
+                            <h3 class="timeline-title">Large-Scale Synthesis</h3>
+                            <p class="timeline-desc">Attention-based transformers scale into billions of weights. Digital intelligence gains natural language semantics, logical programming, and creative generation.</p>
+                            <span class="timeline-decor"></span>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item right scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card card-glow-amber">
+                            <span class="timeline-year text-amber">2026</span>
+                            <h3 class="timeline-title">Bio-Synaptic Fusion</h3>
+                            <p class="timeline-desc">Integration of biological neural interfaces and custom digital neuromorphic chips, accelerating high-bandwidth cognitive transfer loops.</p>
+                            <span class="timeline-decor"></span>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 5 -->
+                    <div class="timeline-item left scroll-reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card card-glow-cyan">
+                            <span class="timeline-year text-cyan">2035+</span>
+                            <h3 class="timeline-title">Quantum Emergence</h3>
+                            <p class="timeline-desc">Autonomous entities utilize quantum computing frameworks, achieving structural reasoning and sentience beyond biological limits.</p>
+                            <span class="timeline-decor"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CODEX ARCHIVE SECTION -->
+        <section id="codex" class="viewport-section">
+            <div class="section-overlay-grid"></div>
+            <div class="section-content codex-content">
+                <div class="section-header">
+                    <span class="section-tag">// ARCHIVE LIBRARY</span>
+                    <h2 class="section-title">THE SYSTEM CODEX</h2>
+                    <p class="section-desc">Dig into the deep mathematical and structural philosophies that form the bedrock of AI.</p>
+                </div>
+
+                <div class="codex-layout">
+                    <!-- Sidebar list of documents -->
+                    <div class="codex-sidebar">
+                        <button class="codex-nav-btn active magnet-effect" data-target="transformers">
+                            <span class="btn-num">01</span>
+                            <span class="btn-title">Attention & Transformers</span>
+                        </button>
+                        <button class="codex-nav-btn magnet-effect" data-target="q-learning">
+                            <span class="btn-num">02</span>
+                            <span class="btn-title">Deep Q-Reinforcement</span>
+                        </button>
+                        <button class="codex-nav-btn magnet-effect" data-target="neuromorphic">
+                            <span class="btn-num">03</span>
+                            <span class="btn-title">Neuromorphic Circuits</span>
+                        </button>
+                        <button class="codex-nav-btn magnet-effect" data-target="quantum-cognition">
+                            <span class="btn-num">04</span>
+                            <span class="btn-title">Superposed Logic Gates</span>
+                        </button>
+                    </div>
+
+                    <!-- Center Display Document Panel -->
+                    <div class="codex-panel-wrap">
+                        <div class="codex-panel card-glow-cyan active" id="doc-transformers">
+                            <div class="panel-header">
+                                <span class="panel-tag">CLASSIFIED // RECORD 402</span>
+                                <h3 class="panel-title glitch" data-text="MULTI-HEAD ATTENTION ARCHITECTURE">MULTI-HEAD ATTENTION ARCHITECTURE</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="panel-para">
+                                    The Transformer model discards recurrence and convolution, relying purely on <strong class="text-cyan">self-attention mechanisms</strong>. This allows models to scan entire sequence structures simultaneously, resolving token weights in a single computational tick.
+                                </p>
+                                <div class="panel-equation">
+                                    Attention(Q, K, V) = softmax( (QK<sup>T</sup>) / &radic;d<sub>k</sub> )V
+                                </div>
+                                <p class="panel-para">
+                                    By grouping queries, keys, and values into parallel subspace pathways ("heads"), the system captures complex semantic dependencies spanning broad contextual spans simultaneously. This is the cornerstone of modern Large Language Networks.
+                                </p>
+                                <div class="panel-diagnostics">
+                                    <div class="p-diag"><span>COMPILATION:</span> <span class="text-cyan">STABLE</span></div>
+                                    <div class="p-diag"><span>COMPLEXITY:</span> <span class="text-cyan">O(N²)</span></div>
+                                    <div class="p-diag"><span>ACCURACY:</span> <span class="text-cyan">99.8%</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="codex-panel card-glow-purple" id="doc-q-learning">
+                            <div class="panel-header">
+                                <span class="panel-tag">CLASSIFIED // RECORD 718</span>
+                                <h3 class="panel-title glitch" data-text="DEEP REINFORCEMENT LEARNING">DEEP REINFORCEMENT LEARNING</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="panel-para">
+                                    Reinforcement Learning operates through an <strong class="text-purple">Agent-Environment feedback loop</strong>. The agent takes actions, receives state signals, and gathers rewards. The goal is to maximize cumulative long-term returns.
+                                </p>
+                                <div class="panel-equation">
+                                    Q(s, a) &larr; Q(s, a) + &alpha; [ r + &gamma; max Q(s', a') - Q(s, a) ]
+                                </div>
+                                <p class="panel-para">
+                                    By incorporating deep neural networks to approximate action-value estimates (Deep Q-Networks or DQNs), agents learn to navigate highly dimensional state spaces, outperforming human champions in intricate simulators and strategic grids.
+                                </p>
+                                <div class="panel-diagnostics">
+                                    <div class="p-diag"><span>COMPILATION:</span> <span class="text-purple">OPTIMAL</span></div>
+                                    <div class="p-diag"><span>AGENT RETRIES:</span> <span class="text-purple">1.4M</span></div>
+                                    <div class="p-diag"><span>REWARD MATRIX:</span> <span class="text-purple">CONVERGED</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="codex-panel card-glow-pink" id="doc-neuromorphic">
+                            <div class="panel-header">
+                                <span class="panel-tag">CLASSIFIED // RECORD 992</span>
+                                <h3 class="panel-title glitch" data-text="NEUROMORPHIC COMPUTING LAYERS">NEUROMORPHIC COMPUTING LAYERS</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="panel-para">
+                                    Neuromorphic Engineering departs from traditional Von Neumann CPU structures. Instead of separate memory and computation registers, it mirrors the brain's co-located structure, combining processing nodes and memory inside <strong class="text-pink">artificial synapses</strong>.
+                                </p>
+                                <div class="panel-equation">
+                                    I(t) = C<sub>m</sub> (dV / dt) + &Sigma; g<sub>i</sub> (V - E<sub>i</sub>)
+                                </div>
+                                <p class="panel-para">
+                                    This model relies on event-driven, sparse spike activation. Information is processed as spikes in electrical voltage across memristive channels, reducing computational power needs to a minute fraction of normal server clusters.
+                                </p>
+                                <div class="panel-diagnostics">
+                                    <div class="p-diag"><span>COMPILATION:</span> <span class="text-pink">SYNAPSE LOCK</span></div>
+                                    <div class="p-diag"><span>ENERGY RATING:</span> <span class="text-pink">12 Picojoules/Spike</span></div>
+                                    <div class="p-diag"><span>SYNAPSE COUNT:</span> <span class="text-pink">10^11</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="codex-panel card-glow-amber" id="doc-quantum-cognition">
+                            <div class="panel-header">
+                                <span class="panel-tag">CLASSIFIED // RECORD 104</span>
+                                <h3 class="panel-title glitch" data-text="SUPERPOSED COGNITIVE PROBABILITIES">SUPERPOSED COGNITIVE PROBABILITIES</h3>
+                            </div>
+                            <div class="panel-body">
+                                <p class="panel-para">
+                                    Quantum Cognition applies mathematical quantum principles to cognitive theory. Instead of using deterministic binary states (0 or 1), the system operates on <strong class="text-amber">complex superposition states</strong>.
+                                </p>
+                                <div class="panel-equation">
+                                    |&Psi;&rang; = &alpha;|0&rang; + &beta;|1&rang; &nbsp;&nbsp; where &nbsp;&nbsp; |&alpha;|² + |&beta;|² = 1
+                                </div>
+                                <p class="panel-para">
+                                    By storing thought vectors in Hilbert spaces, thoughts can exist in superposition. The act of "decision making" resembles a state measurement collapsing the wave function, which models human cognitive biases, logical paradoxes, and complex contextual logic perfectly.
+                                </p>
+                                <div class="panel-diagnostics">
+                                    <div class="p-diag"><span>COMPILATION:</span> <span class="text-amber">SUPERPOSED</span></div>
+                                    <div class="p-diag"><span>ENTANGLEMENT:</span> <span class="text-amber">MAXIMUM</span></div>
+                                    <div class="p-diag"><span>COHERENCE CHNL:</span> <span class="text-amber">SECURE</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Diagnostic Cyber Footer -->
+    <footer class="hud-footer">
+        <div class="footer-left">
+            <span class="term-status-dot"></span>
+            <span>AETHERIS CORE ENGINE: v3.5.42 // REPL_MODE</span>
+        </div>
+        <div class="footer-center desktop-only">
+            <span>COGNITIVE MATRIX LINKED: QUANTUM HILBERT GRID</span>
+        </div>
+        <div class="footer-right">
+            <span>© 2026 AETHERIS INDUSTRIES</span>
+        </div>
+    </footer>
+
+    <!-- Main JavaScripts -->
+    <script src="canvas.js"></script>
+    <script src="playground.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

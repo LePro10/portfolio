@@ -1,0 +1,142 @@
+/* ==========================================================================
+   NOETIC — contact / careers
+   The role list uses native <details>, so it works with JavaScript disabled.
+   ========================================================================== */
+
+.acc__item { border-bottom: 1px solid var(--line); }
+.acc > .acc__item:first-of-type { border-top: 1px solid var(--line); }
+
+summary.acc__btn {
+  display: flex;
+  gap: var(--s-5);
+  align-items: center;
+  padding: var(--s-5) var(--s-2);
+  cursor: pointer;
+  list-style: none;
+  color: var(--tx-hi);
+  font-size: var(--t-md);
+  letter-spacing: var(--tr-snug);
+  transition: color var(--d-fast) var(--e-swift), padding-inline var(--d-med) var(--e-out);
+  position: relative;
+}
+summary.acc__btn::-webkit-details-marker { display: none; }
+summary.acc__btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--vi-500) 11%, transparent), transparent 65%);
+  opacity: 0;
+  transition: opacity var(--d-med) var(--e-swift);
+  pointer-events: none;
+}
+summary.acc__btn:hover { color: var(--cy-400); padding-inline: var(--s-5) var(--s-2); }
+summary.acc__btn:hover::before { opacity: 1; }
+summary.acc__btn > span:first-child { position: relative; }
+
+.acc__meta {
+  position: relative;
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--tx-lo);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.acc__sign {
+  position: relative;
+  flex: none;
+  width: 1rem; height: 1rem;
+}
+.acc__sign::before, .acc__sign::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--d-med) var(--e-out), opacity var(--d-fast) linear;
+}
+.acc__sign::after { transform: rotate(90deg); }
+details[open] > .acc__btn .acc__sign::after { transform: rotate(0deg); opacity: 0.4; }
+details[open] > .acc__btn { color: var(--cy-400); }
+
+.acc__panel > div { overflow: hidden; }
+.acc__panel p {
+  padding: 0 var(--s-2) var(--s-6);
+  max-width: 62ch;
+  color: var(--tx-mid);
+  font-size: var(--t-sm);
+}
+details[open] .acc__panel > div { animation: acc-open 420ms var(--e-out) both; }
+@keyframes acc-open {
+  from { opacity: 0; transform: translateY(-0.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 48rem) {
+  summary.acc__btn { flex-wrap: wrap; font-size: var(--t-base); }
+  .acc__meta { order: 3; width: 100%; margin-left: 0; }
+  .acc__sign { margin-left: auto; }
+}
+
+/* ---- Contact block ------------------------------------------------------ */
+.contact { display: grid; gap: clamp(2.5rem, 6vw, 5rem); }
+@media (min-width: 62rem) {
+  .contact { grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; }
+}
+.contact__intro h2 { margin-bottom: var(--s-5); }
+.contact__intro > p { color: var(--tx-mid); }
+
+.offices {
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 40rem) { .offices { grid-template-columns: repeat(3, 1fr); } }
+.offices h4 {
+  font-size: var(--t-base);
+  margin-bottom: var(--s-2);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.offices h4::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--cy-500);
+  box-shadow: 0 0 8px var(--cy-500);
+}
+.offices p { font-size: var(--t-sm); color: var(--tx-lo); }
+
+/* ---- Form --------------------------------------------------------------- */
+.contact__form {
+  display: grid;
+  gap: var(--s-5);
+  padding: var(--s-6);
+  position: sticky;
+  top: 6rem;
+}
+@media (max-width: 62rem) { .contact__form { position: static; } }
+.contact__form .field { position: relative; z-index: 1; }
+.contact__submit { justify-self: start; margin-top: var(--s-1); position: relative; z-index: 1; }
+.contact__submit.is-sending { pointer-events: none; opacity: 0.7; }
+
+.contact__status {
+  position: relative;
+  z-index: 1;
+  min-height: 1.4em;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  color: var(--tx-lo);
+}
+.contact__status.is-ok { color: var(--cy-400); }
+.contact__status.is-bad { color: var(--mg-500); }
+
+/* Success state: the panel briefly lights up. */
+.contact__form.is-sent {
+  border-color: color-mix(in oklab, var(--cy-500) 55%, transparent);
+  box-shadow: 0 0 40px -12px var(--cy-600);
+}

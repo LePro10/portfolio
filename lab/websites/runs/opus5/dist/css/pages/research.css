@@ -1,0 +1,143 @@
+/* ==========================================================================
+   NOETIC — research page
+   ========================================================================== */
+
+/* .page-hero / .page-title / .page-lede live in components.css — every inner
+   page uses them, so this file is only the scrollytelling machinery. */
+
+/* ==========================================================================
+   Scrollytelling
+   ========================================================================== */
+.scrolly { position: relative; padding-bottom: var(--s-9); }
+
+.scrolly__grid {
+  display: grid;
+  gap: var(--s-7);
+}
+@media (min-width: 62rem) {
+  .scrolly__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+}
+
+.scrolly__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  align-content: center;
+}
+
+/* The framed canvas */
+.stage-frame {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(160deg,
+      color-mix(in oklab, var(--ink-850) 85%, transparent),
+      color-mix(in oklab, var(--ink-950) 92%, transparent));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 40px 90px -50px #000;
+}
+.stage-frame__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink-900) 60%, transparent);
+}
+.stage-frame__bar .u-mono { color: var(--cy-400); }
+.stage-frame__dots { display: flex; gap: 5px; }
+.stage-frame__dots i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: color-mix(in oklab, var(--tx-lo) 45%, transparent);
+}
+.stage-frame__dots i:first-child { background: var(--cy-500); }
+
+#scrolly-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  max-height: 64svh;
+  object-fit: contain;
+}
+.stage-frame__caption {
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--line);
+  color: var(--tx-lo);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Steps -------------------------------------------------------------- */
+.scrolly__steps { display: grid; }
+.step {
+  min-height: 88svh;
+  display: grid;
+  align-content: center;
+  gap: var(--s-4);
+  padding-block: var(--s-8);
+  opacity: 0.3;
+  transform: translateY(0.5rem);
+  transition: opacity 0.65s var(--e-out), transform 0.65s var(--e-out);
+}
+.no-js .step { opacity: 1; transform: none; }
+.step.is-active { opacity: 1; transform: none; }
+.step__num {
+  color: var(--cy-400);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.step__num::before {
+  content: "";
+  width: 1.5rem; height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.step h3 {
+  font-size: var(--t-xl);
+  line-height: 1.12;
+  letter-spacing: var(--tr-tight);
+  max-width: 18ch;
+}
+.step p { color: var(--tx-mid); }
+.step p strong { color: var(--tx-hi); font-weight: 600; }
+.step em { color: var(--cy-400); font-style: normal; }
+.step__aside {
+  margin-top: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  border-left: 1px solid color-mix(in oklab, var(--vi-500) 55%, transparent);
+  background: color-mix(in oklab, var(--vi-600) 9%, transparent);
+  color: var(--tx-lo);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  max-width: 46ch;
+}
+
+/* Below the split point the visual sits above its steps, not beside them. */
+@media (max-width: 62rem) {
+  .scrolly__sticky { height: auto; position: sticky; top: 4.5rem; padding-top: var(--s-4); }
+  .step { min-height: 70svh; }
+  #scrolly-canvas { max-height: 42svh; }
+}
+
+/* ---- Publication filter note -------------------------------------------- */
+.pub-note {
+  margin-top: var(--s-5);
+  color: var(--tx-dim);
+  text-transform: none;
+  letter-spacing: 0.06em;
+}
+#pub-list li {
+  transition: opacity var(--d-med) var(--e-swift);
+}
+#pub-list li[hidden] { display: none; }

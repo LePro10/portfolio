@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Intelligence — SYNAPSE AI</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/intelligence.css">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">SYNAPSE</div>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-percent">0%</div>
+  </div>
+  
+  <!-- Page Transition -->
+  <div class="page-transition">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <span class="glitch-text">INITIALIZING...</span>
+  </div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">SYNAPSE</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="ethics.html">Ethics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- HERO SECTION -->
+  <section class="intelligence-hero" style="padding: 0; max-width: 100%; min-height: 70vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+    <!-- Background gradient -->
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(107, 33, 168, 0.15), transparent 70%);"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 4rem;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1.5rem; color: var(--neon-accent);">01 — THE MIND</span>
+      <h1 class="display-h1" style="margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;" data-scramble>
+        The Architecture of<br>
+        <span class="text-gradient">Artificial Thought</span>
+      </h1>
+      <p class="body-text reveal" style="margin: 0 auto; max-width: 600px;">
+        Explore the inner workings of advanced neural networks. 
+        From synaptic connections to emergent reasoning — witness how machines learn to think.
+      </p>
+    </div>
+  </section>
+  
+  <!-- TYPING EFFECT SECTION -->
+  <section class="typing-section" style="position: relative; max-width: 1000px;">
+    <div class="reveal" style="margin-bottom: 3rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">02 — THINKING PROCESS</span>
+      <h2 class="display-h2" style="margin-bottom: 1.5rem;">Watch It Think</h2>
+    </div>
+    
+    <div class="terminal-window glass" style="padding: 2rem; border-radius: 1rem; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.8; min-height: 300px; position: relative; overflow: hidden;">
+      <div class="terminal-header" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></span>
+        <span style="margin-left: auto; font-size: 0.75rem; color: var(--text-muted);">synapse_core_v2.0.1</span>
+      </div>
+      
+      <div class="terminal-content" style="color: var(--neon-accent);">
+        <div class="typing-line" data-typewriter>
+          > Initializing neural pathway analysis...
+        </div>
+        <div class="typing-line" data-typewriter style="color: var(--text-secondary); margin-top: 0.5rem;">
+          > Loading transformer architecture [████████████████] 100%
+        </div>
+        <div class="typing-line" data-typewriter style="color: var(--nebula-purple); margin-top: 0.5rem;">
+          > Synaptic connections: 1.2 trillion established
+        </div>
+        <div class="typing-line" data-typewriter style="color: var(--text-secondary); margin-top: 0.5rem;">
+          > Pattern recognition module: ACTIVE
+        </div>
+        <div class="typing-line" data-typewriter style="color: var(--neon-accent); margin-top: 0.5rem;">
+          > Reasoning engine: OPERATIONAL
+        </div>
+        <div class="typing-line" data-typewriter style="color: var(--text-muted); margin-top: 0.5rem;">
+          > Ready for input...
+        </div>
+      </div>
+      
+      <div class="terminal-cursor" style="display: inline-block; width: 8px; height: 1.2em; background: var(--neon-accent); margin-left: 0.5rem; animation: blink 1s step-end infinite; vertical-align: middle;"></div>
+    </div>
+  </section>
+  
+  <!-- HORIZONTAL SCROLL SECTION -->
+  <section class="horizontal-scroll-section" style="padding: 0; max-width: 100%; overflow: hidden;">
+    <div style="padding: 4rem 3rem; text-align: center; max-width: 800px; margin: 0 auto;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1rem;">03 — EVOLUTION TIMELINE</span>
+      <h2 class="display-h2 reveal" style="margin-bottom: 1rem;">The Journey of AI</h2>
+      <p class="body-text reveal" style="margin: 0 auto;">Scroll horizontally to explore the evolution of artificial intelligence from its origins to the present day.</p>
+    </div>
+    
+    <div class="horizontal-scroll-wrapper" style="position: relative; height: 100vh;">
+      <div class="horizontal-scroll-container" style="display: flex; gap: 3rem; padding: 0 3rem; position: absolute; top: 50%; left: 0; transform: translateY(-50%);">
+        <!-- Timeline Item 1 -->
+        <div class="timeline-card reveal-scale glass" style="min-width: 400px; padding: 3rem; border-radius: 1.5rem; position: relative; flex-shrink: 0;">
+          <div class="timeline-year" style="font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.3; line-height: 1; margin-bottom: 1rem;">1950</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">The Turing Test</h3>
+          <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Alan Turing proposes the "Imitation Game," laying the philosophical foundation for measuring machine intelligence.</p>
+          <div class="timeline-dot" style="position: absolute; top: 2rem; right: 2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-accent); box-shadow: var(--glow-cyan);"></div>
+        </div>
+        
+        <!-- Timeline Item 2 -->
+        <div class="timeline-card reveal-scale glass" style="min-width: 400px; padding: 3rem; border-radius: 1.5rem; position: relative; flex-shrink: 0;">
+          <div class="timeline-year" style="font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.3; line-height: 1; margin-bottom: 1rem;">1986</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">Backpropagation</h3>
+          <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Rumelhart, Hinton, and Williams popularize backpropagation, enabling neural networks to learn from errors.</p>
+          <div class="timeline-dot" style="position: absolute; top: 2rem; right: 2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-accent); box-shadow: var(--glow-cyan);"></div>
+        </div>
+        
+        <!-- Timeline Item 3 -->
+        <div class="timeline-card reveal-scale glass" style="min-width: 400px; padding: 3rem; border-radius: 1.5rem; position: relative; flex-shrink: 0;">
+          <div class="timeline-year" style="font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.3; line-height: 1; margin-bottom: 1rem;">2012</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">Deep Learning Revolution</h3>
+          <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">AlexNet wins ImageNet competition, proving deep neural networks can outperform humans in visual recognition.</p>
+          <div class="timeline-dot" style="position: absolute; top: 2rem; right: 2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-accent); box-shadow: var(--glow-cyan);"></div>
+        </div>
+        
+        <!-- Timeline Item 4 -->
+        <div class="timeline-card reveal-scale glass" style="min-width: 400px; padding: 3rem; border-radius: 1.5rem; position: relative; flex-shrink: 0;">
+          <div class="timeline-year" style="font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--nebula-purple); opacity: 0.3; line-height: 1; margin-bottom: 1rem;">2017</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">Transformer Architecture</h3>
+          <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">"Attention Is All You Need" introduces transformers, revolutionizing natural language processing forever.</p>
+          <div class="timeline-dot" style="position: absolute; top: 2rem; right: 2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-accent); box-shadow: var(--glow-cyan);"></div>
+        </div>
+        
+        <!-- Timeline Item 5 -->
+        <div class="timeline-card reveal-scale glass" style="min-width: 400px; padding: 3rem; border-radius: 1.5rem; position: relative; flex-shrink: 0;">
+          <div class="timeline-year" style="font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--neon-accent); opacity: 0.3; line-height: 1; margin-bottom: 1rem;">2024</div>
+          <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">The SYNAPSE Era</h3>
+          <p class="body-text" style="font-size: 0.95rem; max-width: 100%;">Multimodal AI systems achieve human-level reasoning across text, image, code, and complex problem solving.</p>
+          <div class="timeline-dot" style="position: absolute; top: 2rem; right: 2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--neon-accent); box-shadow: var(--glow-cyan);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- PARALLAX LAYERS SECTION -->
+  <section class="parallax-section" style="position: relative; max-width: 100%; min-height: 80vh; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <!-- Parallax layers -->
+    <div class="parallax-layer" data-parallax="0.3" style="position: absolute; inset: -20%; background: radial-gradient(circle at 30% 50%, rgba(107, 33, 168, 0.2), transparent 60%); pointer-events: none;"></div>
+    <div class="parallax-layer" data-parallax="0.5" style="position: absolute; inset: -20%; background: radial-gradient(circle at 70% 50%, rgba(0, 240, 255, 0.15), transparent 60%); pointer-events: none;"></div>
+    
+    <div style="position: relative; z-index: 2; text-align: center; padding: 4rem 2rem; max-width: 800px;">
+      <span class="mono-text reveal" style="display: block; margin-bottom: 1.5rem; color: var(--neon-accent);">04 — EMERGENT BEHAVIOR</span>
+      <h2 class="display-h2 reveal" style="margin-bottom: 1.5rem;">Beyond Programming</h2>
+      <p class="body-text reveal" style="margin: 0 auto 2rem;">
+        The most fascinating aspect of modern AI isn't what we explicitly taught it — it's what it discovered on its own. 
+        Emergent abilities arise from scale, revealing capabilities that surprise even the researchers who built the systems.
+      </p>
+      <div class="reveal" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;">
+        <div class="glass" style="padding: 2rem; border-radius: 1rem; text-align: center; min-width: 200px;">
+          <div style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--neon-accent); margin-bottom: 0.5rem;">Chain-of-Thought</div>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">Reasoning Step-by-Step</div>
+        </div>
+        <div class="glass" style="padding: 2rem; border-radius: 1rem; text-align: center; min-width: 200px;">
+          <div style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--nebula-purple); margin-bottom: 0.5rem;">In-Context Learning</div>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">Learning from Examples</div>
+        </div>
+        <div class="glass" style="padding: 2rem; border-radius: 1rem; text-align: center; min-width: 200px;">
+          <div style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--neon-accent); margin-bottom: 0.5rem;">Zero-Shot Transfer</div>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary);">No Training Required</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="marquee-container">
+      <div class="marquee">
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+      </div>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">SYNAPSE</div>
+        <p>Pioneering the next generation of artificial intelligence. Where human ingenuity meets machine precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="intelligence.html">Intelligence</a></li>
+          <li><a href="capabilities.html">Capabilities</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="ethics.html">Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 SYNAPSE AI. All rights reserved.</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem;">v2.0.1-stable</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Horizontal scroll animation
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        const container = document.querySelector('.horizontal-scroll-container');
+        const wrapper = document.querySelector('.horizontal-scroll-wrapper');
+        
+        if (container && wrapper) {
+          const scrollWidth = container.scrollWidth - window.innerWidth;
+          
+          gsap.to(container, {
+            x: -scrollWidth,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: wrapper,
+              start: 'top top',
+              end: () => `+=${scrollWidth}`,
+              pin: true,
+              scrub: 1,
+              anticipatePin: 1,
+              invalidateOnRefresh: true
+            }
+          });
+          
+          // Animate timeline cards as they scroll into view
+          document.querySelectorAll('.timeline-card').forEach((card, i) => {
+            gsap.fromTo(card, 
+              { opacity: 0.3, scale: 0.9 },
+              {
+                opacity: 1,
+                scale: 1,
+                scrollTrigger: {
+                  trigger: card,
+                  containerAnimation: gsap.getById ? undefined : undefined,
+                  start: 'left 80%',
+                  end: 'left 50%',
+                  scrub: true,
+                  horizontal: true
+                }
+              }
+            );
+          });
+        }
+      }
+      
+      // Terminal typing effect with sequential lines
+      const typingLines = document.querySelectorAll('.typing-line');
+      let delay = 1000;
+      
+      typingLines.forEach((line, index) => {
+        const text = line.textContent.trim();
+        line.textContent = '';
+        line.style.opacity = '0';
+        
+        setTimeout(() => {
+          line.style.opacity = '1';
+          let charIndex = 0;
+          const typeInterval = setInterval(() => {
+            if (charIndex < text.length) {
+              line.textContent += text.charAt(charIndex);
+              charIndex++;
+            } else {
+              clearInterval(typeInterval);
+            }
+          }, 30);
+        }, delay);
+        
+        delay += text.length * 30 + 500;
+      });
+      
+      // Blink cursor animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

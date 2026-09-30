@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Models — NOETIC</title>
+<meta name="description" content="The Noema family: one architecture in four temperaments — frontier reasoning, multimodal, on-device and the interpretability probe stack.">
+<meta name="theme-color" content="#04050c">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/pages/models.css">
+<script>(function(){var d=document.documentElement,k='noetic:motion';d.classList.remove('no-js');d.classList.add('js');try{var q=new URLSearchParams(location.search).get('motion'),m=localStorage.getItem(k);if(q==='full'||q==='reduced'){localStorage.setItem(k,q);m=q}else if(q==='auto'){localStorage.removeItem(k);m=null}var r=m==='reduced'||(m!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);d.classList.add(r?'motion-reduced':'motion-full')}catch(e){d.classList.add('motion-full')}})();</script>
+</head>
+<body data-page="models">
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="index.html" aria-label="NOETIC — home">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle class="brand__ring" cx="16" cy="16" r="13" stroke="url(#bg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+        <circle cx="16" cy="16" r="4.2" fill="url(#bg1)"/>
+        <circle cx="16" cy="3.2" r="1.9" fill="#22e0ff"/>
+        <circle cx="27.2" cy="22.4" r="1.6" fill="#7c5cff"/>
+        <circle cx="4.8" cy="22.4" r="1.6" fill="#ff4ecd"/>
+        <path d="M16 3.2 16 16 27.2 22.4M16 16 4.8 22.4" stroke="#7c5cff" stroke-width="0.8" opacity="0.55"/>
+        <defs><linearGradient id="bg1" x1="0" y1="0" x2="32" y2="32">
+          <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="brand__word">Noetic</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li style="--i:0"><a class="nav__link" href="index.html" data-scramble>Index</a></li>
+        <li style="--i:1"><a class="nav__link" href="research.html" data-scramble>Research</a></li>
+        <li style="--i:2"><a class="nav__link" href="models.html" aria-current="page" data-scramble>Models</a></li>
+        <li style="--i:3"><a class="nav__link" href="playground.html" data-scramble>Playground</a></li>
+        <li style="--i:4"><a class="nav__link" href="manifesto.html" data-scramble>Manifesto</a></li>
+        <li style="--i:5"><a class="btn btn--ghost nav__cta" href="contact.html">Work with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<canvas class="fx-layer" id="nebula" aria-hidden="true"></canvas>
+
+<div id="viewport"><div id="scroll">
+<main id="main">
+
+  <section class="section section--tall page-hero">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal="fade">Models</p>
+      <h1 class="page-title" data-reveal="mask" data-split="lines">The Noema family</h1>
+      <p class="page-lede" data-reveal="fade-up" style="--rd:260ms">
+        One architecture, four temperaments. Every member ships the same derivation
+        trace and the same named-head taxonomy — the difference is what we were
+        willing to spend to get there.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ MODEL ROWS ============================ -->
+  <section class="section section--ruled" aria-label="Model line-up">
+    <div class="wrap models">
+
+      <article class="model" id="noema-1">
+        <div class="model__head">
+          <span class="model__glyph" aria-hidden="true">01</span>
+          <div>
+            <h2 data-reveal="mask" data-split="lines">Noema&#8209;1</h2>
+            <p class="model__sub" data-reveal="fade-up">Frontier reasoning · production</p>
+          </div>
+          <span class="tag tag--live"><span class="dot"></span>Live</span>
+        </div>
+
+        <div class="model__body">
+          <p data-reveal="fade-up">Our largest and slowest model, and deliberately so. Noema-1
+             emits a structured derivation next to every answer: each claim carries the
+             tokens it attended to and the heads that carried the weight. It is the
+             model we point at problems where being wrong quietly is unacceptable.</p>
+
+          <dl class="specs" data-reveal="fade-up">
+            <div><dt>Parameters</dt><dd>340B</dd></div>
+            <div><dt>Context</dt><dd>1.2M tokens</dd></div>
+            <div><dt>Modalities</dt><dd>Text, code</dd></div>
+            <div><dt>Trace</dt><dd>Full derivation</dd></div>
+          </dl>
+        </div>
+
+        <div class="model__meters is-meters" data-reveal="fade">
+          <div class="meter"><span class="meter__label">Reasoning</span><span class="meter__track"><i class="meter__fill" style="--v:94;--i:0"></i></span><span class="meter__val">94.1</span></div>
+          <div class="meter"><span class="meter__label">Legibility</span><span class="meter__track"><i class="meter__fill" style="--v:88;--i:1"></i></span><span class="meter__val">88.4</span></div>
+          <div class="meter"><span class="meter__label">Long context</span><span class="meter__track"><i class="meter__fill" style="--v:91;--i:2"></i></span><span class="meter__val">91.0</span></div>
+          <div class="meter"><span class="meter__label">Latency</span><span class="meter__track"><i class="meter__fill" style="--v:38;--i:3"></i></span><span class="meter__val">38.2</span></div>
+        </div>
+      </article>
+
+      <article class="model" id="noema-vision">
+        <div class="model__head">
+          <span class="model__glyph" aria-hidden="true">02</span>
+          <div>
+            <h2 data-reveal="mask" data-split="lines">Noema&#8209;Vision</h2>
+            <p class="model__sub" data-reveal="fade-up">Multimodal · production</p>
+          </div>
+          <span class="tag tag--live"><span class="dot"></span>Live</span>
+        </div>
+
+        <div class="model__body">
+          <p data-reveal="fade-up">Images, diagrams, screenshots and video keyframes enter the
+             same residual stream as text. Vision heads are named on the same taxonomy,
+             so a claim about a chart can be traced back to the pixels that supported it.</p>
+
+          <dl class="specs" data-reveal="fade-up">
+            <div><dt>Parameters</dt><dd>210B</dd></div>
+            <div><dt>Context</dt><dd>640K tokens</dd></div>
+            <div><dt>Modalities</dt><dd>Text, image, video</dd></div>
+            <div><dt>Trace</dt><dd>Full + pixel spans</dd></div>
+          </dl>
+        </div>
+
+        <div class="model__meters is-meters" data-reveal="fade">
+          <div class="meter"><span class="meter__label">Reasoning</span><span class="meter__track"><i class="meter__fill" style="--v:87;--i:0"></i></span><span class="meter__val">87.6</span></div>
+          <div class="meter"><span class="meter__label">Legibility</span><span class="meter__track"><i class="meter__fill" style="--v:79;--i:1"></i></span><span class="meter__val">79.3</span></div>
+          <div class="meter"><span class="meter__label">Grounding</span><span class="meter__track"><i class="meter__fill" style="--v:93;--i:2"></i></span><span class="meter__val">93.5</span></div>
+          <div class="meter"><span class="meter__label">Latency</span><span class="meter__track"><i class="meter__fill" style="--v:56;--i:3"></i></span><span class="meter__val">56.0</span></div>
+        </div>
+      </article>
+
+      <article class="model" id="noema-micro">
+        <div class="model__head">
+          <span class="model__glyph" aria-hidden="true">03</span>
+          <div>
+            <h2 data-reveal="mask" data-split="lines">Noema&#8209;Micro</h2>
+            <p class="model__sub" data-reveal="fade-up">On-device · open weights</p>
+          </div>
+          <span class="tag tag--research">Open</span>
+        </div>
+
+        <div class="model__body">
+          <p data-reveal="fade-up">3.1B parameters with the entire probe stack intact. It runs
+             offline on a laptop, and we publish the weights because an explanation you
+             cannot reproduce is a press release. Most of our own tooling is built
+             against Micro first.</p>
+
+          <dl class="specs" data-reveal="fade-up">
+            <div><dt>Parameters</dt><dd>3.1B</dd></div>
+            <div><dt>Context</dt><dd>128K tokens</dd></div>
+            <div><dt>Modalities</dt><dd>Text</dd></div>
+            <div><dt>Trace</dt><dd>Full derivation</dd></div>
+          </dl>
+        </div>
+
+        <div class="model__meters is-meters" data-reveal="fade">
+          <div class="meter"><span class="meter__label">Reasoning</span><span class="meter__track"><i class="meter__fill" style="--v:61;--i:0"></i></span><span class="meter__val">61.4</span></div>
+          <div class="meter"><span class="meter__label">Legibility</span><span class="meter__track"><i class="meter__fill" style="--v:82;--i:1"></i></span><span class="meter__val">82.7</span></div>
+          <div class="meter"><span class="meter__label">Long context</span><span class="meter__track"><i class="meter__fill" style="--v:44;--i:2"></i></span><span class="meter__val">44.9</span></div>
+          <div class="meter"><span class="meter__label">Latency</span><span class="meter__track"><i class="meter__fill" style="--v:97;--i:3"></i></span><span class="meter__val">97.2</span></div>
+        </div>
+      </article>
+
+      <article class="model" id="noema-probe">
+        <div class="model__head">
+          <span class="model__glyph" aria-hidden="true">04</span>
+          <div>
+            <h2 data-reveal="mask" data-split="lines">Noema&#8209;Probe</h2>
+            <p class="model__sub" data-reveal="fade-up">Interpretability stack · preview</p>
+          </div>
+          <span class="tag tag--soon">Preview</span>
+        </div>
+
+        <div class="model__body">
+          <p data-reveal="fade-up">Not a chat model — a toolkit. Probe attaches to any Noema
+             checkpoint and exposes head activations, circuit diffs across fine-tunes,
+             and the predicate log that decides refusals. This is the thing the rest of
+             the lab actually uses all day.</p>
+
+          <dl class="specs" data-reveal="fade-up">
+            <div><dt>Form</dt><dd>Library + CLI</dd></div>
+            <div><dt>Attaches to</dt><dd>All checkpoints</dd></div>
+            <div><dt>Output</dt><dd>Traces, diffs, logs</dd></div>
+            <div><dt>Licence</dt><dd>Source available</dd></div>
+          </dl>
+        </div>
+
+        <div class="model__meters is-meters" data-reveal="fade">
+          <div class="meter"><span class="meter__label">Head coverage</span><span class="meter__track"><i class="meter__fill" style="--v:96;--i:0"></i></span><span class="meter__val">96.0</span></div>
+          <div class="meter"><span class="meter__label">Diff stability</span><span class="meter__track"><i class="meter__fill" style="--v:74;--i:1"></i></span><span class="meter__val">74.5</span></div>
+          <div class="meter"><span class="meter__label">Overhead</span><span class="meter__track"><i class="meter__fill" style="--v:22;--i:2"></i></span><span class="meter__val">22.1</span></div>
+          <div class="meter"><span class="meter__label">Docs</span><span class="meter__track"><i class="meter__fill" style="--v:68;--i:3"></i></span><span class="meter__val">68.0</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================ COMPARISON ============================ -->
+  <section class="section section--ruled" aria-labelledby="cmp-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Side by side</p>
+          <h2 id="cmp-h" data-reveal="mask" data-split="lines">The whole line-up, on one page.</h2>
+        </div>
+        <p data-reveal="fade-up">Scores are on NOETIC's internal legibility suite and are
+           illustrative only — this is a fictional lab and these are invented numbers.</p>
+      </div>
+
+      <div class="table-scroll" data-reveal="fade-up">
+        <table class="table">
+          <caption class="u-sr">Comparison of the four Noema models</caption>
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col">Parameters</th>
+              <th scope="col">Context</th>
+              <th scope="col">Modalities</th>
+              <th scope="col" class="num">Reasoning</th>
+              <th scope="col" class="num">Legibility</th>
+              <th scope="col">Availability</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Noema-1</td><td>340B</td><td>1.2M</td><td>Text, code</td><td class="num">94.1</td><td class="num">88.4</td><td>API</td></tr>
+            <tr><td>Noema-Vision</td><td>210B</td><td>640K</td><td>Text, image, video</td><td class="num">87.6</td><td class="num">79.3</td><td>API</td></tr>
+            <tr><td>Noema-Micro</td><td>3.1B</td><td>128K</td><td>Text</td><td class="num">61.4</td><td class="num">82.7</td><td>Open weights</td></tr>
+            <tr><td>Noema-Probe</td><td>—</td><td>—</td><td>Tooling</td><td class="num">—</td><td class="num">—</td><td>Preview</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ACCESS ============================ -->
+  <section class="section section--ruled" aria-labelledby="acc-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal="fade">Access</p>
+        <h2 id="acc-h" data-reveal="mask" data-split="lines">Three doors in.</h2>
+      </div>
+
+      <div class="grid grid--3" data-stagger data-reveal="fade-up">
+        <article class="panel tilt access">
+          <span class="panel__index">Door 01</span>
+          <h3>Download</h3>
+          <p>Noema-Micro weights, the probe stack and every evaluation script. No
+             account, no waitlist, no telemetry.</p>
+          <p class="access__price"><span>Free</span> forever</p>
+        </article>
+        <article class="panel tilt access">
+          <span class="panel__index">Door 02</span>
+          <h3>API</h3>
+          <p>Noema-1 and Noema-Vision over a single endpoint, with traces returned
+             inline rather than behind a second call.</p>
+          <p class="access__price"><span>Metered</span> per million tokens</p>
+        </article>
+        <article class="panel tilt access">
+          <span class="panel__index">Door 03</span>
+          <h3>Residency</h3>
+          <p>Six months inside the lab with a checkpoint of your own and the right
+             to publish whatever you find, including the parts we dislike.</p>
+          <p class="access__price"><span>Apply</span> twice yearly</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tall cta" aria-labelledby="mcta-h">
+    <div class="wrap wrap--narrow cta__inner">
+      <h2 class="cta__title" id="mcta-h" data-reveal="chars" data-split="chars">See it think.</h2>
+      <p data-reveal="fade-up">The playground runs Micro-scale visualisations directly in your browser.</p>
+      <div class="hero__actions" data-reveal="fade-up">
+        <a class="btn btn--primary btn--lg" href="playground.html">Open the playground</a>
+        <a class="btn btn--ghost btn--lg" href="contact.html">Request API access</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="NOETIC — home">
+          <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="url(#fg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+            <circle cx="16" cy="16" r="4.2" fill="url(#fg1)"/>
+            <defs><linearGradient id="fg1" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+            </linearGradient></defs>
+          </svg>
+          <span class="brand__word">Noetic</span>
+        </a>
+        <p class="footer__blurb">A research lab for models that can be read.
+           Zurich · Lisbon · Remote.</p>
+      </div>
+      <div><h5>Lab</h5><ul>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="playground.html">Playground</a></li></ul></div>
+      <div><h5>Company</h5><ul>
+        <li><a href="manifesto.html">Manifesto</a></li>
+        <li><a href="contact.html">Careers</a></li>
+        <li><a href="contact.html#contact-form">Contact</a></li></ul></div>
+      <div><h5>Elsewhere</h5><ul>
+        <li><a href="contact.html">Newsletter</a></li>
+        <li><a href="contact.html">Press kit</a></li>
+        <li><a href="contact.html">Status</a></li></ul></div>
+    </div>
+    <p class="footer__glyph" aria-hidden="true">NOETIC</p>
+    <div class="footer__note">
+      <span>© 2026 NOETIC Research — a fictional lab, built as a web design exercise.</span>
+      <span>No real products, people or benchmarks are described here.</span>
+      <button class="motion-switch" id="motion-switch" type="button" aria-pressed="false">Motion</button>
+    </div>
+  </div>
+</footer>
+
+</div></div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div><div class="cursor__dot"></div>
+</div>
+<div class="veil" id="veil" aria-hidden="true"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

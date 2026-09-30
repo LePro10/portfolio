@@ -1,0 +1,8 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Llama placeholder mark</title>
+  <rect width="160" height="160" rx="42" fill="#17070F"/>
+  <path d="M50 124C49 93 56 62 74 36C86 55 104 73 117 97C106 118 84 129 50 124Z" fill="#FF6F91"/>
+  <path d="M73 36C85 29 98 29 110 38C101 47 91 56 82 68" fill="#FFC2D0"/>
+  <path d="M66 88C77 101 91 106 108 102" stroke="#3A1022" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="82" cy="66" r="5" fill="#3A1022"/>
+</svg>

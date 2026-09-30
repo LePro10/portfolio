@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neural Horizons — The Future of AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+  <div class="loading-screen" id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+          <defs>
+            <linearGradient id="loaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#a855f7" />
+              <stop offset="100%" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="url(#loaderGrad)" stroke-width="3" stroke-dasharray="80 200" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="50" cy="50" r="25" fill="none" stroke="url(#loaderGrad)" stroke-width="2" stroke-dasharray="50 130" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="50" cy="50" r="8" fill="url(#loaderGrad)">
+            <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+      <p class="loader-text">Initializing Neural Network...</p>
+    </div>
+  </div>
+
+  <div class="custom-cursor" id="cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <div class="gradient-bg" id="gradientBg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <svg viewBox="0 0 40 40" width="32" height="32">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#a855f7" />
+              <stop offset="100%" stop-color="#06b6d4" />
+            </linearGradient>
+          </defs>
+          <circle cx="20" cy="20" r="16" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+          <circle cx="20" cy="20" r="6" fill="url(#logoGrad)"/>
+          <line x1="20" y1="4" x2="20" y2="14" stroke="url(#logoGrad)" stroke-width="1.5"/>
+          <line x1="20" y1="26" x2="20" y2="36" stroke="url(#logoGrad)" stroke-width="1.5"/>
+          <line x1="4" y1="20" x2="14" y2="20" stroke="url(#logoGrad)" stroke-width="1.5"/>
+          <line x1="26" y1="20" x2="36" y2="20" stroke="url(#logoGrad)" stroke-width="1.5"/>
+        </svg>
+        <span>Neural Horizons</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About AI</a></li>
+        <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <canvas class="neural-canvas" id="neuralCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        The Future Is Now
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line reveal">Artificial</span>
+        <span class="title-line gradient-text reveal">Intelligence</span>
+        <span class="title-line reveal">Redefined</span>
+      </h1>
+      <p class="hero-subtitle reveal">
+        <span id="typingText"></span><span class="typing-cursor">|</span>
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#about" class="btn btn-primary">
+          <span>Explore the Future</span>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M13.3 17.3a1 1 0 0 0 1.4-1.4L9.7 9H17a1 1 0 1 0 0-2H9a1 1 0 0 0-1 1v8a1 1 0 1 0 2 0v-6.3z"/></svg>
+        </a>
+        <a href="#capabilities" class="btn btn-ghost">
+          <span>View Capabilities</span>
+        </a>
+      </div>
+      <div class="scroll-indicator">
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">The Journey</span>
+        <h2 class="section-title">Evolution of <span class="gradient-text">Artificial Intelligence</span></h2>
+        <p class="section-desc">From theoretical concepts to transformative reality — trace the milestones that shaped our AI-powered world.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal-left" data-year="1950">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">1950</span>
+            <h3>The Turing Test</h3>
+            <p>Alan Turing publishes "Computing Machinery and Intelligence," proposing the question: "Can machines think?" This foundational paper sets the stage for all of AI.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-year="1956">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">1956</span>
+            <h3>Birth of AI</h3>
+            <p>The Dartmouth Conference coins the term "Artificial Intelligence." John McCarthy, Marvin Minsky, and others ignite a field that would change civilization forever.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left" data-year="1997">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">1997</span>
+            <h3>Deep Blue</h3>
+            <p>IBM's Deep Blue defeats world chess champion Garry Kasparov, proving machines could master complex strategic thinking beyond human expectations.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-year="2012">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2012</span>
+            <h3>Deep Learning Revolution</h3>
+            <p>Geoffrey Hinton's AlexNet shatters ImageNet benchmarks, sparking the deep learning revolution that powers modern AI systems.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left" data-year="2017">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2017</span>
+            <h3>Transformer Architecture</h3>
+            <p>"Attention Is All You Need" introduces the Transformer, the architecture behind every modern large language model and the foundation of the AI we know today.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-year="2023">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2023</span>
+            <h3>The Generative AI Era</h3>
+            <p>Large language models and generative AI reshape industries, creativity, and human-computer interaction. The age of intelligent assistants begins.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left" data-year="2025">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2025</span>
+            <h3>AGI on the Horizon</h3>
+            <p>Multi-modal models, reasoning agents, and autonomous systems push toward artificial general intelligence. The boundary between human and machine intelligence blurs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="capabilities" id="capabilities">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What AI Can Do</span>
+        <h2 class="section-title">Modern AI <span class="gradient-text">Capabilities</span></h2>
+        <p class="section-desc">Explore the vast domains where artificial intelligence is transforming the world.</p>
+      </div>
+
+      <div class="capabilities-grid">
+        <div class="capability-card glass-card reveal" data-delay="0">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48"><path fill="currentColor" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-2 32v-8h-4l8-12v8h4l-8 12z"/></svg>
+          </div>
+          <h3>Natural Language</h3>
+          <p>Understanding, generating, and translating human language with nuance, context, and creative expression.</p>
+          <div class="card-glow"></div>
+        </div>
+
+        <div class="capability-card glass-card reveal" data-delay="50">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48"><path fill="currentColor" d="M20 2h-16c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4zm-4 20c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm24 4v-16c0-2.2-1.8-4-4-4h-16c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4zm-10-6c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4z"/></svg>
+          </div>
+          <h3>Computer Vision</h3>
+          <p>Seeing and interpreting visual data — from medical imaging to autonomous navigation and real-time object detection.</p>
+          <div class="card-glow"></div>
+        </div>
+
+        <div class="capability-card glass-card reveal" data-delay="100">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48"><path fill="currentColor" d="M36 4H12c-2.2 0-4 1.8-4 4v32c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V8c0-2.2-1.8-4-4-4zm-8 24H20v-4h8v4zm0-8H20v-4h8v4zm0-8H20V8h8v4z"/></svg>
+          </div>
+          <h3>Reasoning</h3>
+          <p>Logical deduction, mathematical problem-solving, and multi-step reasoning that approaches human-level analytical thinking.</p>
+          <div class="card-glow"></div>
+        </div>
+
+        <div class="capability-card glass-card reveal" data-delay="150">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48"><path fill="currentColor" d="M40 24c0-8.8-7.2-16-16-16S8 15.2 8 24c0 9.6 8 20 16 24 8-4 16-14.4 16-24zm-16 12c-6.4-3.2-12-11.2-12-16 0-6.6 5.4-12 12-12s12 5.4 12 12c0 4.8-5.6 12.8-12 16z"/></svg>
+          </div>
+          <h3>Creative Generation</h3>
+          <p>Generating art, music, code, and writing with originality and style that rivals human creative output.</p>
+          <div class="card-glow"></div>
+        </div>
+
+        <div class="capability-card glass-card reveal" data-delay="200">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48"><path fill="currentColor" d="M38 6H10c-2.2 0-4 1.8-4 4v28c0 2.2 1.8 4 4 4h28c2.2 0 4-1.8 4-4V10c0-2.2-1.8-4-4-4zm-6 24H16v-4h16v4zm0-8H16v-4h16v4zm0-8H16V8h16v6z"/></svg>
+          </div>
+          <h3>Autonomous Agents</h3>
+          <p>Self-directed AI systems that plan, execute, and adapt to accomplish complex goals with minimal human oversight.</p>
+          <div class="card-glow"></div>
+        </div>
+
+        <div class="capability-card glass-card reveal" data-delay="250">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48"><path fill="currentColor" d="M24 2C11.8 2 2 11.8 2 24s9.8 22 22 22 22-9.8 22-22S36.2 2 24 2zm0 4c10 0 18 8 18 18h-4c0-7.7-6.3-14-14-14S10 18.3 10 26c0 2.3.6 4.4 1.5 6.3L8 38c-1.3-3.2-2-6.7-2-10C6 18 12 12 24 12z"/></svg>
+          </div>
+          <h3>Scientific Discovery</h3>
+          <p>Accelerating research in biology, physics, and medicine by simulating experiments and generating novel hypotheses.</p>
+          <div class="card-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="counter" data-target="175">0</span><span class="counter-suffix">B+</span>
+          </div>
+          <p class="stat-label">Parameters in Leading Models</p>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="counter" data-target="100">0</span><span class="counter-suffix">M+</span>
+          </div>
+          <p class="stat-label">Daily AI Interactions</p>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="counter" data-target="47">0</span><span class="counter-suffix">+</span>
+          </div>
+          <p class="stat-label">Languages Supported</p>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="counter" data-target="99">0</span><span class="counter-suffix">%</span>
+          </div>
+          <p class="stat-label">Accuracy on Benchmarks</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Visual Showcase</span>
+        <h2 class="section-title">AI-Generated <span class="gradient-text">Masterpieces</span></h2>
+        <p class="section-desc">Witness the creative power of artificial intelligence through stunning visual art.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-large reveal">
+          <div class="gallery-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <svg viewBox="0 0 200 200" width="100" height="100">
+              <circle cx="100" cy="80" r="35" fill="rgba(255,255,255,0.2)"/>
+              <circle cx="70" cy="130" r="25" fill="rgba(255,255,255,0.15)"/>
+              <circle cx="130" cy="130" r="25" fill="rgba(255,255,255,0.15)"/>
+              <line x1="100" y1="115" x2="70" y2="105" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+              <line x1="100" y1="115" x2="130" y2="105" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+              <line x1="70" y1="130" x2="130" y2="130" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+            </svg>
+            <span>Neural Network Visualization</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <svg viewBox="0 0 100 100" width="60" height="60">
+              <path d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+              <circle cx="50" cy="50" r="15" fill="rgba(255,255,255,0.3)"/>
+            </svg>
+            <span>Abstract Geometry</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <svg viewBox="0 0 100 100" width="60" height="60">
+              <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" transform="rotate(15 50 50)"/>
+              <rect x="30" y="30" width="40" height="40" rx="5" fill="rgba(255,255,255,0.2)" transform="rotate(30 50 50)"/>
+            </svg>
+            <span>Digital Landscapes</span>
+          </div>
+        </div>
+
+        <div class="gallery-item gallery-tall reveal">
+          <div class="gallery-placeholder" style="background: linear-gradient(180deg, #0c0c1d 0%, #1a1a3e 50%, #2d1b69 100%);">
+            <svg viewBox="0 0 100 200" width="60" height="120">
+              <circle cx="50" cy="40" r="20" fill="rgba(168,85,247,0.4)"/>
+              <circle cx="50" cy="100" r="15" fill="rgba(6,182,212,0.4)"/>
+              <circle cx="50" cy="160" r="10" fill="rgba(236,72,153,0.4)"/>
+              <line x1="50" y1="60" x2="50" y2="85" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+              <line x1="50" y1="115" x2="50" y2="150" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            </svg>
+            <span>Deep Dream Layers</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">
+            <svg viewBox="0 0 100 100" width="60" height="60">
+              <polygon points="50,10 90,90 10,90" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+              <polygon points="50,30 75,80 25,80" fill="rgba(255,255,255,0.2)"/>
+            </svg>
+            <span>Fractal Patterns</span>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <div class="gallery-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <svg viewBox="0 0 100 100" width="60" height="60">
+              <circle cx="35" cy="50" r="20" fill="rgba(255,255,255,0.2)"/>
+              <circle cx="65" cy="50" r="20" fill="rgba(255,255,255,0.2)"/>
+            </svg>
+            <span>Vision Synthesis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info reveal">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let's Build the <span class="gradient-text">Future Together</span></h2>
+          <p class="section-desc">Have a project in mind? Want to collaborate on cutting-edge AI research? We'd love to hear from you.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>hello@neuralhorizons.ai</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <h4>Location</h4>
+                <p>Everywhere and nowhere — we're digital</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form glass-card reveal" id="contactForm">
+          <div class="form-group">
+            <input type="text" id="name" required>
+            <label for="name">Your Name</label>
+            <span class="form-line"></span>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" required>
+            <label for="email">Your Email</label>
+            <span class="form-line"></span>
+          </div>
+          <div class="form-group">
+            <select id="subject" required>
+              <option value="" disabled selected></option>
+              <option value="research">Research Collaboration</option>
+              <option value="project">Project Inquiry</option>
+              <option value="speaking">Speaking Engagement</option>
+              <option value="other">Other</option>
+            </select>
+            <label for="subject">Subject</label>
+            <span class="form-line"></span>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="4" required></textarea>
+            <label for="message">Your Message</label>
+            <span class="form-line"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>Send Message</span>
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <svg viewBox="0 0 40 40" width="28" height="28">
+            <defs>
+              <linearGradient id="footerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a855f7" />
+                <stop offset="100%" stop-color="#06b6d4" />
+              </linearGradient>
+            </defs>
+            <circle cx="20" cy="20" r="16" fill="none" stroke="url(#footerGrad)" stroke-width="2"/>
+            <circle cx="20" cy="20" r="6" fill="url(#footerGrad)"/>
+          </svg>
+          <span>Neural Horizons</span>
+        </div>
+        <p class="footer-text">Exploring the frontiers of artificial intelligence. Built with passion and code.</p>
+        <div class="footer-links">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Neural Horizons. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

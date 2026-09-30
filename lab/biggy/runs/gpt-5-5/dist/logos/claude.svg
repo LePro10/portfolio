@@ -1,0 +1,8 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Claude placeholder mark</title>
+  <rect width="160" height="160" rx="42" fill="#24140C"/>
+  <path d="M78 26C101 42 122 63 131 88C106 116 74 132 38 125C31 88 43 55 78 26Z" fill="#FFE5C2"/>
+  <path d="M85 38C100 58 111 78 115 101C94 113 69 118 46 112C49 80 61 55 85 38Z" fill="#F28C45" fill-opacity="0.82"/>
+  <path d="M55 102C75 94 92 80 107 60" stroke="#7A4023" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="80" cy="80" r="64" stroke="#FFE5C2" stroke-opacity="0.24" stroke-width="2"/>
+</svg>

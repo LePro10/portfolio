@@ -1,0 +1,34 @@
+name: CI
+
+# Prüft jeden Push und Pull Request. Deployt nichts: der Portfolio-Container
+# holt main selbst ab (deploy/README.md).
+permissions:
+  contents: read
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+      - name: Export vollständig
+        run: |
+          for f in index.html lab.html services.html 404.html; do test -s "out/$f"; done
+          test "$(find out/sites -mindepth 2 -maxdepth 2 -type d | wc -l)" -gt 0

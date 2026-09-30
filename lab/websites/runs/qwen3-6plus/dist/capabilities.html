@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capabilities - NEXUS AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header-hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+  <div id="custom-cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <div id="loading-screen">
+    <div class="loader-ring" style="position: relative;"></div>
+    <div class="loader-text">NEXUS AI</div>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">NEXUS AI</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="capabilities.html" class="nav-link active">Capabilities</a></li>
+          <li><a href="showcase.html" class="nav-link">Showcase</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero" style="min-height: 60vh;">
+    <div class="hero-bg">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-gradient-orb"></div>
+      <div class="hero-gradient-orb"></div>
+      <div class="hero-gradient-orb"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Powerful Features</div>
+      <h1 class="hero-title">
+        <span class="gradient-text">AI Capabilities</span>
+      </h1>
+      <p class="hero-description">
+        Explore the full spectrum of our AI platform's capabilities. From natural language processing to computer vision, we've got you covered.
+      </p>
+      <div class="hero-buttons">
+        <a href="#capabilities" class="btn btn-primary"><span>Explore All</span></a>
+        <a href="contact.html" class="btn btn-secondary"><span>Get Started</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="capabilities-section" id="capabilities">
+    <div class="container">
+      <h2 class="section-title">Core Capabilities</h2>
+      <p class="section-subtitle">Discover what our AI can do for you</p>
+
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Natural Language Processing</h3>
+          <p>Understand and generate human-like text with unprecedented accuracy and context awareness. Supports 100+ languages.</p>
+          <span class="capability-tag">NLP</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <h3>Computer Vision</h3>
+          <p>Analyze images and video with superhuman precision for object detection, classification, and scene understanding.</p>
+          <span class="capability-tag">Vision</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/></svg>
+          </div>
+          <h3>Predictive Analytics</h3>
+          <p>Forecast trends and behaviors with advanced machine learning models trained on massive datasets across industries.</p>
+          <span class="capability-tag">Analytics</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Security & Privacy</h3>
+          <p>Enterprise-grade security with end-to-end encryption, SOC2 compliance, and GDPR-ready data handling.</p>
+          <span class="capability-tag">Security</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Process Automation</h3>
+          <p>Streamline workflows and automate repetitive tasks with intelligent process automation and decision engines.</p>
+          <span class="capability-tag">Automation</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Knowledge Graph</h3>
+          <p>Build and query complex knowledge graphs for semantic search, reasoning, and relationship discovery.</p>
+          <span class="capability-tag">Knowledge</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <h3>Voice AI</h3>
+          <p>Speech recognition and synthesis with natural intonation. Real-time transcription and translation capabilities.</p>
+          <span class="capability-tag">Audio</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Sentiment Analysis</h3>
+          <p>Detect emotions, opinions, and attitudes in text. Perfect for social media monitoring and customer feedback.</p>
+          <span class="capability-tag">Emotion AI</span>
+        </div>
+        <div class="capability-card">
+          <div class="capability-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Content Generation</h3>
+          <p>Create articles, summaries, code, and creative content with AI that understands context and style.</p>
+          <span class="capability-tag">Generation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <h2 class="section-title">Performance Metrics</h2>
+      <p class="section-subtitle">Industry-leading benchmarks and results</p>
+
+      <div class="stats-grid">
+        <div class="stat-card glass-card">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Accuracy Rate</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">50ms</div>
+          <div class="stat-label">Avg Response Time</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Languages Supported</div>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Uptime Guarantee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Simple integration, powerful results</p>
+
+      <div class="about-grid">
+        <div class="about-content">
+          <h3>Three Simple Steps</h3>
+          <p>Getting started with NEXUS AI is straightforward. Our platform is designed for developers and non-technical users alike.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div>
+                <strong>1. Connect</strong>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">Integrate our API in minutes with our SDKs</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div>
+                <strong>2. Configure</strong>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">Customize models to your specific use case</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <strong>3. Deploy</strong>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem;">Go live with enterprise-grade reliability</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <div class="about-image-wrapper">
+            <div class="about-image-inner" style="background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(139,92,246,0.1)); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 200 200" width="150" height="150">
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="80" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.3"/>
+                <circle cx="100" cy="100" r="60" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.5"/>
+                <circle cx="100" cy="100" r="40" fill="none" stroke="url(#grad1)" stroke-width="2" opacity="0.7"/>
+                <circle cx="100" cy="100" r="20" fill="url(#grad1)"/>
+                <line x1="100" y1="20" x2="100" y2="180" stroke="url(#grad1)" stroke-width="1" opacity="0.2"/>
+                <line x1="20" y1="100" x2="180" y2="100" stroke="url(#grad1)" stroke-width="1" opacity="0.2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">NEXUS AI</a>
+          <p>Pioneering the future of artificial intelligence with cutting-edge technology and innovative solutions.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="capabilities.html">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NEXUS AI. All rights reserved.</p>
+        <p>Crafted with intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

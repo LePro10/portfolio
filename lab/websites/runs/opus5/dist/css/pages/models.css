@@ -1,0 +1,115 @@
+/* ==========================================================================
+   NOETIC — models page
+   ========================================================================== */
+
+.models { display: grid; gap: clamp(3rem, 9vw, 7rem); }
+
+.model {
+  position: relative;
+  display: grid;
+  gap: var(--s-6);
+  padding-top: var(--s-7);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 6rem;
+}
+.model:first-child { border-top: 0; padding-top: 0; }
+
+@media (min-width: 62rem) {
+  .model {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-areas:
+      "head head"
+      "body meters";
+    column-gap: clamp(2rem, 6vw, 5rem);
+  }
+  .model__head { grid-area: head; }
+  .model__body { grid-area: body; }
+  .model__meters { grid-area: meters; }
+}
+
+/* ---- Head --------------------------------------------------------------- */
+.model__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+.model__glyph {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  color: var(--tx-dim);
+  padding-top: 0.9em;
+  min-width: 2.5rem;
+}
+.model__head h2 {
+  font-size: var(--t-2xl);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+.model__sub {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tx-lo);
+  margin-top: var(--s-3);
+}
+.model__head .tag { margin-left: auto; align-self: center; }
+
+/* ---- Body --------------------------------------------------------------- */
+.model__body p { color: var(--tx-mid); }
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+.specs dt {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tx-dim);
+  margin-bottom: var(--s-2);
+}
+.specs dd { color: var(--tx-hi); font-size: var(--t-sm); font-weight: 500; }
+
+/* ---- Meters panel ------------------------------------------------------- */
+.model__meters {
+  align-self: start;
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(160deg,
+      color-mix(in oklab, var(--ink-850) 70%, transparent),
+      color-mix(in oklab, var(--ink-950) 80%, transparent));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.model__meters .meter { grid-template-columns: minmax(5.5rem, 8rem) 1fr auto; }
+
+/* ---- Access cards ------------------------------------------------------- */
+.access { display: grid; align-content: start; min-height: 17rem; }
+.access__price {
+  margin-top: auto;
+  padding-top: var(--s-5);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tx-dim);
+}
+.access__price span {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--t-lg);
+  letter-spacing: var(--tr-snug);
+  text-transform: none;
+  color: var(--tx-hi);
+  margin-bottom: var(--s-1);
+}

@@ -1,0 +1,148 @@
+/* ==========================================================================
+   NOETIC — manifesto
+   ========================================================================== */
+
+/* ---- Belief slides ------------------------------------------------------ */
+/* Each slide owns a hue; JS lerps --page-hue between them as they pass so the
+   ambient wash shifts continuously down the page. */
+.beliefs {
+  position: relative;
+  --page-hue: 196;
+}
+.beliefs::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 55% at 50% 50%,
+      hsl(var(--page-hue) 90% 55% / 0.13), transparent 68%);
+  transition: background 900ms linear;
+}
+
+.belief {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding-block: clamp(4rem, 12vh, 9rem);
+  position: relative;
+}
+.belief + .belief::before {
+  content: "";
+  position: absolute;
+  top: 0; left: var(--gutter); right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong) 20%, var(--line-strong) 80%, transparent);
+}
+
+.belief__inner {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: start;
+}
+.belief__num {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.3em;
+  color: hsl(var(--page-hue) 90% 68%);
+  transition: color 900ms linear;
+}
+.belief h2 {
+  font-size: clamp(2rem, 5.6vw, 4.4rem);
+  font-weight: 550;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 18ch;
+  color: var(--tx-hi);
+}
+.belief p {
+  font-size: var(--t-md);
+  color: var(--tx-mid);
+  max-width: 52ch;
+}
+.belief em { color: hsl(var(--page-hue) 90% 72%); font-style: normal; }
+
+/* ---- Timeline ----------------------------------------------------------- */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--s-6);
+  padding-left: var(--s-6);
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.6rem; bottom: 0.6rem;
+  width: 1px;
+  background: linear-gradient(180deg,
+    var(--cy-500), var(--vi-500) 55%, transparent);
+  opacity: 0.55;
+}
+.tl {
+  position: relative;
+  display: grid;
+  gap: var(--s-2);
+  padding-left: var(--s-5);
+}
+@media (min-width: 48rem) {
+  .tl { grid-template-columns: 6rem 1fr; gap: var(--s-6); align-items: baseline; }
+}
+.tl::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--s-6) - 4px);
+  top: 0.55rem;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--ink-950);
+  border: 1px solid var(--cy-500);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--cy-500) 60%, transparent);
+}
+.tl__year {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.14em;
+  color: var(--cy-400);
+}
+.tl__body h3 { font-size: var(--t-md); margin-bottom: var(--s-2); }
+.tl__body p { color: var(--tx-mid); font-size: var(--t-sm); }
+
+/* ---- Team --------------------------------------------------------------- */
+.team { row-gap: var(--s-7); }
+.member { display: grid; gap: var(--s-3); justify-items: start; }
+.member__av {
+  display: grid;
+  place-items: center;
+  width: 3.75rem; height: 3.75rem;
+  border-radius: var(--r-md);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  letter-spacing: 0.08em;
+  color: var(--tx-hi);
+  background: linear-gradient(150deg,
+    color-mix(in oklab, var(--cy-600) 55%, var(--ink-800)),
+    color-mix(in oklab, var(--vi-600) 65%, var(--ink-900)));
+  border: 1px solid var(--line);
+  transition: transform var(--d-med) var(--e-spring), box-shadow var(--d-med) var(--e-out);
+}
+.member__av[data-seed="2"] { background: linear-gradient(150deg, color-mix(in oklab, var(--vi-500) 60%, var(--ink-800)), color-mix(in oklab, var(--mg-500) 45%, var(--ink-900))); }
+.member__av[data-seed="3"] { background: linear-gradient(150deg, color-mix(in oklab, var(--mg-500) 45%, var(--ink-800)), color-mix(in oklab, var(--cy-600) 50%, var(--ink-900))); }
+.member__av[data-seed="4"] { background: linear-gradient(150deg, color-mix(in oklab, var(--cy-500) 45%, var(--ink-800)), color-mix(in oklab, var(--ink-700) 90%, transparent)); }
+.member__av[data-seed="5"] { background: linear-gradient(150deg, color-mix(in oklab, var(--am-500) 38%, var(--ink-800)), color-mix(in oklab, var(--vi-600) 55%, var(--ink-900))); }
+.member__av[data-seed="6"] { background: linear-gradient(150deg, color-mix(in oklab, var(--vi-400) 50%, var(--ink-800)), color-mix(in oklab, var(--cy-600) 40%, var(--ink-900))); }
+.member__av[data-seed="7"] { background: linear-gradient(150deg, color-mix(in oklab, var(--mg-500) 55%, var(--ink-800)), color-mix(in oklab, var(--ink-750) 90%, transparent)); }
+.member__av[data-seed="8"] { background: linear-gradient(150deg, color-mix(in oklab, var(--cy-400) 40%, var(--ink-800)), color-mix(in oklab, var(--vi-500) 55%, var(--ink-900))); }
+
+.member:hover .member__av {
+  transform: translateY(-4px) rotate(-3deg);
+  box-shadow: 0 12px 30px -14px var(--cy-600);
+}
+.member h3 { font-size: var(--t-base); font-weight: 550; }
+.member__role {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tx-lo);
+}

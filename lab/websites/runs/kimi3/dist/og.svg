@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0b0a"/>
+  <g fill="#edeae2">
+    <circle cx="180" cy="140" r="3"/><circle cx="980" cy="120" r="2"/><circle cx="1060" cy="420" r="3"/>
+    <circle cx="140" cy="480" r="2"/><circle cx="620" cy="90" r="2"/><circle cx="880" cy="520" r="2"/>
+    <circle cx="320" cy="540" r="3"/><circle cx="1120" cy="250" r="2"/><circle cx="60" cy="300" r="2"/>
+  </g>
+  <text x="80" y="330" font-family="Arial Black, Arial, sans-serif" font-size="150" font-weight="900" fill="#edeae2" letter-spacing="-4">LATENT</text>
+  <text x="84" y="400" font-family="Georgia, serif" font-style="italic" font-size="44" fill="#c8ff2e">a journey through latent space</text>
+  <text x="84" y="560" font-family="monospace" font-size="22" fill="#8a8f85">LOSS 0.0031 · EPOCH 100/100 · THOUGHT, RENDERED.</text>
+</svg>

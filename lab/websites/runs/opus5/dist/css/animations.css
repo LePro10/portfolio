@@ -1,0 +1,252 @@
+/* ==========================================================================
+   NOETIC — animation system
+   Every hidden-then-revealed state is scoped to html.js, so with JavaScript
+   disabled the page renders fully visible and nothing is ever stranded.
+   ========================================================================== */
+
+/* ---- Reveal primitives -------------------------------------------------- */
+.js [data-reveal] {
+  --rd: 0ms;                                   /* per-element delay */
+  transition-delay: var(--rd);
+}
+
+.js [data-reveal="fade"] {
+  opacity: 0;
+  transition: opacity var(--d-slow) var(--e-out) var(--rd);
+}
+.js [data-reveal="fade-up"] {
+  opacity: 0;
+  transform: translate3d(0, 2.4rem, 0);
+  transition: opacity var(--d-slow) var(--e-out) var(--rd),
+              transform var(--d-slow) var(--e-out) var(--rd);
+}
+.js [data-reveal="fade-in-left"] {
+  opacity: 0;
+  transform: translate3d(-2rem, 0, 0);
+  transition: opacity var(--d-slow) var(--e-out) var(--rd),
+              transform var(--d-slow) var(--e-out) var(--rd);
+}
+.js [data-reveal="scale"] {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity var(--d-slow) var(--e-out) var(--rd),
+              transform var(--d-epic) var(--e-out) var(--rd);
+}
+.js [data-reveal="clip"] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--d-epic) var(--e-in-out) var(--rd);
+}
+.js [data-reveal="clip-x"] {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--d-epic) var(--e-in-out) var(--rd);
+}
+.js [data-reveal="blur"] {
+  opacity: 0;
+  filter: blur(14px);
+  transform: translate3d(0, 1.2rem, 0);
+  transition: opacity var(--d-slow) var(--e-out) var(--rd),
+              filter var(--d-slow) var(--e-out) var(--rd),
+              transform var(--d-slow) var(--e-out) var(--rd);
+}
+
+.js [data-reveal].is-in {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* ---- Split-text mask reveal --------------------------------------------- */
+/* split.js wraps each line in .line > .line__inner and sets --i on the line. */
+.line { display: block; overflow: hidden; }
+.line__inner { display: block; will-change: transform; }
+.js [data-reveal="mask"] .line__inner {
+  transform: translate3d(0, 110%, 0) rotate(2.5deg);
+  opacity: 0;
+  transition: transform 1.05s var(--e-out), opacity 0.7s var(--e-out);
+  transition-delay: calc(var(--rd) + var(--i, 0) * 85ms);
+}
+.js [data-reveal="mask"].is-in .line__inner {
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  opacity: 1;
+}
+
+/* Character-level variant for short display strings. */
+.char { display: inline-block; will-change: transform; }
+.js [data-reveal="chars"] .char {
+  opacity: 0;
+  transform: translate3d(0, 0.7em, 0);
+  transition: opacity 0.5s var(--e-out), transform 0.75s var(--e-out);
+  transition-delay: calc(var(--rd) + var(--i, 0) * 26ms);
+}
+.js [data-reveal="chars"].is-in .char { opacity: 1; transform: none; }
+
+/* Word-level */
+.word { display: inline-block; }
+.js [data-reveal="words"] .word {
+  opacity: 0.08;
+  transition: opacity 0.6s var(--e-out);
+  transition-delay: calc(var(--rd) + var(--i, 0) * 34ms);
+}
+.js [data-reveal="words"].is-in .word { opacity: 1; }
+
+/* ---- Stagger container --------------------------------------------------- */
+/* Children inherit an index from reveal.js as --i. */
+.js [data-stagger] > * { --rd: calc(var(--i, 0) * 90ms); }
+
+/* ---- Line-draw for SVG -------------------------------------------------- */
+.js .draw {
+  stroke-dasharray: var(--len, 1000);
+  stroke-dashoffset: var(--len, 1000);
+  transition: stroke-dashoffset 2s var(--e-out) var(--rd);
+}
+.js .is-in .draw, .js .draw.is-in { stroke-dashoffset: 0; }
+
+/* ---- Sticky / pinned scaffolding ---------------------------------------- */
+.pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.pin-track { position: relative; }
+
+/* ---- Parallax ------------------------------------------------------------ */
+/* smooth.js writes --py (px) onto [data-parallax] each frame. */
+[data-parallax] { will-change: transform; transform: translate3d(0, var(--py, 0px), 0); }
+
+/* ---- Scroll-driven CSS (progressive enhancement) ------------------------- */
+@supports (animation-timeline: view()) {
+  .js .sd-fade {
+    animation: sd-fade linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 32%;
+  }
+  @keyframes sd-fade {
+    from { opacity: 0; transform: translate3d(0, 3rem, 0); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .sd-tilt {
+    animation: sd-tilt linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 45%;
+  }
+  @keyframes sd-tilt {
+    from { transform: perspective(1200px) rotateX(14deg) scale(0.9); opacity: 0.25; }
+    to   { transform: perspective(1200px) rotateX(0deg) scale(1); opacity: 1; }
+  }
+
+  .sd-shrink {
+    animation: sd-shrink linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+  @keyframes sd-shrink {
+    to { transform: scale(0.9) translateY(-2rem); opacity: 0; filter: blur(6px); }
+  }
+}
+
+/* ---- Ambient keyframes -------------------------------------------------- */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-0.7rem); }
+}
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2%, -3%, 0) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes sweep {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(220%); }
+}
+
+.float { animation: float-y 5.5s var(--e-in-out) infinite; }
+.caret {
+  display: inline-block;
+  width: 0.55em; height: 1.05em;
+  vertical-align: -0.15em;
+  background: var(--cy-500);
+  animation: blink 1.05s steps(1) infinite;
+}
+
+/* Scanline sweep across an element on entry. */
+.sweep { position: relative; overflow: hidden; }
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent,
+              color-mix(in oklab, var(--cy-500) 14%, transparent), transparent);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.sweep.is-in::after { animation: sweep 1.5s var(--e-out) 0.2s both; }
+
+/* ---- Text scramble ------------------------------------------------------- */
+.scramble { font-variant-ligatures: none; }
+.scramble .ghost { color: var(--cy-400); opacity: 0.85; }
+
+/* ---- Cross-document view transitions ------------------------------------- */
+@view-transition { navigation: auto; }
+
+::view-transition-group(root) { animation-duration: 520ms; }
+::view-transition-old(root) {
+  animation: vt-out 380ms var(--e-swift) both;
+}
+::view-transition-new(root) {
+  animation: vt-in 620ms var(--e-out) both;
+}
+@keyframes vt-out {
+  to { opacity: 0; transform: scale(1.015); filter: blur(5px); }
+}
+@keyframes vt-in {
+  from { opacity: 0; transform: translateY(1.6rem) scale(0.995); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Header + brand persist across documents rather than cross-fading. */
+::view-transition-group(header),
+::view-transition-group(brand) { animation-duration: 520ms; }
+::view-transition-old(header),
+::view-transition-new(header) { animation: none; opacity: 1; }
+
+/* The page title morphs from the nav item you clicked where names match. */
+::view-transition-group(page-title) {
+  animation-duration: 700ms;
+  animation-timing-function: var(--e-out);
+}
+
+/* Reduced motion: everything lands in its final state immediately. */
+:root.motion-reduced ::view-transition-old(root),
+:root.motion-reduced ::view-transition-new(root) { animation: none; }
+
+:root.motion-reduced .js [data-reveal],
+:root.motion-reduced [data-reveal],
+:root.motion-reduced [data-reveal="mask"] .line__inner,
+:root.motion-reduced [data-reveal="chars"] .char,
+:root.motion-reduced [data-reveal="words"] .word {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  clip-path: none !important;
+}
+:root.motion-reduced .marquee__track,
+:root.motion-reduced .float,
+:root.motion-reduced .caret,
+:root.motion-reduced .brand__ring,
+:root.motion-reduced .hero__scrollcue i { animation: none !important; }
+:root.motion-reduced [data-parallax] { transform: none !important; }
+:root.motion-reduced .step { opacity: 1 !important; transform: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not(.js) .marquee__track,
+  :root:not(.js) .float,
+  :root:not(.js) .caret,
+  :root:not(.js) .brand__ring { animation: none !important; }
+}

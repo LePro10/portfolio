@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.env*
+.DS_Store
+*.log
+# Aus lab/ erzeugt (pnpm lab:build), nie von Hand bearbeiten
+/public/sites/

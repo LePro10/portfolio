@@ -1,0 +1,11 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">ChatGPT placeholder mark</title>
+  <rect width="160" height="160" rx="42" fill="#07130D"/>
+  <g stroke="#7CFFC5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M80 32C99 32 111 43 111 58C126 63 135 75 132 91C129 108 114 118 98 116C88 130 69 134 55 123C41 112 40 94 49 82C42 68 46 51 62 43C67 36 72 32 80 32Z" opacity="0.92"/>
+    <path d="M62 43L92 60L92 95L62 112"/>
+    <path d="M111 58L80 76L49 82"/>
+    <path d="M98 116L98 80L66 62"/>
+  </g>
+  <circle cx="80" cy="80" r="64" stroke="#25F38F" stroke-opacity="0.2" stroke-width="2"/>
+</svg>

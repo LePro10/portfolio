@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,87773,t=>{"use strict";var i=t.i(43476);t.i(69018);var o=t.i(49580),e=t.i(17144);t.s(["default",0,function(){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(e.HorizonsSection,{}),(0,i.jsx)(o.ContactSection,{})]})}])}]);

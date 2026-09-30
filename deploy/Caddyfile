@@ -1,0 +1,75 @@
+# Portfolio — neuralhub.dev
+#
+# TLS endet vor diesem Container auf der Edge (OpenResty, 192.168.30.56).
+# Caddy lauscht hier nur auf HTTP :80 und liefert den statischen Export aus.
+# /opt/portfolio/current zeigt per Symlink auf das aktive Release (deploy/update.sh).
+
+{
+	auto_https off
+	admin off
+}
+
+:80 {
+	root * /opt/portfolio/current
+	encode zstd gzip
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	handle /health {
+		respond "ok" 200
+	}
+
+	# ── Alte Adressen ──────────────────────────────────────────────────────
+	# Dashboard lebt auf eigenem Host; Präfix fällt weg, 308 erhält POST.
+	@dashboard path_regexp dash ^/dashboard(?:/(.*))?$
+	redir @dashboard https://dashboard.neuralhub.dev/{re.dash.1}{?query} 308
+
+	# /test-sites/<sammlung>-<lauf>/… → /sites/<sammlung>/<lauf>/
+	@oldsite path_regexp old ^/test-sites/(biggy|websites)-([a-z0-9-]+)
+	redir @oldsite /sites/{re.old.1}/{re.old.2}/ 301
+
+	redir /ai-test-results /lab 301
+	redir /ai-test-results/* /lab 301
+	redir /leistungen /services 301
+	redir /webdesign /services 301
+	redir /about /#about 301
+	redir /projects /#work 301
+	redir /contact /#contact 301
+	redir /prototypes* / 301
+
+	# ── AI-Lab-Artefakte: fremder, generierter Code ────────────────────────
+	# Eigene undurchsichtige Origin (CSP sandbox ohne allow-same-origin): kein
+	# Zugriff auf DOM oder Storage des Portfolios. Wegen der Origin "null" laden
+	# Module und Fonts im CORS-Modus und brauchen Access-Control-Allow-Origin.
+	@site path_regexp site ^/sites/([a-z0-9-]+)/([a-z0-9-]+)(?:/|$)
+	handle @site {
+		header Content-Security-Policy "sandbox allow-scripts allow-forms allow-popups allow-modals; frame-ancestors 'self'"
+		header Access-Control-Allow-Origin *
+		try_files {path} {path}.html {path}/index.html /sites/{re.site.1}/{re.site.2}/index.html
+		file_server
+	}
+
+	# ── Portfolio ──────────────────────────────────────────────────────────
+	handle {
+		@immutable path /_next/static/*
+		header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+		# Next 16 fragt Segment-Prefetches als __next.lab.__PAGE__.txt an, exportiert
+		# sie aber als __next.lab/__PAGE__.txt.
+		@segment path_regexp seg ^(.*)/__next\.([^./]+)\.(.+\.txt)$
+		rewrite @segment {re.seg.1}/__next.{re.seg.2}/{re.seg.3}
+
+		try_files {path} {path}.html {path}/index.html
+		file_server
+	}
+
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
+}

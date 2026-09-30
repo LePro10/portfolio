@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYNAPSE — AI Intelligence Redefined</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">SYNAPSE</div>
+    <div class="loading-bar">
+      <div class="loading-bar-fill"></div>
+    </div>
+    <div class="loading-percent">0%</div>
+  </div>
+  
+  <!-- Page Transition -->
+  <div class="page-transition">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <span class="glitch-text">INITIALIZING...</span>
+  </div>
+  
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">SYNAPSE</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="intelligence.html">Intelligence</a></li>
+      <li><a href="capabilities.html">Capabilities</a></li>
+      <li><a href="models.html">Models</a></li>
+      <li><a href="ethics.html">Ethics</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero" style="padding: 0; max-width: 100%; min-height: 100vh; position: relative; overflow: hidden;">
+    <div id="hero-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+    
+    <div class="hero-content" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 2rem;">
+      <div class="hero-badge reveal-scale" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 100px; border: 1px solid var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(10px); margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-accent); letter-spacing: 0.1em;">
+        <span style="display: inline-block; width: 6px; height: 6px; background: var(--neon-accent); border-radius: 50%; animation: logoPulse 2s ease-in-out infinite;"></span>
+        NEURAL NETWORK ACTIVE
+      </div>
+      
+      <h1 class="display-h1" style="margin-bottom: 1.5rem; max-width: 900px;" data-scramble>
+        Intelligence<br>
+        <span class="text-gradient">Without Limits</span>
+      </h1>
+      
+      <p class="body-text reveal" style="margin: 0 auto 3rem; max-width: 550px;">
+        Experience the next frontier of artificial intelligence. 
+        Where neural networks converge with human creativity to unlock possibilities beyond imagination.
+      </p>
+      
+      <div class="hero-cta reveal" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <a href="intelligence.html" class="btn btn-primary">Explore Intelligence</a>
+        <a href="capabilities.html" class="btn btn-glow">View Capabilities</a>
+      </div>
+      
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" style="position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.5;">
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;">Scroll</span>
+        <div style="width: 1px; height: 40px; background: linear-gradient(to bottom, var(--neon-accent), transparent); animation: scrollPulse 2s ease-in-out infinite;"></div>
+      </div>
+    </div>
+    
+    <!-- Gradient overlay at bottom -->
+    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 200px; background: linear-gradient(to top, var(--void-black), transparent); z-index: 2; pointer-events: none;"></div>
+  </section>
+  
+  <!-- FEATURES SECTION -->
+  <section class="features" style="position: relative;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 6rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">01 — THE ARCHITECTURE</span>
+      <h2 class="display-h2" data-scramble>Built for Tomorrow</h2>
+    </div>
+    
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+      <div class="feature-card reveal glass" style="padding: 3rem; border-radius: 1.5rem; transition: all 0.4s var(--transition-smooth); position: relative; overflow: hidden;">
+        <div class="feature-icon" style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.2), rgba(0, 240, 255, 0.1)); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem;">🧠</div>
+        <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">Neural Architecture</h3>
+        <p class="body-text" style="font-size: 1rem; max-width: 100%;">Advanced transformer-based models with trillion-parameter scale, designed to understand context, nuance, and intent with unprecedented accuracy.</p>
+        <div class="feature-glow" style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(107, 33, 168, 0.1), transparent 70%); opacity: 0; transition: opacity 0.4s;"></div>
+      </div>
+      
+      <div class="feature-card reveal glass" style="padding: 3rem; border-radius: 1.5rem; transition: all 0.4s var(--transition-smooth); position: relative; overflow: hidden; animation-delay: 0.1s;">
+        <div class="feature-icon" style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(107, 33, 168, 0.1)); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem;">⚡</div>
+        <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">Real-Time Learning</h3>
+        <p class="body-text" style="font-size: 1rem; max-width: 100%;">Continuous adaptation and improvement through reinforcement learning from human feedback, ensuring ever-evolving capabilities.</p>
+        <div class="feature-glow" style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0, 240, 255, 0.1), transparent 70%); opacity: 0; transition: opacity 0.4s;"></div>
+      </div>
+      
+      <div class="feature-card reveal glass" style="padding: 3rem; border-radius: 1.5rem; transition: all 0.4s var(--transition-smooth); position: relative; overflow: hidden; animation-delay: 0.2s;">
+        <div class="feature-icon" style="width: 60px; height: 60px; border-radius: 1rem; background: linear-gradient(135deg, rgba(107, 33, 168, 0.2), rgba(0, 240, 255, 0.1)); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.5rem;">🔒</div>
+        <h3 class="display-h3" style="font-size: 1.5rem; margin-bottom: 1rem;">Secure by Design</h3>
+        <p class="body-text" style="font-size: 1rem; max-width: 100%;">Built with privacy and safety at the core. End-to-end encryption, zero data retention, and transparent AI governance.</p>
+        <div class="feature-glow" style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(107, 33, 168, 0.1), transparent 70%); opacity: 0; transition: opacity 0.4s;"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- STATS SECTION -->
+  <section class="stats" style="background: var(--deep-space); position: relative; overflow: hidden; max-width: 100%; padding: 8rem 3rem;">
+    <div class="grid-pattern" style="position: absolute; inset: 0;"></div>
+    
+    <div style="max-width: 1400px; margin: 0 auto; position: relative; z-index: 2;">
+      <div class="section-header reveal" style="text-align: center; margin-bottom: 5rem;">
+        <span class="mono-text" style="display: block; margin-bottom: 1rem;">02 — BY THE NUMBERS</span>
+        <h2 class="display-h2" data-scramble>Scale of Intelligence</h2>
+      </div>
+      
+      <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; text-align: center;">
+        <div class="stat-item reveal">
+          <div class="stat-number" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; margin-bottom: 0.5rem;" data-count="175">0</div>
+          <div class="stat-label" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase;">Billion Parameters</div>
+        </div>
+        
+        <div class="stat-item reveal" style="animation-delay: 0.1s;">
+          <div class="stat-number" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; margin-bottom: 0.5rem;" data-count="99">0</div>
+          <div class="stat-label" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase;">% Accuracy Rate</div>
+        </div>
+        
+        <div class="stat-item reveal" style="animation-delay: 0.2s;">
+          <div class="stat-number" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; margin-bottom: 0.5rem;" data-count="50">0</div>
+          <div class="stat-label" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase;">Languages Supported</div>
+        </div>
+        
+        <div class="stat-item reveal" style="animation-delay: 0.3s;">
+          <div class="stat-number" style="font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; margin-bottom: 0.5rem;" data-count="10">0</div>
+          <div class="stat-label" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase;">Million+ Users</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- SHOWCASE SECTION -->
+  <section class="showcase" style="position: relative; overflow: hidden;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 6rem;">
+      <span class="mono-text" style="display: block; margin-bottom: 1rem;">03 — IN ACTION</span>
+      <h2 class="display-h2" data-scramble>Witness the Future</h2>
+    </div>
+    
+    <div class="showcase-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto;">
+      <div class="showcase-text reveal-left" style="order: 1;">
+        <h3 class="display-h3" style="margin-bottom: 1.5rem;">Creative Generation</h3>
+        <p class="body-text" style="margin-bottom: 2rem; max-width: 100%;">
+          From artistic masterpieces to complex code architectures, witness AI that doesn't just compute — it creates. 
+          Generate images, write poetry, compose music, and architect software with a single prompt.
+        </p>
+        <a href="capabilities.html" class="btn">Explore Creation →</a>
+      </div>
+      
+      <div class="showcase-visual reveal-right glass" style="order: 2; padding: 3rem; border-radius: 2rem; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(107, 33, 168, 0.3), rgba(0, 240, 255, 0.1)); opacity: 0.5;"></div>
+        <div style="font-family: var(--font-mono); font-size: 3rem; color: var(--neon-accent); opacity: 0.3;">🎨</div>
+        <div class="showcase-particles" style="position: absolute; inset: 0;"></div>
+      </div>
+      
+      <div class="showcase-visual reveal-left glass" style="order: 3; padding: 3rem; border-radius: 2rem; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(107, 33, 168, 0.1)); opacity: 0.5;"></div>
+        <div style="font-family: var(--font-mono); font-size: 3rem; color: var(--aurora-cyan); opacity: 0.3;">🔬</div>
+      </div>
+      
+      <div class="showcase-text reveal-right" style="order: 4;">
+        <h3 class="display-h3" style="margin-bottom: 1.5rem;">Research & Analysis</h3>
+        <p class="body-text" style="margin-bottom: 2rem; max-width: 100%;">
+          Process millions of documents in seconds. Extract insights, identify patterns, and generate comprehensive reports. 
+          The ultimate research companion for scientists, analysts, and curious minds.
+        </p>
+        <a href="capabilities.html" class="btn">Explore Analysis →</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA SECTION -->
+  <section class="cta" style="position: relative; text-align: center; max-width: 900px;">
+    <div class="reveal">
+      <h2 class="display-h2" style="margin-bottom: 1.5rem;" data-scramble>Ready to Evolve?</h2>
+      <p class="body-text" style="margin: 0 auto 3rem; max-width: 550px;">
+        Join millions who are already experiencing the next generation of artificial intelligence. 
+        The future isn't coming — it's here.
+      </p>
+      <a href="contact.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1.25rem 3rem;">Begin Your Journey</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <!-- Marquee -->
+    <div class="marquee-container">
+      <div class="marquee">
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+        <span class="marquee-item">Neural Networks</span>
+        <span class="marquee-item">Machine Learning</span>
+        <span class="marquee-item">Deep Learning</span>
+        <span class="marquee-item">Natural Language</span>
+        <span class="marquee-item">Computer Vision</span>
+        <span class="marquee-item">Reinforcement</span>
+        <span class="marquee-item">Generative AI</span>
+        <span class="marquee-item">Transformers</span>
+      </div>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">SYNAPSE</div>
+        <p>Pioneering the next generation of artificial intelligence. Where human ingenuity meets machine precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="intelligence.html">Intelligence</a></li>
+          <li><a href="capabilities.html">Capabilities</a></li>
+          <li><a href="models.html">Models</a></li>
+          <li><a href="ethics.html">Ethics</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Access</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 SYNAPSE AI. All rights reserved.</p>
+      <p style="font-family: var(--font-mono); font-size: 0.75rem;">v2.0.1-stable</p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/three-hero.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Additional homepage-specific animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // Feature card hover glow effect
+      document.querySelectorAll('.feature-card').forEach(card => {
+        const glow = card.querySelector('.feature-glow');
+        card.addEventListener('mouseenter', () => {
+          glow.style.opacity = '1';
+          card.style.transform = 'translateY(-5px)';
+          card.style.borderColor = 'rgba(0, 240, 255, 0.3)';
+        });
+        card.addEventListener('mouseleave', () => {
+          glow.style.opacity = '0';
+          card.style.transform = '';
+          card.style.borderColor = '';
+        });
+      });
+      
+      // Animated counter for stats
+      if (typeof gsap !== 'undefined') {
+        document.querySelectorAll('[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count);
+          gsap.to(el, {
+            textContent: target,
+            duration: 2,
+            ease: 'power2.out',
+            snap: { textContent: 1 },
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%',
+              once: true
+            }
+          });
+        });
+      }
+      
+      // Showcase image parallax
+      if (typeof gsap !== 'undefined') {
+        document.querySelectorAll('.showcase-visual').forEach(el => {
+          gsap.fromTo(el, 
+            { y: 50 },
+            {
+              y: -50,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: el.parentElement,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+              }
+            }
+          );
+        });
+      }
+      
+      // Scroll indicator animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes scrollPulse {
+          0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 0.5; }
+          50% { transform: translateX(-50%) scaleY(1.2); opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

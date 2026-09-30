@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manifesto — NOETIC</title>
+<meta name="description" content="Six things NOETIC believes about building models that can be read, and the people who signed their name to them.">
+<meta name="theme-color" content="#04050c">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/pages/manifesto.css">
+<script>(function(){var d=document.documentElement,k='noetic:motion';d.classList.remove('no-js');d.classList.add('js');try{var q=new URLSearchParams(location.search).get('motion'),m=localStorage.getItem(k);if(q==='full'||q==='reduced'){localStorage.setItem(k,q);m=q}else if(q==='auto'){localStorage.removeItem(k);m=null}var r=m==='reduced'||(m!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);d.classList.add(r?'motion-reduced':'motion-full')}catch(e){d.classList.add('motion-full')}})();</script>
+</head>
+<body data-page="manifesto">
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="index.html" aria-label="NOETIC — home">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle class="brand__ring" cx="16" cy="16" r="13" stroke="url(#bg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+        <circle cx="16" cy="16" r="4.2" fill="url(#bg1)"/>
+        <circle cx="16" cy="3.2" r="1.9" fill="#22e0ff"/>
+        <circle cx="27.2" cy="22.4" r="1.6" fill="#7c5cff"/>
+        <circle cx="4.8" cy="22.4" r="1.6" fill="#ff4ecd"/>
+        <path d="M16 3.2 16 16 27.2 22.4M16 16 4.8 22.4" stroke="#7c5cff" stroke-width="0.8" opacity="0.55"/>
+        <defs><linearGradient id="bg1" x1="0" y1="0" x2="32" y2="32">
+          <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="brand__word">Noetic</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li style="--i:0"><a class="nav__link" href="index.html" data-scramble>Index</a></li>
+        <li style="--i:1"><a class="nav__link" href="research.html" data-scramble>Research</a></li>
+        <li style="--i:2"><a class="nav__link" href="models.html" data-scramble>Models</a></li>
+        <li style="--i:3"><a class="nav__link" href="playground.html" data-scramble>Playground</a></li>
+        <li style="--i:4"><a class="nav__link" href="manifesto.html" aria-current="page" data-scramble>Manifesto</a></li>
+        <li style="--i:5"><a class="btn btn--ghost nav__cta" href="contact.html">Work with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<canvas class="fx-layer" id="nebula" aria-hidden="true"></canvas>
+
+<div id="viewport"><div id="scroll">
+<main id="main">
+
+  <section class="section section--tall page-hero">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal="fade">Manifesto</p>
+      <h1 class="page-title" data-reveal="mask" data-split="lines">Six positions</h1>
+      <p class="page-lede" data-reveal="fade-up" style="--rd:260ms">
+        We wrote these in a room in Zurich in 2021 and have revised them twice since.
+        Both revisions are in the footnotes, because a manifesto that never changed
+        was never load-bearing.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ BELIEFS ============================ -->
+  <div class="beliefs" id="beliefs">
+
+    <section class="belief" data-hue="196" aria-labelledby="b1">
+      <div class="wrap belief__inner">
+        <span class="belief__num" aria-hidden="true">01</span>
+        <h2 id="b1" data-reveal="mask" data-split="lines">A capability you cannot inspect is a rumour.</h2>
+        <p data-reveal="fade-up">Benchmarks measure whether a model was right this time.
+           They say nothing about whether it will be right on the case you actually
+           care about. Inspection is the only tool that generalises.</p>
+      </div>
+    </section>
+
+    <section class="belief" data-hue="222" aria-labelledby="b2">
+      <div class="wrap belief__inner">
+        <span class="belief__num" aria-hidden="true">02</span>
+        <h2 id="b2" data-reveal="mask" data-split="lines">Legibility is a capability, not a tax.</h2>
+        <p data-reveal="fade-up">A model forced to produce a derivation it can defend
+           makes different mistakes than one optimised only for the answer — fewer of
+           them, and more findable. We keep measuring this because we keep being
+           accused of wishful thinking.</p>
+      </div>
+    </section>
+
+    <section class="belief" data-hue="258" aria-labelledby="b3">
+      <div class="wrap belief__inner">
+        <span class="belief__num" aria-hidden="true">03</span>
+        <h2 id="b3" data-reveal="mask" data-split="lines">Publish the negative results or stop calling it research.</h2>
+        <p data-reveal="fade-up">Our most-cited paper reports that derivation traces did
+           <em>not</em> reduce user overreliance. It cost us a product launch. It was
+           the most useful thing we published that year.</p>
+      </div>
+    </section>
+
+    <section class="belief" data-hue="288" aria-labelledby="b4">
+      <div class="wrap belief__inner">
+        <span class="belief__num" aria-hidden="true">04</span>
+        <h2 id="b4" data-reveal="mask" data-split="lines">Scale is a budget line, not a philosophy.</h2>
+        <p data-reveal="fade-up">We train large models because large models are currently
+           better, not because size is the point. The day a 3B model reads as clearly
+           and answers as well, we will happily delete the cluster.</p>
+      </div>
+    </section>
+
+    <section class="belief" data-hue="318" aria-labelledby="b5">
+      <div class="wrap belief__inner">
+        <span class="belief__num" aria-hidden="true">05</span>
+        <h2 id="b5" data-reveal="mask" data-split="lines">Refusal without a reason is just failure with better manners.</h2>
+        <p data-reveal="fade-up">When Noema declines, it names the predicate it invoked and
+           links the clause. If we cannot write the clause down, we have not thought
+           the policy through — and we do not ship it.</p>
+      </div>
+    </section>
+
+    <section class="belief" data-hue="170" aria-labelledby="b6">
+      <div class="wrap belief__inner">
+        <span class="belief__num" aria-hidden="true">06</span>
+        <h2 id="b6" data-reveal="mask" data-split="lines">Somebody outside this building has to be able to check.</h2>
+        <p data-reveal="fade-up">Hence open weights for Micro, a source-available probe stack,
+           and a residency programme with an unconditional right to publish. Trust that
+           cannot be audited is just branding.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================ TIMELINE ============================ -->
+  <section class="section section--ruled" aria-labelledby="tl-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal="fade">History</p>
+          <h2 id="tl-h" data-reveal="mask" data-split="lines">Five years, abbreviated.</h2>
+        </div>
+        <p data-reveal="fade-up">A fictional history for a fictional lab — written to make the
+           design problem concrete rather than to describe anything real.</p>
+      </div>
+
+      <ol class="timeline" data-stagger data-reveal="fade-up">
+        <li class="tl">
+          <span class="tl__year">2021</span>
+          <div class="tl__body">
+            <h3>Founded in a rented room</h3>
+            <p>Four people, one leased cluster, and a shared conviction that
+               interpretability was being treated as a garnish.</p>
+          </div>
+        </li>
+        <li class="tl">
+          <span class="tl__year">2022</span>
+          <div class="tl__body">
+            <h3>Naming the heads</h3>
+            <p>The first stable taxonomy — 240 named attention heads that survived
+               retraining. It is still the backbone of everything we do.</p>
+          </div>
+        </li>
+        <li class="tl">
+          <span class="tl__year">2023</span>
+          <div class="tl__body">
+            <h3>Noema-Micro, open</h3>
+            <p>We published weights before we published an API, which several investors
+               described as backwards.</p>
+          </div>
+        </li>
+        <li class="tl">
+          <span class="tl__year">2024</span>
+          <div class="tl__body">
+            <h3>The negative result</h3>
+            <p>Traces did not reduce overreliance. We shipped the paper and cancelled
+               the launch.</p>
+          </div>
+        </li>
+        <li class="tl">
+          <span class="tl__year">2026</span>
+          <div class="tl__body">
+            <h3>Noema-1</h3>
+            <p>340B parameters, 1.2M context, and a derivation for every answer.
+               The first model where legibility did not cost us the frontier.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ TEAM ============================ -->
+  <section class="section section--ruled" aria-labelledby="team-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal="fade">People</p>
+          <h2 id="team-h" data-reveal="mask" data-split="lines">Who signed it.</h2>
+        </div>
+        <p data-reveal="fade-up">Invented people, invented roles. Any resemblance to actual
+           researchers is coincidental.</p>
+      </div>
+
+      <ul class="team grid grid--4" data-stagger data-reveal="fade-up">
+        <li class="member">
+          <span class="member__av" data-seed="1" aria-hidden="true">IV</span>
+          <h3>Ilse Vantree</h3>
+          <p class="member__role">Director, Interpretability</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="2" aria-hidden="true">RK</span>
+          <h3>Ravi Kalindi</h3>
+          <p class="member__role">Head of Training Systems</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="3" aria-hidden="true">MØ</span>
+          <h3>Mira Østergaard</h3>
+          <p class="member__role">Alignment Predicates</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="4" aria-hidden="true">TA</span>
+          <h3>Tomás Abreu</h3>
+          <p class="member__role">Probe Tooling</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="5" aria-hidden="true">SN</span>
+          <h3>Sena Nakamura</h3>
+          <p class="member__role">Long-context Research</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="6" aria-hidden="true">JB</span>
+          <h3>Joss Bariteau</h3>
+          <p class="member__role">Evaluation</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="7" aria-hidden="true">AD</span>
+          <h3>Adaeze Diallo</h3>
+          <p class="member__role">Residency Programme</p>
+        </li>
+        <li class="member">
+          <span class="member__av" data-seed="8" aria-hidden="true">PW</span>
+          <h3>Petra Wu</h3>
+          <p class="member__role">Technical Writing</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tall cta" aria-labelledby="mfcta-h">
+    <div class="wrap wrap--narrow cta__inner">
+      <h2 class="cta__title" id="mfcta-h" data-reveal="chars" data-split="chars">Disagree with us.</h2>
+      <p data-reveal="fade-up">The residency exists specifically for people who think we are wrong.</p>
+      <div class="hero__actions" data-reveal="fade-up">
+        <a class="btn btn--primary btn--lg" href="contact.html">Apply</a>
+        <a class="btn btn--ghost btn--lg" href="research.html">Read the work first</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="NOETIC — home">
+          <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="url(#fg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+            <circle cx="16" cy="16" r="4.2" fill="url(#fg1)"/>
+            <defs><linearGradient id="fg1" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+            </linearGradient></defs>
+          </svg>
+          <span class="brand__word">Noetic</span>
+        </a>
+        <p class="footer__blurb">A research lab for models that can be read.
+           Zurich · Lisbon · Remote.</p>
+      </div>
+      <div><h5>Lab</h5><ul>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="playground.html">Playground</a></li></ul></div>
+      <div><h5>Company</h5><ul>
+        <li><a href="manifesto.html">Manifesto</a></li>
+        <li><a href="contact.html">Careers</a></li>
+        <li><a href="contact.html#contact-form">Contact</a></li></ul></div>
+      <div><h5>Elsewhere</h5><ul>
+        <li><a href="contact.html">Newsletter</a></li>
+        <li><a href="contact.html">Press kit</a></li>
+        <li><a href="contact.html">Status</a></li></ul></div>
+    </div>
+    <p class="footer__glyph" aria-hidden="true">NOETIC</p>
+    <div class="footer__note">
+      <span>© 2026 NOETIC Research — a fictional lab, built as a web design exercise.</span>
+      <span>No real products, people or benchmarks are described here.</span>
+      <button class="motion-switch" id="motion-switch" type="button" aria-pressed="false">Motion</button>
+    </div>
+  </div>
+</footer>
+
+</div></div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div><div class="cursor__dot"></div>
+</div>
+<div class="veil" id="veil" aria-hidden="true"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

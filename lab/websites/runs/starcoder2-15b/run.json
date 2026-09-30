@@ -1,0 +1,6 @@
+{
+  "model": "starcoder2-15B",
+  "status": "failed",
+  "stack": "unknown",
+  "note": "No usable static build."
+}

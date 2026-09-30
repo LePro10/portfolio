@@ -1,0 +1,102 @@
+/* ==========================================================================
+   NOETIC — design tokens
+   Single source of truth for color, type, space, motion and depth.
+   ========================================================================== */
+
+:root {
+  /* ---- Ink: the void ---------------------------------------------------- */
+  --ink-1000: #000104;
+  --ink-950:  #04050c;
+  --ink-900:  #070a15;
+  --ink-850:  #0b0f1f;
+  --ink-800:  #10152a;
+  --ink-750:  #161c37;
+  --ink-700:  #1e2645;
+
+  /* ---- Signal: cyan -> violet -> magenta -------------------------------- */
+  --cy-400: #7ff5ff;
+  --cy-500: #22e0ff;
+  --cy-600: #00b8e6;
+  --vi-400: #a68cff;
+  --vi-500: #7c5cff;
+  --vi-600: #5a35f0;
+  --mg-500: #ff4ecd;
+  --am-500: #ffb347;
+
+  /* ---- Text ------------------------------------------------------------- */
+  --tx-hi:   #eef2ff;
+  --tx-mid:  #a7b0d0;
+  --tx-lo:   #6b7599;
+  --tx-dim:  #444d70;
+
+  /* ---- Semantic --------------------------------------------------------- */
+  --bg:            var(--ink-950);
+  --bg-elevated:   var(--ink-900);
+  --accent:        var(--cy-500);
+  --accent-2:      var(--vi-500);
+  --accent-3:      var(--mg-500);
+
+  --line:          color-mix(in oklab, var(--tx-lo) 22%, transparent);
+  --line-strong:   color-mix(in oklab, var(--tx-lo) 42%, transparent);
+  --glass:         color-mix(in oklab, var(--ink-800) 62%, transparent);
+  --glass-hi:      color-mix(in oklab, var(--ink-750) 72%, transparent);
+
+  --grad-signal:   linear-gradient(100deg, var(--cy-500), var(--vi-500) 55%, var(--mg-500));
+  --grad-text:     linear-gradient(180deg, var(--tx-hi), color-mix(in oklab, var(--tx-hi) 55%, var(--vi-400)));
+  --glow-cy:       0 0 0 1px color-mix(in oklab, var(--cy-500) 30%, transparent),
+                   0 0 24px -6px color-mix(in oklab, var(--cy-500) 70%, transparent);
+
+  /* ---- Type ------------------------------------------------------------- */
+  --font-sans: "Segoe UI Variable Display", "Segoe UI", Inter, -apple-system,
+               BlinkMacSystemFont, "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "Cascadia Code", "JetBrains Mono", "SF Mono", ui-monospace,
+               Consolas, "Liberation Mono", monospace;
+
+  /* fluid scale — 360px .. 1600px viewport */
+  --t-xs:   clamp(0.69rem, 0.66rem + 0.13vw, 0.78rem);
+  --t-sm:   clamp(0.81rem, 0.77rem + 0.18vw, 0.94rem);
+  --t-base: clamp(0.95rem, 0.90rem + 0.24vw, 1.09rem);
+  --t-md:   clamp(1.10rem, 1.01rem + 0.42vw, 1.38rem);
+  --t-lg:   clamp(1.35rem, 1.16rem + 0.86vw, 1.95rem);
+  --t-xl:   clamp(1.75rem, 1.34rem + 1.85vw, 3.00rem);
+  --t-2xl:  clamp(2.30rem, 1.55rem + 3.35vw, 4.50rem);
+  --t-3xl:  clamp(3.00rem, 1.60rem + 6.25vw, 7.00rem);
+  --t-4xl:  clamp(3.60rem, 1.20rem + 10.7vw, 11.0rem);
+
+  --lh-tight: 0.92;
+  --lh-snug:  1.12;
+  --lh-body:  1.62;
+  --tr-tight: -0.035em;
+  --tr-snug:  -0.02em;
+  --tr-wide:  0.16em;
+
+  /* ---- Space ------------------------------------------------------------ */
+  --s-1: 0.25rem;  --s-2: 0.5rem;   --s-3: 0.75rem;  --s-4: 1rem;
+  --s-5: 1.5rem;   --s-6: 2rem;     --s-7: 3rem;     --s-8: 4rem;
+  --s-9: 6rem;     --s-10: 8rem;    --s-11: 12rem;
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --measure: 62ch;
+  --maxw: 88rem;
+
+  /* ---- Radius ----------------------------------------------------------- */
+  --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 32px; --r-full: 999px;
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --e-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --e-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --e-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --e-swift:  cubic-bezier(0.4, 0, 0.2, 1);
+  --d-fast: 220ms; --d-med: 480ms; --d-slow: 900ms; --d-epic: 1400ms;
+
+  /* ---- Depth ------------------------------------------------------------ */
+  --z-canvas: 0;  --z-content: 10; --z-header: 100;
+  --z-cursor: 900; --z-overlay: 1000;
+
+  color-scheme: dark;
+}
+
+/* The site is authored dark. A light preference gets a softened, not inverted,
+   palette so the neon never becomes unreadable. */
+@media (prefers-color-scheme: light) {
+  :root { /* deliberately unchanged — NOETIC is a dark-only identity */ }
+}

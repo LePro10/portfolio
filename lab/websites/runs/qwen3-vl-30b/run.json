@@ -1,0 +1,6 @@
+{
+  "model": "qwen3-vl-30B",
+  "status": "server-only",
+  "stack": "next-server",
+  "note": "Needs a Node.js server; no static build to preview."
+}

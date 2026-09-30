@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playground — NOETIC</title>
+<meta name="description" content="Four interactive toys: an attention visualiser, a latent space explorer, a token stream and a live shader lab. Everything runs in your browser.">
+<meta name="theme-color" content="#04050c">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/pages/playground.css">
+<script>(function(){var d=document.documentElement,k='noetic:motion';d.classList.remove('no-js');d.classList.add('js');try{var q=new URLSearchParams(location.search).get('motion'),m=localStorage.getItem(k);if(q==='full'||q==='reduced'){localStorage.setItem(k,q);m=q}else if(q==='auto'){localStorage.removeItem(k);m=null}var r=m==='reduced'||(m!=='full'&&matchMedia('(prefers-reduced-motion: reduce)').matches);d.classList.add(r?'motion-reduced':'motion-full')}catch(e){d.classList.add('motion-full')}})();</script>
+</head>
+<body data-page="playground">
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="index.html" aria-label="NOETIC — home">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle class="brand__ring" cx="16" cy="16" r="13" stroke="url(#bg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+        <circle cx="16" cy="16" r="4.2" fill="url(#bg1)"/>
+        <circle cx="16" cy="3.2" r="1.9" fill="#22e0ff"/>
+        <circle cx="27.2" cy="22.4" r="1.6" fill="#7c5cff"/>
+        <circle cx="4.8" cy="22.4" r="1.6" fill="#ff4ecd"/>
+        <path d="M16 3.2 16 16 27.2 22.4M16 16 4.8 22.4" stroke="#7c5cff" stroke-width="0.8" opacity="0.55"/>
+        <defs><linearGradient id="bg1" x1="0" y1="0" x2="32" y2="32">
+          <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="brand__word">Noetic</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li style="--i:0"><a class="nav__link" href="index.html" data-scramble>Index</a></li>
+        <li style="--i:1"><a class="nav__link" href="research.html" data-scramble>Research</a></li>
+        <li style="--i:2"><a class="nav__link" href="models.html" data-scramble>Models</a></li>
+        <li style="--i:3"><a class="nav__link" href="playground.html" aria-current="page" data-scramble>Playground</a></li>
+        <li style="--i:4"><a class="nav__link" href="manifesto.html" data-scramble>Manifesto</a></li>
+        <li style="--i:5"><a class="btn btn--ghost nav__cta" href="contact.html">Work with us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<canvas class="fx-layer" id="nebula" aria-hidden="true"></canvas>
+
+<div id="viewport"><div id="scroll">
+<main id="main">
+
+  <section class="section section--tall page-hero">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal="fade">Playground</p>
+      <h1 class="page-title" data-reveal="mask" data-split="lines">Four toys</h1>
+      <p class="page-lede" data-reveal="fade-up" style="--rd:260ms">
+        Everything below runs locally in your browser with no network calls and no
+        model behind it — these are honest <em>simulations</em> of the shapes our
+        tooling produces, built so you can poke the ideas rather than read about them.
+      </p>
+      <noscript>
+        <p class="ns-note">These demos need JavaScript. The rest of the site works without it.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- ============================ 01 · ATTENTION ============================ -->
+  <section class="section section--ruled demo" id="demo-attention" aria-labelledby="d1-h">
+    <div class="wrap">
+      <div class="demo__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Toy 01</p>
+          <h2 id="d1-h" data-reveal="mask" data-split="lines">Attention visualiser</h2>
+          <p data-reveal="fade-up">Type a sentence. Each token queries every other token;
+             the arcs show where the weight went. Switch heads to see different jobs —
+             the syntax head hugs its neighbours, the coreference head reaches back for
+             names.</p>
+        </div>
+      </div>
+
+      <div class="demo__frame" data-reveal="fade-up">
+        <div class="demo__bar">
+          <label class="u-sr" for="att-input">Sentence to analyse</label>
+          <input id="att-input" type="text" spellcheck="false"
+                 value="The lab published the weights because an explanation nobody can reproduce is a press release."
+                 placeholder="Type a sentence…">
+          <div class="seg" id="att-heads" role="group" aria-label="Attention head">
+            <button type="button" aria-pressed="true"  data-head="syntax">Syntax</button>
+            <button type="button" aria-pressed="false" data-head="coref">Coref</button>
+            <button type="button" aria-pressed="false" data-head="global">Global</button>
+            <button type="button" aria-pressed="false" data-head="carry">Carry</button>
+          </div>
+        </div>
+
+        <div class="demo__stage">
+          <canvas id="att-canvas" aria-label="Attention arcs between tokens"></canvas>
+        </div>
+
+        <p class="demo__foot u-mono" id="att-foot">
+          Hover a token to isolate its attention · 0 tokens
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 02 · LATENT SPACE ============================ -->
+  <section class="section section--ruled demo" id="demo-latent" aria-labelledby="d2-h">
+    <div class="wrap">
+      <div class="demo__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Toy 02</p>
+          <h2 id="d2-h" data-reveal="mask" data-split="lines">Latent space</h2>
+          <p data-reveal="fade-up">A two-dimensional shadow of a twelve-thousand-dimensional
+             space. Drag to pan, scroll to zoom, hover a point for its token. Related
+             meanings sit near each other — that clustering is the only reason any of
+             this works.</p>
+        </div>
+      </div>
+
+      <div class="demo__frame" data-reveal="fade-up">
+        <div class="demo__bar">
+          <div class="seg" id="lat-mode" role="group" aria-label="Colouring">
+            <button type="button" aria-pressed="true"  data-mode="cluster">Cluster</button>
+            <button type="button" aria-pressed="false" data-mode="freq">Frequency</button>
+            <button type="button" aria-pressed="false" data-mode="norm">Norm</button>
+          </div>
+          <button class="btn btn--ghost demo__reset" id="lat-reset" type="button">Reset view</button>
+        </div>
+
+        <div class="demo__stage demo__stage--tall">
+          <canvas id="lat-canvas" aria-label="Scatter plot of token embeddings"></canvas>
+          <div class="demo__tip" id="lat-tip" hidden></div>
+        </div>
+
+        <p class="demo__foot u-mono" id="lat-foot">Drag to pan · scroll to zoom · 640 tokens</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 03 · TOKEN STREAM ============================ -->
+  <section class="section section--ruled demo" id="demo-stream" aria-labelledby="d3-h">
+    <div class="wrap">
+      <div class="demo__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Toy 03</p>
+          <h2 id="d3-h" data-reveal="mask" data-split="lines">Decode, one token at a time</h2>
+          <p data-reveal="fade-up">Generation is a loop: score every token in the vocabulary,
+             pick one, append, repeat. The panel on the right shows the runners-up at each
+             step — the words the model nearly said.</p>
+        </div>
+      </div>
+
+      <div class="demo__frame" data-reveal="fade-up">
+        <div class="demo__bar">
+          <label class="u-sr" for="str-prompt">Prompt</label>
+          <select id="str-prompt">
+            <option value="0">Explain interpretability to a sceptic</option>
+            <option value="1">Why publish open weights?</option>
+            <option value="2">What is an attention head, really?</option>
+          </select>
+          <div class="slider str-temp">
+            <div class="slider__row"><span>Temperature</span><b id="str-temp-val">0.70</b></div>
+            <input id="str-temp" type="range" min="0" max="120" value="70" aria-label="Temperature">
+          </div>
+          <button class="btn btn--primary" id="str-run" type="button">Run</button>
+        </div>
+
+        <div class="stream">
+          <div class="stream__out" id="str-out" aria-live="polite" aria-atomic="false">
+            <span class="stream__placeholder">Press <b>Run</b> to decode.</span>
+          </div>
+          <aside class="stream__side" aria-label="Candidate tokens">
+            <h4 class="u-mono">Candidates</h4>
+            <ol class="cands" id="str-cands">
+              <li class="cand"><span>—</span><i style="--p:0"></i><b>0%</b></li>
+              <li class="cand"><span>—</span><i style="--p:0"></i><b>0%</b></li>
+              <li class="cand"><span>—</span><i style="--p:0"></i><b>0%</b></li>
+              <li class="cand"><span>—</span><i style="--p:0"></i><b>0%</b></li>
+              <li class="cand"><span>—</span><i style="--p:0"></i><b>0%</b></li>
+            </ol>
+            <p class="stream__meta u-mono" id="str-meta">idle</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 04 · SHADER LAB ============================ -->
+  <section class="section section--ruled demo" id="demo-shader" aria-labelledby="d4-h">
+    <div class="wrap">
+      <div class="demo__head">
+        <div>
+          <p class="eyebrow" data-reveal="fade">Toy 04</p>
+          <h2 id="d4-h" data-reveal="mask" data-split="lines">Shader lab</h2>
+          <p data-reveal="fade-up">The field behind the home page, exposed. These are the actual
+             uniforms driving the fragment shader — move them and the surface changes in
+             the same frame. Nothing here is a video.</p>
+        </div>
+      </div>
+
+      <div class="demo__frame" data-reveal="fade-up">
+        <div class="shaderlab">
+          <div class="demo__stage shaderlab__stage">
+            <canvas id="lab-canvas" aria-label="Live shader output"></canvas>
+          </div>
+          <div class="shaderlab__controls">
+            <div class="slider">
+              <div class="slider__row"><span>Turbulence</span><b id="v-turb">3.20</b></div>
+              <input id="u-turb" type="range" min="0" max="800" value="320" aria-label="Turbulence">
+            </div>
+            <div class="slider">
+              <div class="slider__row"><span>Flow speed</span><b id="v-speed">0.45</b></div>
+              <input id="u-speed" type="range" min="0" max="200" value="45" aria-label="Flow speed">
+            </div>
+            <div class="slider">
+              <div class="slider__row"><span>Warp</span><b id="v-warp">1.10</b></div>
+              <input id="u-warp" type="range" min="0" max="300" value="110" aria-label="Warp">
+            </div>
+            <div class="slider">
+              <div class="slider__row"><span>Hue shift</span><b id="v-hue">0.00</b></div>
+              <input id="u-hue" type="range" min="0" max="100" value="0" aria-label="Hue shift">
+            </div>
+            <div class="slider">
+              <div class="slider__row"><span>Contrast</span><b id="v-cont">1.00</b></div>
+              <input id="u-cont" type="range" min="20" max="260" value="100" aria-label="Contrast">
+            </div>
+            <button class="btn btn--ghost" id="lab-reset" type="button">Reset uniforms</button>
+            <p class="shaderlab__note u-mono" id="lab-note">GLSL · 1 draw call · fullscreen quad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tall cta" aria-labelledby="pcta-h">
+    <div class="wrap wrap--narrow cta__inner">
+      <h2 class="cta__title" id="pcta-h" data-reveal="chars" data-split="chars">Want the real thing?</h2>
+      <p data-reveal="fade-up">Noema-Probe produces these views against actual checkpoints.</p>
+      <div class="hero__actions" data-reveal="fade-up">
+        <a class="btn btn--primary btn--lg" href="models.html#noema-probe">See Noema-Probe</a>
+        <a class="btn btn--ghost btn--lg" href="research.html">Read the method</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="NOETIC — home">
+          <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" stroke="url(#fg1)" stroke-width="1.2" stroke-dasharray="30 12"/>
+            <circle cx="16" cy="16" r="4.2" fill="url(#fg1)"/>
+            <defs><linearGradient id="fg1" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#22e0ff"/><stop offset="1" stop-color="#7c5cff"/>
+            </linearGradient></defs>
+          </svg>
+          <span class="brand__word">Noetic</span>
+        </a>
+        <p class="footer__blurb">A research lab for models that can be read.
+           Zurich · Lisbon · Remote.</p>
+      </div>
+      <div><h5>Lab</h5><ul>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="playground.html">Playground</a></li></ul></div>
+      <div><h5>Company</h5><ul>
+        <li><a href="manifesto.html">Manifesto</a></li>
+        <li><a href="contact.html">Careers</a></li>
+        <li><a href="contact.html#contact-form">Contact</a></li></ul></div>
+      <div><h5>Elsewhere</h5><ul>
+        <li><a href="contact.html">Newsletter</a></li>
+        <li><a href="contact.html">Press kit</a></li>
+        <li><a href="contact.html">Status</a></li></ul></div>
+    </div>
+    <p class="footer__glyph" aria-hidden="true">NOETIC</p>
+    <div class="footer__note">
+      <span>© 2026 NOETIC Research — a fictional lab, built as a web design exercise.</span>
+      <span>No real products, people or benchmarks are described here.</span>
+      <button class="motion-switch" id="motion-switch" type="button" aria-pressed="false">Motion</button>
+    </div>
+  </div>
+</footer>
+
+</div></div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__ring"></div><div class="cursor__dot"></div>
+</div>
+<div class="veil" id="veil" aria-hidden="true"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
