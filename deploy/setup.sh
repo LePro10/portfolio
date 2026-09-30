@@ -33,6 +33,8 @@ if ! command -v caddy >/dev/null; then
   apt-get update -qq
   apt-get install -y -qq caddy >/dev/null
 fi
+# pnpm als echter Befehl: package.json-Skripte rufen pnpm verschachtelt auf.
+corepack enable pnpm
 echo "node $(node -v), caddy $(caddy version | cut -d' ' -f1)"
 
 echo "── Benutzer und Repo"
