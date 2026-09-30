@@ -5,9 +5,9 @@ Node-Prozess: Caddy liefert Dateien aus, ein systemd-Timer baut neue Commits.
 
 ```text
 Browser
-  └─ Sunrise-Box (80/443) → Edge 192.168.30.56 (OpenResty, TLS)
-       ├─ neuralhub.dev, www.neuralhub.dev → Portfolio-LXC :80 (dieses Repo)
-       └─ dashboard.neuralhub.dev          → oc 192.168.30.91:80 (Repo neuralhub)
+  └─ Sunrise-Box (80/443) → Edge 192.168.30.56 (Nginx Proxy Manager, TLS)
+       ├─ neuralhub.dev, www.neuralhub.dev → CT 120 192.168.30.64:80 (dieses Repo)
+       └─ dashboard.neuralhub.dev          → oc 192.168.30.91:80 (Repo projectWebsite)
 ```
 
 ## Deploy
@@ -42,14 +42,19 @@ frei sind) und führt `setup.sh` aus. Andere Werte: `CTID=… IP=… bash` statt
 `update.sh`) im Container erneut ausführen — der Timer aktualisiert nur die
 Seite, nicht die Betriebsdateien.
 
-## Umschalten der Domain
+## Domain auf der Edge
 
-Auf der Edge (`192.168.30.56`) den Upstream für `neuralhub.dev` und
-`www.neuralhub.dev` von `http://192.168.30.91:80` auf `http://<portfolio-ip>:80`
-ändern. `dashboard.neuralhub.dev` bleibt unverändert. Zurück geht es mit
-derselben Zeile.
+Die Edge ist ein Nginx Proxy Manager (`http://192.168.30.56:81`). Er läuft auf
+`192.168.30.50`, das nicht Leandro gehört — Änderungen dort macht nur, wer den
+Login hat. Zwei getrennte Proxy-Hosts, jeder mit eigenem Let's-Encrypt-Zertifikat
+(erneuert der Proxy Manager selbst):
 
-Vorher im LAN prüfen: `curl -H 'Host: neuralhub.dev' http://<portfolio-ip>/lab`.
+| Domains | Ziel |
+|---|---|
+| `neuralhub.dev`, `www.neuralhub.dev` | `http://192.168.30.64:80` |
+| `dashboard.neuralhub.dev` | `http://192.168.30.91:80` |
+
+Vorher im LAN prüfen: `curl -H 'Host: neuralhub.dev' http://192.168.30.64/lab`.
 
 ## Was Caddy zusätzlich macht
 

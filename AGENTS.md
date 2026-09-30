@@ -15,6 +15,7 @@ anderer Host — hier nur verlinkt (`site.dashboard` in `src/content/profile.ts`
 - Kein Server-Code: kein API-Route, keine Middleware, kein `next/headers`.
   Alles muss mit `output: "export"` bauen. Weiterleitungen gehören in
   `deploy/Caddyfile` und zusätzlich in `scripts/preview.ts`.
+- Keine unbelegten Claims: keine erfundenen Zahlen, Preise, Referenzen oder Testimonials. Lab-Zahlen werden berechnet; feste Zahlen in `src/content/profile.ts` (Alter, Repos, Sprachen) aktuell halten.
 - Texte stehen in `src/content/`, nicht im Markup. UI-Sprache Englisch; Code-Kommentare und Doku Deutsch.
 - Design-Tokens aus `src/app/globals.css` (`--pf-*`, `--font-sans`, `--font-mono`) statt neuer Farben.
 - AI-Lab-Daten nur nach `lab/README.md`. `pnpm lab:check` muss grün sein;
@@ -33,6 +34,9 @@ pnpm validate      # lint, typecheck, test, lab:check, build
 
 Agents committen, **pushen nicht**. Ein Push auf `main` ist ein Deploy
 (Container holt ihn binnen 2 Minuten). Betrieb: `deploy/README.md`.
+
+Infrastruktur: Leandros Proxmox ist `192.168.30.150` (Node `server`, Portfolio = CT 120,
+`192.168.30.64`). `192.168.30.50` samt Edge `.56` gehört nicht Leandro — dort nichts ändern.
 
 Dauerhafte Arbeitsregeln, die Leandro nebenbei sagt, gehören noch in derselben
 Session in diese Datei — kurz, im Imperativ.
