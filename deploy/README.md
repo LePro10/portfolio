@@ -29,28 +29,18 @@ Die letzten drei Releases liegen unter `/opt/portfolio/releases/<sha>/`.
 
 ## Container anlegen (Proxmox, einmalig)
 
-Auf dem Proxmox-Node. IP, Gateway, ID und Storage anpassen; die IP vorher auf
-Belegung prüfen (`ping`).
+Auf Leandros Proxmox **192.168.30.150** (Node „server“) in der Shell, als root:
 
 ```bash
-pveam update
-pveam download local debian-12-standard_12.12-1_amd64.tar.zst   # aktuelle Version: pveam available | grep debian-12
-
-pct create 130 local:vztmpl/debian-12-standard_12.12-1_amd64.tar.zst \
-  --hostname portfolio \
-  --cores 2 --memory 2048 --swap 1024 \
-  --rootfs local-lvm:12 \
-  --net0 name=eth0,bridge=vmbr0,ip=192.168.30.X/24,gw=192.168.30.1 \
-  --unprivileged 1 --features nesting=1 \
-  --onboot 1 --start 1
-
-pct exec 130 -- bash -c "apt-get update -qq && apt-get install -y -qq curl && \
-  curl -fsSL https://raw.githubusercontent.com/LePro10/portfolio/main/deploy/setup.sh | bash"
+curl -fsSL https://raw.githubusercontent.com/LePro10/portfolio/main/deploy/proxmox-create.sh | bash
 ```
 
+Legt CT 120 „portfolio“ mit `192.168.30.64` an (prüft vorher, dass ID und IP
+frei sind) und führt `setup.sh` aus. Andere Werte: `CTID=… IP=… bash` statt `bash`.
+
 `setup.sh` ist idempotent. Nach Änderungen an `deploy/*` (Caddyfile, Units,
-`update.sh`) einfach erneut ausführen — der Timer aktualisiert nur die Seite,
-nicht die Betriebsdateien.
+`update.sh`) im Container erneut ausführen — der Timer aktualisiert nur die
+Seite, nicht die Betriebsdateien.
 
 ## Umschalten der Domain
 
