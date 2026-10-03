@@ -56,7 +56,8 @@ rm -rf "$SRC"
 caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile >/dev/null
 systemctl daemon-reload
 systemctl enable --now caddy >/dev/null
-systemctl reload caddy
+# restart statt reload: "admin off" im Caddyfile schaltet die API ab, die reload braucht.
+systemctl restart caddy
 
 echo "── Erstes Release (dauert ein paar Minuten)"
 systemctl start portfolio-update.service
