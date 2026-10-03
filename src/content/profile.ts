@@ -54,6 +54,16 @@ export const tools: { label: string; icon: string; fit?: string }[] = [
   { label: 'Open WebUI', icon: '/tools/openwebui.svg', fit: '54%' },
 ];
 
+/** Navigation. `section` verbindet einen Link mit dem Anker, der ihn beim Scrollen aktiv markiert. */
+export const nav = [
+  { label: 'Index', href: '/', note: 'Back to the start' },
+  { label: 'About', href: '/#about', note: 'Who I am', section: 'about' },
+  { label: 'Work', href: '/#work', note: `${projects.length} projects`, section: 'work' },
+  { label: 'Lab', href: '/lab', note: 'Models building websites', section: 'lab' },
+  { label: 'Services', href: '/services', note: 'Packages and process' },
+  { label: 'Contact', href: '/#contact', note: 'Email or GitHub', section: 'contact' },
+];
+
 export const site = {
   url: 'https://neuralhub.dev',
   /** Privates Dashboard, eigener Host und eigenes Repo. Nur verlinkt. */

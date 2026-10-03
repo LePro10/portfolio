@@ -6,10 +6,11 @@ import { projects } from '@/content/profile';
 import { ProjectDialog } from './ProjectDialog';
 
 /**
- * After hyperiux/interactive-list-preview: a white bar slides to the hovered row, and that
+ * After hyperiux/interactive-list-preview: a glass bar slides to the hovered row, and that
  * row's cover wipes open (clip-path from the centre) on top of the previous ones, drifting
- * with the cursor. Rebuilt on CSS transitions instead of GSAP. Clicking any row opens the
- * project dialog; the GitHub link lives there, not on the row.
+ * with the cursor. Rebuilt on CSS transitions instead of GSAP. The summary sits in the row
+ * itself, so touch screens get it too. Clicking any row opens the project dialog; the
+ * GitHub link lives there, not on the row.
  */
 export function WorkList() {
   const [active, setActive] = useState<number | null>(null);
@@ -52,9 +53,6 @@ export function WorkList() {
       onPointerMove={onMove}
       onPointerLeave={() => setActive(null)}
     >
-      <div className="pf-list__head" aria-hidden="true">
-        <span>Project</span><span>Stack</span><span /><span>Focus</span><span>Source</span>
-      </div>
       <span className="pf-list__bar" style={{ translate: `0 ${bar.y}px`, height: bar.h }} aria-hidden="true" />
       {projects.map((p, i) => (
         <div
@@ -63,12 +61,17 @@ export function WorkList() {
           onPointerEnter={(e) => e.pointerType === 'mouse' && enter(i, e.currentTarget)}
         >
           <button type="button" className="pf-row__line" aria-haspopup="dialog" onClick={() => setOpen(i)}>
-            <span className="pf-row__index">{String(i + 1).padStart(2, '0')}</span>
-            <span className="pf-row__name">{p.name}</span>
-            <span className="pf-row__stack">{p.stack}</span>
-            <span />
-            <span className="pf-row__tags">{p.tags}</span>
-            <span className="pf-row__source">{p.url ? 'Public' : 'Private'} <b aria-hidden="true">+</b></span>
+            <span className="pf-row__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span className="pf-row__main">
+              <span className="pf-row__name">{p.name}</span>
+              <span className="pf-row__summary">{p.summary}</span>
+            </span>
+            <span className="pf-row__gap" aria-hidden="true" />
+            <span className="pf-row__meta">
+              <span className="pf-row__stack">{p.stack}</span>
+              <span className={`pf-badge ${p.url ? 'is-public' : ''}`}>{p.url ? 'Public' : 'Private'}</span>
+            </span>
+            <b className="pf-row__plus" aria-hidden="true">+</b>
           </button>
         </div>
       ))}
@@ -81,7 +84,7 @@ export function WorkList() {
               style={{ zIndex: stack.indexOf(i) + 1 }}
             >
               <Cover kind={p.cover} name={p.name} />
-              <figcaption>{p.summary}</figcaption>
+              <figcaption>{p.tags}</figcaption>
             </figure>
           ))}
         </div>

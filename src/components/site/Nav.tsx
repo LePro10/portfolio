@@ -1,24 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FlameButton } from '@/components/buttons/FlameButton';
-import { Cover } from '@/components/home/Cover';
-import { profile } from '@/content/profile';
-
-const LINKS = [
-  { label: 'Index', href: '/' },
-  { label: 'About', href: '/#about' },
-  { label: 'Work', href: '/#work' },
-  { label: 'Lab', href: '/lab' },
-  { label: 'Services', href: '/services' },
-  { label: 'Contact', href: '/#contact' },
-];
+import { nav, profile } from '@/content/profile';
 
 /** Each character slides up to reveal a copy of itself underneath, staggered (CSS only). */
-function RollLink({ label, href, onClick }: { label: string; href: string; onClick: () => void }) {
+function RollLink({ label, href, current, onClick }: { label: string; href: string; current: boolean; onClick: () => void }) {
   return (
-    <Link href={href} onClick={onClick} className="pf-roll">
+    <Link href={href} onClick={onClick} className="pf-roll" aria-current={current ? 'page' : undefined}>
       <span className="pf-sr">{label}</span>
       <span aria-hidden="true" className="pf-roll__clip">
         {[...label].map((c, i) => <span key={i} style={{ transitionDelay: `${i * 0.018}s` }}>{c}</span>)}
@@ -27,12 +18,59 @@ function RollLink({ label, href, onClick }: { label: string; href: string; onCli
   );
 }
 
+const PAGE_SECTION: Record<string, string> = { '/lab': 'lab', '/services': 'services' };
+
 /**
- * After hyperiux/immersive-full-screen-nav: the panel wipes up with clip-path, then links,
- * covers and footer rise in sequence. The same overlay is the mobile menu.
+ * Welcher Link ist gerade „hier“? Auf Unterseiten der Pfad, auf der Startseite die
+ * Sektion, deren Anfang das obere Drittel des Fensters passiert hat.
+ * `scrolled` wird wahr, sobald Inhalt unter den Header läuft (auf der Startseite erst
+ * nach der Partikelszene), damit die Szene frei von Glas bleibt.
+ */
+function useNavState(pathname: string) {
+  const [state, setState] = useState<{ current: string | null; scrolled: boolean }>({ current: null, scrolled: false });
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const track = document.querySelector('.scene-track');
+      const scrolled = track ? track.getBoundingClientRect().bottom <= 76 : window.scrollY > 16;
+      let current: string | null = PAGE_SECTION[pathname] ?? null;
+      if (pathname === '/') {
+        const line = window.innerHeight * 0.38;
+        for (const item of nav) {
+          const el = item.section && document.getElementById(item.section);
+          if (el && el.getBoundingClientRect().top <= line) current = item.section!;
+        }
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
+      }
+      setState((s) => (s.current === current && s.scrolled === scrolled ? s : { current, scrolled }));
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
+  return state;
+}
+
+/**
+ * Desktop: Glas-Pille mit allen Links und ein klarer Kontakt-Knopf.
+ * Tablet/Handy: das Vollbild-Menü nach hyperiux/immersive-full-screen-nav — das Panel
+ * wischt per clip-path hoch, danach steigen Links und Fuss nacheinander auf.
  */
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const { current, scrolled } = useNavState(pathname);
+  const isCurrent = (item: (typeof nav)[number]) =>
+    item.href === '/' ? pathname === '/' && current === null : (item.section ?? PAGE_SECTION[item.href]) === current;
 
   useEffect(() => {
     document.documentElement.classList.toggle('pf-locked', open);
@@ -46,38 +84,34 @@ export function Nav() {
 
   return (
     <>
-      <header className={`pf-header ${open ? 'is-open' : ''}`}>
-        <Link href="/" className="identity" onClick={close}><i /> {profile.name.toUpperCase()}</Link>
+      <header className={`pf-header ${open ? 'is-open' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
+        <Link href="/" className="identity" onClick={close}><i aria-hidden="true" />{profile.name}</Link>
         <nav className="pf-header__links" aria-label="Main">
-          {LINKS.slice(1).map((l) => <Link key={l.href} href={l.href}>{l.label}</Link>)}
+          {nav.slice(1, -1).map((l) => (
+            <Link key={l.href} href={l.href} aria-current={isCurrent(l) ? 'page' : undefined}>{l.label}</Link>
+          ))}
         </nav>
+        <Link href="/#contact" className="pf-pill" onClick={close}>Get in touch</Link>
         <button type="button" className="pf-toggle" aria-expanded={open} aria-controls="pf-menu" onClick={() => setOpen(!open)}>
           <span>{open ? 'Close' : 'Menu'}</span><i /><i />
         </button>
       </header>
       <div id="pf-menu" className={`pf-menu ${open ? 'is-open' : ''}`} inert={!open}>
         <div className="pf-menu__inner">
-          <p className="pf-menu__tag">Portfolio — {new Date().getFullYear()}<br /><span>AI, tools and interfaces.</span></p>
-          <div className="pf-menu__main">
-            <div className="pf-menu__links">
-              {LINKS.map((l, i) => (
-                <div key={l.href} style={{ transitionDelay: open ? `${0.55 + i * 0.06}s` : '0s' }}>
-                  <RollLink {...l} onClick={close} />
-                </div>
-              ))}
-            </div>
-            <div className="pf-menu__covers">
-              <Cover kind="rings" name="menu-a" />
-              <Cover kind="terrain" name="menu-b" />
-            </div>
+          <div className="pf-menu__links">
+            {nav.map((l, i) => (
+              <div key={l.href} style={{ transitionDelay: open ? `${0.55 + i * 0.06}s` : '0s' }}>
+                <RollLink label={l.label} href={l.href} current={isCurrent(l)} onClick={close} />
+                <span className="pf-menu__note">{l.note}</span>
+              </div>
+            ))}
           </div>
           <div className="pf-menu__foot">
             <div className="pf-menu__social">
               <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
               <a href={`mailto:${profile.email}`}>Email ↗</a>
             </div>
-            <FlameButton text="Get in touch" height={42} href="/#contact" onClick={close} />
-            <span className="pf-menu__loc">{profile.location}</span>
+            <FlameButton text="Get in touch" height={46} href="/#contact" onClick={close} />
           </div>
         </div>
       </div>

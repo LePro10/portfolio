@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: { type: 'website', siteName: profile.name, url: site.url },
 };
 
-export const viewport: Viewport = { themeColor: '#080909', colorScheme: 'dark' };
+export const viewport: Viewport = { themeColor: '#090a0c', colorScheme: 'dark' };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -26,7 +26,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body id="top">
         <Nav />
         <div className="grain" aria-hidden="true" />
-        <div className="frame" aria-hidden="true"><span className="corner top-left" /><span className="corner top-right" /><span className="corner bottom-left" /><span className="corner bottom-right" /></div>
         {children}
         <Footer />
       </body>

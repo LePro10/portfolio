@@ -7,7 +7,7 @@ const SceneCanvas = dynamic(() => import('./SceneCanvas'), { ssr: false });
 
 /**
  * Feste WebGL-Bühne hinter .scene-track (Berg → Wind → Erde). Der Text darüber
- * wird serverseitig gerendert; hier liegen nur Canvas und Scroll-Zustand.
+ * wird serverseitig gerendert; hier liegen Aurora-Licht, Canvas, Rahmen und Scroll-Zustand.
  */
 export function HomeScene() {
   const [error, setError] = useState(false);
@@ -47,7 +47,9 @@ export function HomeScene() {
 
   return (
     <>
+      <div className="pf-aurora" aria-hidden="true"><i /><i /></div>
       <div className="canvas-wrap"><SceneCanvas running={running} onError={onError} /></div>
+      <div className="frame" aria-hidden="true"><span className="corner top-left" /><span className="corner top-right" /><span className="corner bottom-left" /><span className="corner bottom-right" /></div>
       <div className="progress-track" aria-hidden="true"><span /></div>
       {error && <p role="alert" className="fallback">Earth data could not load. Refresh to try again.</p>}
     </>

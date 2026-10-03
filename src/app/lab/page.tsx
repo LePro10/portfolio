@@ -20,8 +20,8 @@ export default function LabPage() {
   return (
     <main className="pf-page">
       <header className="pf-page__head">
-        <span className="index">AI LAB — {stats.runs} RUNS</span>
-        <h1>Every model.<br />Every result.</h1>
+        <span className="index">AI Lab · {stats.runs} runs</span>
+        <h1>Every model.<br /><span className="pf-soft">Every result.</span></h1>
         <p>
           Models get the same prompt and build a real website. Every run is listed here, including the ones that failed. Where a
           model produced a site, you can open it exactly as it came out; where it did not, the reason is written next to it.
@@ -29,10 +29,10 @@ export default function LabPage() {
       </header>
 
       <dl className="pf-stack pf-stack--numbers">
-        <div><dt>Runs</dt><dd>{stats.runs}</dd></div>
-        <div><dt>Models</dt><dd>{stats.models}</dd></div>
-        <div><dt>Live previews</dt><dd>{stats.previews}</dd></div>
-        <div><dt>Success rate</dt><dd>{stats.successRate}%</dd></div>
+        <div className="pf-card"><dt>Runs</dt><dd>{stats.runs}</dd></div>
+        <div className="pf-card"><dt>Models</dt><dd>{stats.models}</dd></div>
+        <div className="pf-card"><dt>Live previews</dt><dd>{stats.previews}</dd></div>
+        <div className="pf-card"><dt>Success rate</dt><dd>{stats.successRate}%</dd></div>
       </dl>
 
       {featured.length > 0 && (
@@ -51,13 +51,13 @@ function Collection({ collection, letter }: { collection: LabCollection; letter:
   return (
     <section id={collection.slug} className="pf-page__block">
       <header className="pf-collection__head">
-        <span className="index">{letter} / {collection.title.toUpperCase()}</span>
+        <span className="index">Collection {letter}</span>
         <h2>{collection.title}</h2>
         <p>{collection.description}</p>
         <p className="pf-collection__meta">{collection.runs.length} runs · {withPreview} with preview</p>
       </header>
 
-      <details className="pf-prompt">
+      <details className="pf-prompt pf-card">
         <summary>
           <span>The prompt</span>
           <span className="pf-prompt__first">{collection.prompt.split('\n').find(Boolean)}</span>
