@@ -9,6 +9,7 @@ verschiedenen Ergebnissen führen.
 Öffentliches Portfolio auf `neuralhub.dev`. Statischer Next.js-Export, Caddy im
 eigenen LXC. Das Dashboard (NeuralHub, Luna) ist ein **anderes Repo** und ein
 anderer Host — hier nur verlinkt (`site.dashboard` in `src/content/profile.ts`).
+Keine Weiterleitung aufs Dashboard: `dashboard.neuralhub.dev` routet die Edge direkt.
 
 ## Regeln
 
