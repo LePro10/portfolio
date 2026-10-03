@@ -5,7 +5,7 @@ export const profile = {
   age: 16,
   location: 'Switzerland',
   github: 'https://github.com/LePro10',
-  email: 'hello@neuralhub.dev',
+  email: 'contact@neuralhub.dev',
 };
 
 export type CoverKind = 'rings' | 'terrain' | 'grid' | 'flow' | 'map' | 'wave';
