@@ -29,7 +29,7 @@ export default function HomePage() {
   return (
     <>
       <HomeScene />
-      <main>
+      <main id="main">
         <div className="scene-track">
           <section className="study mountain-title" aria-label="Introduction">
             <div className="index">Portfolio · {profile.location}</div>

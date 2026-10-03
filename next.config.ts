@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   output: "export",
   images: { unoptimized: true },
   poweredByHeader: false,
+  // next dev schreibt sonst einen eigenen Block in AGENTS.md; die Regeln dort pflegen wir selbst.
+  agentRules: false,
 };
 
 export default nextConfig;

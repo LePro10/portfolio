@@ -141,3 +141,22 @@
   .pf-steps li { display: grid; grid-template-columns: 38px 1fr; gap: 4px 18px; }
   .pf-steps span { grid-row: span 2; margin: 0; }
 }
+
+/* Eingeklappte Fehlschläge in der Lauf-Tabelle */
+.pf-runs__more summary {
+  display: flex; align-items: center; gap: 10px; padding: 16px; cursor: pointer; list-style: none;
+  font-size: 15px; font-weight: 500; color: var(--pf-fg); border-bottom: 1px solid var(--pf-line);
+}
+.pf-runs__more summary::-webkit-details-marker { display: none; }
+.pf-runs__more summary::before { content: '+'; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--pf-line); color: var(--pf-dim); transition: rotate .3s; }
+.pf-runs__more[open] summary::before { rotate: 45deg; }
+.pf-runs__more summary:hover { color: var(--pf-bright); }
+
+/* Schmale Handys: jede Zeile gestapelt, Modellname über volle Breite, nichts bricht mitten im Wort. */
+@media (max-width: 480px) {
+  .pf-runs__head { display: none; }
+  .pf-runs__row { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; padding-inline: 4px; }
+  .pf-runs__model { grid-column: 1; overflow-wrap: normal; word-break: normal; }
+  .pf-runs__open { grid-column: 2; grid-row: 1; }
+  .pf-runs__result { grid-column: 1 / -1; }
+}

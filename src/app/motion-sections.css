@@ -99,3 +99,5 @@
   -webkit-mask-image: linear-gradient(transparent, #000 45%, #000 78%, transparent 96%);
   mask-image: linear-gradient(transparent, #000 45%, #000 78%, transparent 96%);
 }
+.pf-contact { padding-bottom: 15vh; }
+.pf-contact .pf-horizon { bottom: 10vh; }

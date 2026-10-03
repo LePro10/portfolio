@@ -37,17 +37,37 @@ export function Reveal() {
       els.forEach((el) => el.setAttribute('data-in', ''));
       return;
     }
+    const show = (el: HTMLElement) => {
+      if (el.hasAttribute('data-in')) return;
+      el.setAttribute('data-in', '');
+      el.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
+      io.unobserve(el);
+    };
+    // threshold 0: auch Blöcke, die höher als das Fenster sind, lösen aus.
     const io = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        const el = entry.target as HTMLElement;
-        el.setAttribute('data-in', '');
-        el.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
-        io.unobserve(el);
-      }
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+      for (const entry of entries) if (entry.isIntersecting) show(entry.target as HTMLElement);
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    // Nach einem Sprung (Anker, Ende-Taste, schnelles Wischen) überspringt der Observer
+    // Elemente, die nie im Bild waren. Alles oberhalb der Fensterunterkante gilt dann als gesehen.
+    let timer = 0;
+    const catchUp = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        for (const el of document.querySelectorAll<HTMLElement>('[data-reveal]:not([data-in])')) {
+          if (el.getBoundingClientRect().top < window.innerHeight) show(el);
+        }
+      }, 120);
+    };
+    catchUp();
+    window.addEventListener('scroll', catchUp, { passive: true });
+    window.addEventListener('hashchange', catchUp);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer);
+      window.removeEventListener('scroll', catchUp);
+      window.removeEventListener('hashchange', catchUp);
+    };
   }, [pathname]);
 
   return null;

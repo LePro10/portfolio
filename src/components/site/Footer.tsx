@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { BackToTop } from '@/components/chrome/BackToTop';
 import { ZurichClock } from '@/components/chrome/ZurichClock';
 import { profile, site } from '@/content/profile';
@@ -11,7 +12,10 @@ export function Footer() {
     <footer className="pf-site-footer pf-signoff">
       <div className="pf-signoff__top">
         <nav className="pf-signoff__links" aria-label="Footer">
-          <a href={`mailto:${profile.email}`}>Email ↗</a>
+          {/* Seiten statt E-Mail: Kontakt steht direkt darüber, hier geht es weiter durch die Seite. */}
+          <Link href="/#work">Work</Link>
+          <Link href="/lab">Lab</Link>
+          <Link href="/services">Services</Link>
           <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
           <a href={site.dashboard}>Dashboard ↗</a>
         </nav>

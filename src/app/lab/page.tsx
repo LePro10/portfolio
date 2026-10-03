@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { CopyButton } from '@/components/lab/CopyButton';
 import { FeaturedPreview } from '@/components/lab/FeaturedPreview';
+import { RainbowButton } from '@/components/buttons/RainbowButton';
+import { ShinyButton } from '@/components/buttons/ShinyButton';
 import { Light } from '@/components/light/Light';
+import { profile } from '@/content/profile';
 import { STACK_LABEL, STATUS_LABEL } from '@/lab/labels';
 import { labStats, loadLab, type LabCollection } from '@/lab/load';
 
@@ -19,7 +22,7 @@ export default function LabPage() {
     .map((r) => ({ href: r.href!, title: r.featured!, model: r.model }));
 
   return (
-    <main className="pf-page" style={{ '--hue': 'var(--pf-t-ice)' } as React.CSSProperties}>
+    <main id="main" className="pf-page" style={{ '--hue': 'var(--pf-t-ice)' } as React.CSSProperties}>
       <Light palette="ice" seed={2} className="pf-light--top" />
       <header className="pf-page__head" data-reveal="">
         <span className="index">AI Lab · {stats.runs} runs</span>
@@ -44,6 +47,14 @@ export default function LabPage() {
       )}
 
       {collections.map((c, i) => <Collection key={c.slug} collection={c} letter={String.fromCharCode(65 + i)} hue={COLLECTION_HUES[i % COLLECTION_HUES.length]} />)}
+
+      <section className="pf-page__block pf-page__cta" data-reveal="">
+        <h2 className="pf-page__h2">Got something that<br /><span className="pf-soft">needs building?</span></h2>
+        <div className="pf-contact__actions">
+          <ShinyButton href={`mailto:${profile.email}`}>Email me</ShinyButton>
+          <RainbowButton href="/#work">See my work</RainbowButton>
+        </div>
+      </section>
     </main>
   );
 }
@@ -53,8 +64,31 @@ const COLLECTION_HUES = ['lilac', 'mint', 'sand'] as const;
 
 function Collection({ collection, letter, hue }: { collection: LabCollection; letter: string; hue: string }) {
   const withPreview = collection.runs.filter((r) => r.href).length;
+  const shown = collection.runs.filter((r) => r.status !== 'failed');
+  const failed = collection.runs.filter((r) => r.status === 'failed');
+  const row = (run: LabCollection['runs'][number], i: number) => {
+    const cells = (
+      <>
+        <span role="cell" className="pf-runs__model">{run.model}</span>
+        <span role="cell" className="pf-runs__stack">{STACK_LABEL[run.stack]}</span>
+        <span role="cell" className="pf-runs__result">
+          <i className={`pf-dot pf-dot--${run.status}`} aria-hidden="true" />
+          {STATUS_LABEL[run.status]}
+          {run.note && <small>{run.note}</small>}
+        </span>
+        <span role="cell" className="pf-runs__open">{run.href ? 'Open ↗' : ''}</span>
+      </>
+    );
+    // Zeilen steigen beim Scrollen in kleinen Gruppen auf: Verzögerung zählt je sechs Zeilen neu.
+    const reveal = { 'data-reveal': '', style: { '--d': `${(i % 6) * 0.05}s` } as React.CSSProperties };
+    return run.href ? (
+      <a key={run.slug} role="row" className="pf-runs__row is-link" href={run.href} target="_blank" rel="noopener noreferrer" {...reveal}>{cells}</a>
+    ) : (
+      <div key={run.slug} role="row" className="pf-runs__row" {...reveal}>{cells}</div>
+    );
+  };
   return (
-    <section id={collection.slug} className="pf-page__block" data-reveal="" style={{ '--hue': `var(--pf-t-${hue})` } as React.CSSProperties}>
+    <section id={collection.slug} className="pf-page__block" style={{ '--hue': `var(--pf-t-${hue})` } as React.CSSProperties}>
       <header className="pf-collection__head">
         <span className="index">Collection {letter}</span>
         <h2>{collection.title}</h2>
@@ -80,27 +114,14 @@ function Collection({ collection, letter, hue }: { collection: LabCollection; le
           <span role="columnheader">Result</span>
           <span role="columnheader"><span className="pf-sr">Link</span></span>
         </div>
-        {collection.runs.map((run, i) => {
-          const cells = (
-            <>
-              <span role="cell" className="pf-runs__model">{run.model}</span>
-              <span role="cell" className="pf-runs__stack">{STACK_LABEL[run.stack]}</span>
-              <span role="cell" className="pf-runs__result">
-                <i className={`pf-dot pf-dot--${run.status}`} aria-hidden="true" />
-                {STATUS_LABEL[run.status]}
-                {run.note && <small>{run.note}</small>}
-              </span>
-              <span role="cell" className="pf-runs__open">{run.href ? 'Open ↗' : ''}</span>
-            </>
-          );
-          // Zeilen steigen beim Scrollen in kleinen Gruppen auf: Verzögerung zählt je sechs Zeilen neu.
-          const reveal = { 'data-reveal': '', style: { '--d': `${(i % 6) * 0.05}s` } as React.CSSProperties };
-          return run.href ? (
-            <a key={run.slug} role="row" className="pf-runs__row is-link" href={run.href} target="_blank" rel="noopener noreferrer" {...reveal}>{cells}</a>
-          ) : (
-            <div key={run.slug} role="row" className="pf-runs__row" {...reveal}>{cells}</div>
-          );
-        })}
+        {shown.map(row)}
+        {failed.length > 0 && (
+          // Fehlschläge bleiben vollständig gelistet, aber eingeklappt: sie sehen fast alle gleich aus.
+          <details className="pf-runs__more">
+            <summary>Show {failed.length} failed {failed.length === 1 ? 'run' : 'runs'}</summary>
+            <div role="rowgroup">{failed.map(row)}</div>
+          </details>
+        )}
       </div>
     </section>
   );

@@ -19,6 +19,10 @@ Keine Weiterleitung aufs Dashboard: `dashboard.neuralhub.dev` routet die Edge di
 - Keine unbelegten Claims: keine erfundenen Zahlen, Preise, Referenzen oder Testimonials. Lab-Zahlen werden berechnet; feste Zahlen in `src/content/profile.ts` (Alter, Repos, Sprachen) aktuell halten.
 - Texte stehen in `src/content/`, nicht im Markup. UI-Sprache Englisch; Code-Kommentare und Doku Deutsch.
 - Design-Tokens aus `src/app/globals.css` (`--pf-*`, `--font-sans`, `--font-mono`) statt neuer Farben.
+  Lichtfarben sind RGB-Tripel `--pf-t-*` (`rgb(var(--pf-t-mint) / .5)`); Bewegung je Bereich in `src/app/motion-*.css`.
+- Bewegung: Startzustände nur unter `html.pf-motion` verstecken (fehlt bei reduzierter Bewegung).
+  Scroll-Einblenden über `data-reveal` → `data-in` (`components/site/Reveal.tsx`). Zustand nie per
+  `classList` auf React-Elemente schreiben — React setzt `className` neu, das Element verschwindet.
 - AI-Lab-Daten nur nach `lab/README.md`. `pnpm lab:check` muss grün sein;
   Artefakte in `lab/**/dist` nicht von Hand „verschönern“.
 - `src/lab/rewrite.ts` geändert → `REWRITE_VERSION` in `scripts/lab.ts` erhöhen

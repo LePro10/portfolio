@@ -47,8 +47,11 @@ function useNavState(pathname: string, progress: RefObject<HTMLSpanElement | nul
         }
         if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
       }
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.current?.style.setProperty('--p', String(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0));
+      // Auf der Startseite zählt erst der Inhalt nach der Szene: dort hat die Szene ihre
+      // eigene Phasen-Anzeige, und die Linie soll beim Auftauchen bei 0 beginnen.
+      const start = track ? (track as HTMLElement).offsetHeight - window.innerHeight : 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight - start;
+      progress.current?.style.setProperty('--p', String(max > 0 ? Math.min(1, Math.max(0, (window.scrollY - start) / max)) : 0));
       setState((s) => (s.current === current && s.scrolled === scrolled ? s : { current, scrolled }));
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };

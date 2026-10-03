@@ -17,7 +17,7 @@ const PACKAGE_LIGHT: Palette[] = ['ice', 'luna', 'ember'];
 
 export default function ServicesPage() {
   return (
-    <main className="pf-page" style={{ '--hue': 'var(--pf-t-sand)' } as React.CSSProperties}>
+    <main id="main" className="pf-page" style={{ '--hue': 'var(--pf-t-sand)' } as React.CSSProperties}>
       <Light palette="sand" seed={4} className="pf-light--top" />
       <header className="pf-page__head" data-reveal="">
         <span className="index">Services · {packages.length} packages</span>

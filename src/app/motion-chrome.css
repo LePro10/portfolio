@@ -170,3 +170,13 @@
 @media (prefers-reduced-motion: reduce) {
   .pf-glide, .pf-glide[data-ready], .pf-header, .pf-header__progress { transition: none; }
 }
+
+/* Korrekturen nach dem Durchgang: deckender Header, Sprunglink, weniger Leerraum vor dem Footer. */
+.pf-header::before { background: rgb(9 10 12 / .84); }
+.pf-skip {
+  position: fixed; z-index: 100; left: 16px; top: 12px; padding: 10px 16px; border-radius: 999px;
+  font-size: 14px; font-weight: 500; color: #0b0c0f; background: var(--pf-bright); text-decoration: none;
+  translate: 0 -160%; transition: translate .3s var(--pf-ease-out);
+}
+.pf-skip:focus-visible { translate: 0 0; }
+.pf-signoff { padding-top: 6vh; }

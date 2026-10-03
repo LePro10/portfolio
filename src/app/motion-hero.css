@@ -87,3 +87,6 @@
   .hero-phases__stop::after { right: -1px; }
   .hero-drop { height: 22px; }
 }
+
+/* Auf dem Handy liegt die Anzeige über der Erde und liest sich als Streupunkte: ausblenden. */
+@media (max-width: 700px) { .hero-phases { display: none; } }
