@@ -4,6 +4,9 @@ uniform vec2 uPointer, uVelocity, uResolution;
 uniform sampler2D uCloth;
 attribute float aSeed, aLight;
 varying float vAlpha;
+varying vec3 vColor;
+// Palette des Dashboards: ice, azure, lilac, sand, ember.
+const vec3 ICE = vec3(.73,.83,1.), AZURE = vec3(.3,.42,1.), SAND = vec3(.98,.86,.68), EMBER = vec3(1.,.5,.3);
 void main() {
   vec3 p = position;
   vec4 original = projectionMatrix * modelViewMatrix * vec4(p,1.);
@@ -36,14 +39,26 @@ void main() {
   gl_PointSize = clamp((.75+aSeed*.85)*uDpr*9./(-mv.z),.65,3.2*uDpr);
   vAlpha = aLight * (1.-smoothstep(5.8,8.,abs(position.x))) * (.78+local*.55)
     * (1.-smoothstep(.65+aSeed*.12,.98,uProgress));
+  // Licht hinter dem Gipfel: Grate und Kuppen fangen warmes Gegenlicht, Täler und
+  // Vordergrund bleiben im kühlen Blau der Dämmerung. Die Maus ist eine Glut, die
+  // den Berg dort aufglimmen lässt, wo sie ihn anhebt. Was davonfliegt, kühlt zu Staub ab.
+  float height = clamp((position.y+1.45)/3.3, 0., 1.);
+  float near = smoothstep(-1.5, 4., position.z);
+  vec3 color = mix(AZURE*.85+.12, ICE, smoothstep(.0, .55, height));
+  float rim = smoothstep(.3, .85, aLight) * smoothstep(.18, .8, height) * exp(-position.x*position.x*.05) * (1.-near*.7);
+  color = mix(color, SAND, rim);
+  color = mix(color, EMBER, smoothstep(.25, .95, height) * exp(-pow(position.x+.6, 2.)*.9) * (1.-near) * .55);
+  color = mix(color, EMBER*1.15, clamp(local*1.6, 0., 1.));
+  vColor = mix(color, ICE, depart);
 }`;
 export const particleFragment = /* glsl */ `
 varying float vAlpha;
+varying vec3 vColor;
 void main() {
   float d = length(gl_PointCoord-.5);
   float shape = 1.-smoothstep(.16,.5,d);
   if(d>.5) discard;
-  gl_FragColor = vec4(vec3(.91,.925,.92),shape*vAlpha);
+  gl_FragColor = vec4(vColor,shape*vAlpha);
 }`;
 export const earthVertex = /* glsl */ `
 uniform float uTime,uReveal,uDpr,uActive;
@@ -51,6 +66,8 @@ uniform vec2 uResolution;
 uniform vec3 uTrail[8];
 attribute float aSeed,aLight;
 varying float vAlpha;
+varying vec3 vColor;
+const vec3 ICE = vec3(.73,.83,1.), AZURE = vec3(.3,.42,1.), LILAC = vec3(.66,.6,1.), SAND = vec3(.98,.88,.72);
 void main() {
   float group = fract(sin(floor(position.x*6.)*12.9898+floor(position.y*7.)*78.233+floor(position.z*6.)*31.7)*43758.5453);
   float visible = smoothstep(group*.65,group*.65+.28,uReveal);
@@ -73,6 +90,11 @@ void main() {
   float ocean=.0015+light*(.09+contours*.22)*(.7+aSeed*.3);
   float landLight=aLight*(sun*.72+light*1.4+scan)+.012;
   vAlpha=mix(ocean,landLight,land)*visible*front;
+  // Dieselbe Sonne wie hinter dem Berg: Tagseite sandfarben, Dämmerungszone lila,
+  // Nachtseite azur. Der Lichtkegel der Maus färbt eisblau, das Meer bleibt kühl.
+  float day=smoothstep(.45,.95,sun);
+  vec3 lit=mix(mix(AZURE,LILAC,smoothstep(.3,.55,sun)),SAND,day);
+  vColor=mix(mix(AZURE*.9+.1,ICE,contours),mix(lit,ICE*1.1,clamp(light*1.6,0.,1.)),land);
   gl_Position=projected;
   gl_PointSize=(1.+aSeed*.65)*uDpr*(.9+light*.25);
 }`;

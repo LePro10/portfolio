@@ -30,6 +30,7 @@ export function ProjectDialog({ project, index, onClose }: { project: Project | 
     <dialog
       ref={ref}
       className="pf-dialog"
+      style={project ? ({ '--hue': `var(--pf-t-${project.hue})` } as React.CSSProperties) : undefined}
       aria-labelledby="pf-dialog-title"
       onClose={onClose}
       onCancel={(e) => { e.preventDefault(); close(); }}
@@ -41,7 +42,7 @@ export function ProjectDialog({ project, index, onClose }: { project: Project | 
             <span>{String(index + 1).padStart(2, '0')} / Project</span>
             <button type="button" onClick={close} aria-label="Close">Close <i /><i /></button>
           </header>
-          <Cover kind={project.cover} name={project.name} className="pf-dialog__cover" />
+          <Cover kind={project.cover} name={project.name} hue={project.hue} className="pf-dialog__cover" />
           <div className="pf-dialog__body">
             <h3 id="pf-dialog-title">{project.name}</h3>
             <p className="pf-dialog__lead">{project.summary}</p>

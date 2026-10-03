@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { CopyButton } from '@/components/lab/CopyButton';
 import { FeaturedPreview } from '@/components/lab/FeaturedPreview';
+import { Light } from '@/components/light/Light';
 import { STACK_LABEL, STATUS_LABEL } from '@/lab/labels';
 import { labStats, loadLab, type LabCollection } from '@/lab/load';
 
@@ -18,7 +19,8 @@ export default function LabPage() {
     .map((r) => ({ href: r.href!, title: r.featured!, model: r.model }));
 
   return (
-    <main className="pf-page">
+    <main className="pf-page" style={{ '--hue': 'var(--pf-t-ice)' } as React.CSSProperties}>
+      <Light palette="ice" seed={2} className="pf-light--top" />
       <header className="pf-page__head">
         <span className="index">AI Lab · {stats.runs} runs</span>
         <h1>Every model.<br /><span className="pf-soft">Every result.</span></h1>
@@ -28,11 +30,11 @@ export default function LabPage() {
         </p>
       </header>
 
-      <dl className="pf-stack pf-stack--numbers">
-        <div className="pf-card"><dt>Runs</dt><dd>{stats.runs}</dd></div>
-        <div className="pf-card"><dt>Models</dt><dd>{stats.models}</dd></div>
-        <div className="pf-card"><dt>Live previews</dt><dd>{stats.previews}</dd></div>
-        <div className="pf-card"><dt>Success rate</dt><dd>{stats.successRate}%</dd></div>
+      <dl className="pf-figures">
+        <div><dt>Runs</dt><dd>{stats.runs}</dd></div>
+        <div><dt>Models</dt><dd>{stats.models}</dd></div>
+        <div><dt>Live previews</dt><dd>{stats.previews}</dd></div>
+        <div><dt>Success rate</dt><dd>{stats.successRate}<small>%</small></dd></div>
       </dl>
 
       {featured.length > 0 && (
@@ -41,15 +43,18 @@ export default function LabPage() {
         </section>
       )}
 
-      {collections.map((c, i) => <Collection key={c.slug} collection={c} letter={String.fromCharCode(65 + i)} />)}
+      {collections.map((c, i) => <Collection key={c.slug} collection={c} letter={String.fromCharCode(65 + i)} hue={COLLECTION_HUES[i % COLLECTION_HUES.length]} />)}
     </main>
   );
 }
 
-function Collection({ collection, letter }: { collection: LabCollection; letter: string }) {
+/** Jede Sammlung trägt ihre eigene Lichtfarbe, wie die Projekte auf der Startseite. */
+const COLLECTION_HUES = ['lilac', 'mint', 'sand'] as const;
+
+function Collection({ collection, letter, hue }: { collection: LabCollection; letter: string; hue: string }) {
   const withPreview = collection.runs.filter((r) => r.href).length;
   return (
-    <section id={collection.slug} className="pf-page__block">
+    <section id={collection.slug} className="pf-page__block" style={{ '--hue': `var(--pf-t-${hue})` } as React.CSSProperties}>
       <header className="pf-collection__head">
         <span className="index">Collection {letter}</span>
         <h2>{collection.title}</h2>

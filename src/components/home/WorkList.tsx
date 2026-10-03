@@ -6,7 +6,7 @@ import { projects } from '@/content/profile';
 import { ProjectDialog } from './ProjectDialog';
 
 /**
- * After hyperiux/interactive-list-preview: a glass bar slides to the hovered row, and that
+ * After hyperiux/interactive-list-preview: a bar in the project's own light slides to the hovered row, and that
  * row's cover wipes open (clip-path from the centre) on top of the previous ones, drifting
  * with the cursor. Rebuilt on CSS transitions instead of GSAP. The summary sits in the row
  * itself, so touch screens get it too. Clicking any row opens the project dialog; the
@@ -15,7 +15,7 @@ import { ProjectDialog } from './ProjectDialog';
 export function WorkList() {
   const [active, setActive] = useState<number | null>(null);
   const [open, setOpen] = useState<number | null>(null);
-  const [bar, setBar] = useState({ y: 0, h: 0 });
+  const [bar, setBar] = useState({ y: 0, h: 0, hue: projects[0].hue });
   const [stack, setStack] = useState<number[]>([]);
   const listRef = useRef<HTMLDivElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
@@ -41,7 +41,8 @@ export function WorkList() {
 
   function enter(index: number, row: HTMLElement) {
     setActive(index);
-    setBar({ y: row.offsetTop, h: row.offsetHeight });
+    // Die Farbe bleibt beim Verlassen stehen, damit der Balken in seinem Licht ausblendet.
+    setBar({ y: row.offsetTop, h: row.offsetHeight, hue: projects[index].hue });
     // Newest cover is last in the stack so it paints on top while the old one stays under it.
     setStack((s) => [...s.filter((i) => i !== index), index].slice(-3));
   }
@@ -53,11 +54,16 @@ export function WorkList() {
       onPointerMove={onMove}
       onPointerLeave={() => setActive(null)}
     >
-      <span className="pf-list__bar" style={{ translate: `0 ${bar.y}px`, height: bar.h }} aria-hidden="true" />
+      <span
+        className="pf-list__bar"
+        style={{ translate: `0 ${bar.y}px`, height: bar.h, '--hue': `var(--pf-t-${bar.hue})` } as React.CSSProperties}
+        aria-hidden="true"
+      />
       {projects.map((p, i) => (
         <div
           key={p.name}
           className={`pf-row ${active === i ? 'is-active' : ''}`}
+          style={{ '--hue': `var(--pf-t-${p.hue})` } as React.CSSProperties}
           onPointerEnter={(e) => e.pointerType === 'mouse' && enter(i, e.currentTarget)}
         >
           <button type="button" className="pf-row__line" aria-haspopup="dialog" onClick={() => setOpen(i)}>
@@ -83,7 +89,7 @@ export function WorkList() {
               className={`pf-preview__layer ${active === i ? 'is-shown' : ''}`}
               style={{ zIndex: stack.indexOf(i) + 1 }}
             >
-              <Cover kind={p.cover} name={p.name} />
+              <Cover kind={p.cover} name={p.name} hue={p.hue} />
               <figcaption>{p.tags}</figcaption>
             </figure>
           ))}

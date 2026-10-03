@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Light } from '@/components/light/Light';
 
 export const metadata: Metadata = { title: 'Not found' };
 
 export default function NotFound() {
   return (
     <main className="pf-page pf-page--short">
+      <Light palette="night" seed={9} className="pf-light--top" />
       <header className="pf-page__head">
         <span className="index">404 · Not found</span>
         <h1>Nothing here.</h1>

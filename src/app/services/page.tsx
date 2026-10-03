@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { RainbowButton } from '@/components/buttons/RainbowButton';
 import { ShinyButton } from '@/components/buttons/ShinyButton';
+import { Light } from '@/components/light/Light';
+import type { Palette } from '@/components/light/palettes';
 import { profile } from '@/content/profile';
 import { faq, packages, process } from '@/content/services';
 
@@ -9,9 +11,13 @@ export const metadata: Metadata = {
   description: 'Website, web app or AI integration: three packages, one clear process and a fixed-price offer after the first call.',
 };
 
+/** Jedes Paket hat sein eigenes Licht: kühl für Websites, Luna für Apps, Glut für KI. */
+const PACKAGE_LIGHT: Palette[] = ['ice', 'luna', 'ember'];
+
 export default function ServicesPage() {
   return (
-    <main className="pf-page">
+    <main className="pf-page" style={{ '--hue': 'var(--pf-t-sand)' } as React.CSSProperties}>
+      <Light palette="sand" seed={4} className="pf-light--top" />
       <header className="pf-page__head">
         <span className="index">Services · {packages.length} packages</span>
         <h1>Three packages.<br /><span className="pf-soft">One standard.</span></h1>
@@ -21,6 +27,7 @@ export default function ServicesPage() {
       <section className="pf-page__block pf-packages" aria-label="Packages">
         {packages.map((p, i) => (
           <article key={p.title} className="pf-package pf-card">
+            <Light palette={PACKAGE_LIGHT[i % PACKAGE_LIGHT.length]} seed={i + 2} intensity={0.7} className="pf-package__light" />
             <span className="pf-package__nr">{String(i + 1).padStart(2, '0')}</span>
             <div>
               <h2>{p.title}</h2>
@@ -37,7 +44,7 @@ export default function ServicesPage() {
         <h2 className="pf-page__h2">How I work.</h2>
         <ol className="pf-steps">
           {process.map((s, i) => (
-            <li key={s.title} className="pf-card"><span>{i + 1}</span><h3>{s.title}</h3><p>{s.description}</p></li>
+            <li key={s.title}><span>{i + 1}</span><h3>{s.title}</h3><p>{s.description}</p></li>
           ))}
         </ol>
       </section>
@@ -47,7 +54,7 @@ export default function ServicesPage() {
         <h2 className="pf-page__h2">Honest answers.</h2>
         <div className="pf-faq">
           {faq.map((f) => (
-            <details key={f.q} className="pf-card">
+            <details key={f.q}>
               <summary>{f.q}</summary>
               <p>{f.a}</p>
             </details>

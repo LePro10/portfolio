@@ -8,9 +8,9 @@
 @media(max-width:700px){.scene-track{height:calc(var(--scene-height,100svh) * 3.4)}.canvas-wrap{height:var(--scene-height,100svh)}.footer{top:calc(var(--scene-height,100svh) - 62px)}.study{top:calc(var(--scene-height,100svh) * .17)}}
 
 /* ─── Tokens ───────────────────────────────────────────────────────────────
-   Neutrales, leicht kühles Schwarz wie im Dashboard. Farbe kommt nur über
-   Licht ins Bild (Aurora-Verläufe, Glas), nie als Fläche. Die Farbtöne sind
-   RGB-Tripel, damit sie mit Alpha kombinierbar sind: rgb(var(--pf-c-indigo) / .4). */
+   Neutrales, leicht kühles Schwarz wie im Dashboard. Farbe kommt nur als Licht ins
+   Bild (Mesh-Verläufe, Partikel, Kanten), nie als Fläche. Die Lichtfarben sind die
+   Palette des Dashboards als RGB-Tripel: rgb(var(--pf-t-sand) / .4). */
 :root {
   --pf-bg: #090a0c;
   --pf-raised: #0e1013;
@@ -20,12 +20,19 @@
   --pf-faint: #4a505a;
   --pf-line: rgb(255 255 255 / 0.075);
 
-  --pf-c-indigo: 96 108 240;
-  --pf-c-blue: 64 132 210;
-  --pf-c-cyan: 86 190 214;
-  --pf-accent: #aab4ff;
-  --pf-mint: #8fe3c8;
-  --pf-sand: #ead8b4;
+  --pf-t-ice: 185 211 255;
+  --pf-t-azure: 96 128 255;
+  --pf-t-lilac: 168 152 255;
+  --pf-t-sand: 234 220 188;
+  --pf-t-ember: 255 138 92;
+  --pf-t-mint: 159 231 200;
+  /* Ältere Namen, auf die Palette gelegt. */
+  --pf-c-indigo: var(--pf-t-azure);
+  --pf-c-blue: 59 91 255;
+  --pf-c-cyan: var(--pf-t-ice);
+  --pf-accent: rgb(var(--pf-t-ice));
+  --pf-mint: rgb(var(--pf-t-mint));
+  --pf-sand: rgb(var(--pf-t-sand));
 
   --pf-glass: linear-gradient(180deg, rgb(255 255 255 / 0.055), rgb(255 255 255 / 0.02));
   --pf-glass-line: rgb(255 255 255 / 0.09);
@@ -51,34 +58,45 @@ a { color: inherit; }
 /* Zweite Titelzeile gedimmt, wie „How can I help, / Leandro?“ im Dashboard. */
 .pf-soft { color: var(--pf-dim); }
 
-/* Glas: heller Verlauf, feine Kante, Lichtkante oben. Wirkt erst mit Licht dahinter. */
+/* Glas, sparsam: Header, Dialog, Vorschau, Prompt. Wirkt erst mit Licht dahinter. */
 .pf-card {
   position: relative; background: var(--pf-glass); border: 1px solid var(--pf-glass-line);
   border-radius: var(--pf-radius); box-shadow: var(--pf-glass-shadow);
   -webkit-backdrop-filter: var(--pf-glass-blur); backdrop-filter: var(--pf-glass-blur);
 }
 
-/* Aurora: weiche Lichtflecken. Reine Verläufe ohne filter: blur, damit sie neben WebGL nichts kosten. */
-.pf-glow { position: absolute; pointer-events: none; z-index: 0; border-radius: 50%; }
-.pf-glow--indigo { background: radial-gradient(closest-side, rgb(var(--pf-c-indigo) / .42), rgb(var(--pf-c-blue) / .16) 55%, transparent); }
-.pf-glow--cyan { background: radial-gradient(closest-side, rgb(var(--pf-c-cyan) / .26), rgb(var(--pf-c-blue) / .1) 55%, transparent); }
+/* ─── Licht (components/light/Light.tsx) ─────────────────────────────────
+   Mesh-Gradient wie das Ambient im Dashboard, zum Text hin abgedunkelt und in die
+   Seitenfarbe auslaufend. Die Variante bestimmt, woher das Licht kommt. */
+.pf-light { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.pf-light::after { content: ''; position: absolute; inset: 0; }
+.pf-light--top { bottom: auto; height: min(78vh, 700px); -webkit-mask-image: linear-gradient(#000 40%, transparent); mask-image: linear-gradient(#000 40%, transparent); }
+.pf-light--top::after { background: linear-gradient(180deg, rgb(9 10 12 / .15), rgb(9 10 12 / .55) 50%, var(--pf-bg)); }
+.pf-light--bottom { top: auto; height: min(90vh, 820px); -webkit-mask-image: linear-gradient(transparent, #000 55%); mask-image: linear-gradient(transparent, #000 55%); }
+.pf-light--bottom::after { background: linear-gradient(0deg, rgb(9 10 12 / .1), rgb(9 10 12 / .5) 45%, var(--pf-bg)); }
+.pf-light--band { -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 62%, transparent); mask-image: linear-gradient(transparent, #000 22%, #000 62%, transparent); }
+.pf-light--band::after { background: radial-gradient(120% 70% at 30% 45%, rgb(9 10 12 / .72), rgb(9 10 12 / .25)); }
 
-/* Hero: Licht hinter dem Partikelberg. Verschiebt sich zur Erde hin von Indigo nach Cyan. */
-.pf-aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.pf-aurora i { position: absolute; border-radius: 50%; }
-.pf-aurora i:nth-child(1) {
-  width: 78vw; height: 70vh; left: 26%; top: -30vh;
-  background: radial-gradient(closest-side, rgb(var(--pf-c-indigo) / .5), rgb(var(--pf-c-blue) / .2) 55%, transparent);
-  opacity: calc(1 - var(--earth-label) * .55);
-  animation: pf-drift 26s ease-in-out infinite alternate;
+/* ─── Himmel über der Szene ───────────────────────────────────────────────
+   Dämmerung über dem Berg. Hinter dem Gipfel steht eine tiefe Sonne, die die Grate
+   anstrahlt (dieselbe Lichtrichtung wie in shaders.ts) und beim Scrollen untergeht.
+   Danach Nacht über der Erde. */
+.pf-sky { position: fixed; left: 0; right: 0; top: 0; height: 100vh; height: var(--scene-height, 100svh); z-index: 0; pointer-events: none; }
+.pf-sky .pf-light { -webkit-mask-image: linear-gradient(#000 30%, transparent 92%); mask-image: linear-gradient(#000 30%, transparent 92%); }
+.pf-sky .pf-light::after { background: linear-gradient(180deg, rgb(9 10 12 / .05), rgb(9 10 12 / .5) 55%, var(--pf-bg)); }
+.pf-sky__dusk { opacity: calc(1 - var(--progress) * 1.25); }
+.pf-sky__night { opacity: var(--earth-label); }
+.pf-sun {
+  position: absolute; left: 47%; top: 52%; width: 64vw; height: 48vh; translate: -50% calc(-50% + var(--progress) * 30vh);
+  border-radius: 50%; opacity: calc(.9 - var(--progress) * 1.6);
+  background: radial-gradient(closest-side, rgb(255 206 160 / .34), rgb(var(--pf-t-ember) / .16) 34%, rgb(var(--pf-t-lilac) / .06) 64%, transparent);
 }
-.pf-aurora i:nth-child(2) {
-  width: 64vw; height: 64vh; left: -14vw; top: 46vh;
-  background: radial-gradient(closest-side, rgb(var(--pf-c-cyan) / .2), rgb(var(--pf-c-blue) / .08) 55%, transparent);
-  opacity: calc(.45 + var(--earth-label) * .55);
-  animation: pf-drift 32s ease-in-out -8s infinite alternate-reverse;
+/* Horizont: ein flaches Glühen dort, wo der Berg aufliegt. */
+.pf-sun::after {
+  content: ''; position: absolute; left: 50%; top: 52%; width: 200%; height: 46%; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(var(--pf-t-ember) / .13), rgb(var(--pf-t-sand) / .04) 50%, transparent);
 }
-@keyframes pf-drift { to { translate: -6vw 5vh; scale: 1.08; } }
+@media (max-width: 700px) { .pf-sun { width: 130vw; height: 40%; top: 50%; } }
 
 /* ─── Header ─────────────────────────────────────────────────────────────
    Oben frei über der Szene; sobald gescrollt wird, legt sich Glas darunter,
@@ -203,6 +221,7 @@ a { color: inherit; }
   position: relative; z-index: 4; background: var(--pf-bg);
   padding: 11vh var(--pf-inset);
 }
+.pf-section > :not(.pf-light) { position: relative; z-index: 1; }
 #work::before {
   content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 40vh; pointer-events: none;
   background: linear-gradient(to bottom, transparent, var(--pf-bg));
@@ -212,8 +231,7 @@ a { color: inherit; }
 }
 .pf-section .index, .pf-page .index { margin-bottom: 22px; }
 .index::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--pf-accent);
-  box-shadow: 0 0 10px rgb(var(--pf-c-indigo) / .8);
+  content: ''; width: 22px; height: 1px; background: rgb(var(--hue, var(--pf-t-ice)));
 }
 .pf-section__head {
   display: grid; grid-template-columns: 1fr minmax(0, 40ch); align-items: end; gap: 24px 64px;
@@ -235,14 +253,17 @@ a { color: inherit; }
   width: 100%; min-height: 88px; padding: 18px 20px;
   font: inherit; text-align: left; color: var(--pf-fg); background: none; border: 0; border-radius: 16px; cursor: pointer;
 }
-.pf-row__index { align-self: start; padding-top: 8px; font: 12px var(--font-mono), monospace; color: var(--pf-faint); transition: color .3s; }
+/* Jedes Projekt hat sein eigenes Licht (--hue, aus content/profile.ts): die Nummer
+   glimmt darin schon in Ruhe, beim Hover übernimmt es Balken, Name und Cover. */
+.pf-row__index { align-self: start; padding-top: 8px; font: 12px var(--font-mono), monospace; color: rgb(var(--hue) / .7); transition: color .3s, text-shadow .3s; }
 .pf-row__main { display: grid; gap: 4px; }
-.pf-row__name { font-size: 21px; letter-spacing: -.02em; color: var(--pf-bright); }
+.pf-row__name { font-size: 21px; letter-spacing: -.02em; color: var(--pf-bright); transition: translate .5s var(--pf-ease-out), color .3s; }
 .pf-row__summary { font-size: 15px; line-height: 1.45; color: var(--pf-dim); transition: color .3s; }
 .pf-row__meta { display: flex; align-items: center; justify-content: flex-end; gap: 14px; flex-wrap: wrap; }
 .pf-row__stack { font: 12px var(--font-mono), monospace; letter-spacing: .08em; color: var(--pf-dim); }
 .pf-row__plus { font-weight: 400; font-size: 20px; color: var(--pf-faint); text-align: right; transition: rotate .3s, color .3s; }
-.pf-row.is-active .pf-row__index { color: var(--pf-accent); }
+.pf-row.is-active .pf-row__index { color: rgb(var(--hue)); text-shadow: 0 0 12px rgb(var(--hue) / .8); }
+.pf-row.is-active .pf-row__name { translate: 6px 0; color: #fff; }
 .pf-row.is-active .pf-row__summary { color: var(--pf-fg); }
 .pf-row.is-active .pf-row__plus { rotate: 90deg; color: var(--pf-bright); }
 .pf-badge {
@@ -254,9 +275,11 @@ a { color: inherit; }
 .pf-badge.is-public::before { background: var(--pf-mint); box-shadow: 0 0 8px rgb(143 227 200 / .6); }
 .pf-list__bar {
   position: absolute; left: 0; right: 0; top: 0; z-index: 0; opacity: 0; border-radius: 16px;
-  background: linear-gradient(90deg, rgb(var(--pf-c-indigo) / .16), rgb(255 255 255 / .045) 45%, rgb(255 255 255 / .03));
-  box-shadow: inset 0 0 0 1px var(--pf-glass-line);
-  transition: translate .38s cubic-bezier(.2, .8, .2, 1), height .38s, opacity .3s;
+  background:
+    radial-gradient(60% 140% at 0% 50%, rgb(var(--hue) / .2), transparent 70%),
+    linear-gradient(90deg, rgb(255 255 255 / .04), rgb(255 255 255 / .02));
+  box-shadow: inset 0 0 0 1px rgb(var(--hue) / .16), inset 3px 0 0 rgb(var(--hue) / .75);
+  transition: translate .38s cubic-bezier(.2, .8, .2, 1), height .38s, opacity .3s, background .4s, box-shadow .4s;
 }
 .pf-list.is-hovering .pf-list__bar { opacity: 1; }
 
@@ -289,16 +312,32 @@ a { color: inherit; }
 }
 .pf-proximity__word { display: inline-block; white-space: nowrap; }
 .pf-proximity [data-l] { display: inline-block; text-align: center; }
-.pf-stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 10vh 0 0; }
-.pf-stack > div { padding: 22px 24px; }
+/* Stack: vier Spalten, jede mit einem Lichtstrich in ihrer Farbe statt einer Karte. */
+.pf-stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; margin: 10vh 0 0; }
+.pf-stack > div { position: relative; padding-top: 22px; }
+.pf-stack > div::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, rgb(var(--hue)), rgb(var(--hue) / .15) 55%, transparent);
+  box-shadow: 0 0 14px rgb(var(--hue) / .5);
+}
 .pf-stack dt, .pf-tools dt {
   font: 11px var(--font-mono), monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--pf-dim); margin-bottom: 12px;
 }
+.pf-stack dt { color: rgb(var(--hue, var(--pf-t-ice)) / .85); }
 .pf-stack dd { margin: 0; font-size: 16px; line-height: 1.55; color: var(--pf-fg); }
-.pf-stack--numbers dd { font-size: clamp(32px, 2.8vw, 46px); line-height: 1; letter-spacing: -.04em; color: var(--pf-bright); }
 
 /* Werkzeug-Dock: dunkle Kacheln, einfarbig in Ruhe, die berührte zeigt ihre Farbe. */
-.pf-tools { display: grid; grid-template-columns: 1fr 2fr; align-items: end; gap: 32px; margin-top: 16px; padding: 28px 28px 22px; overflow: hidden; }
+.pf-tools { display: grid; grid-template-columns: 1fr 2fr; align-items: end; gap: 32px; margin-top: 12vh; }
+/* Das Dock steht auf einem Lichtboden, wie ein Regal unter einer Lampe. */
+.pf-tools__stage { position: relative; }
+.pf-tools__floor {
+  position: absolute; left: 50%; bottom: -6%; width: 86%; height: 70%; translate: -50% 0; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgb(var(--pf-t-ice) / .14), rgb(var(--pf-t-lilac) / .05) 55%, transparent);
+}
+.pf-tools__stage::after {
+  content: ''; position: absolute; left: 12%; right: 12%; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(var(--pf-t-ice) / .35), transparent);
+}
 .pf-tools dl { margin: 0; align-self: center; }
 .pf-tools dd { margin: 0; font-size: 16px; line-height: 1.55; color: var(--pf-fg); max-width: 30ch; }
 .pf-dock { container-type: inline-size; display: flex; justify-content: flex-end; }
@@ -332,26 +371,36 @@ a { color: inherit; }
 .pf-dock__tip.is-open { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .pf-dock__rail li, .pf-dock__tip { transition: none; } }
 
-/* ─── Lab-Teaser: eine Glasfläche mit eigenem Licht ───────────────────── */
-.pf-panel { padding: clamp(28px, 4.4vw, 64px); overflow: hidden; }
-.pf-panel > :not(.pf-glow) { position: relative; z-index: 1; }
-.pf-panel .pf-glow--indigo { width: 70%; height: 90%; right: -18%; top: -45%; }
-.pf-panel .pf-glow--cyan { width: 55%; height: 70%; left: -20%; bottom: -40%; }
-.pf-panel .pf-section__head { margin-bottom: 6vh; }
-.pf-panel .pf-stack { margin-top: 0; }
-.pf-panel .pf-stack > div { background: rgb(255 255 255 / .03); border: 1px solid var(--pf-line); border-radius: var(--pf-radius-sm); }
+/* ─── Lab-Teaser: ein Lichtband über die ganze Breite, kühl wie ein Bildschirm ─── */
+.pf-lab { padding-block: 16vh; overflow: hidden; --hue: var(--pf-t-ice); }
+.pf-figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-block: 1px solid var(--pf-line); }
+.pf-figures > div { padding: 26px 24px 28px 0; }
+.pf-figures > div + div { padding-left: 24px; border-left: 1px solid var(--pf-line); }
+.pf-figures dt { font: 11px var(--font-mono), monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--pf-dim); }
+.pf-figures dd { margin: 14px 0 0; font-size: clamp(44px, 5vw, 76px); line-height: .9; letter-spacing: -.05em; color: var(--pf-bright); font-variant-numeric: tabular-nums; }
+.pf-figures small { font-size: .45em; letter-spacing: 0; color: var(--pf-dim); margin-left: 2px; }
 
-/* ─── Kontakt ──────────────────────────────────────────────────────────── */
-.pf-contact { padding-bottom: 10vh; }
-.pf-contact__card { padding: clamp(40px, 7vw, 96px) clamp(24px, 5vw, 72px); overflow: hidden; text-align: center; }
-.pf-contact__card > :not(.pf-glow) { position: relative; z-index: 1; }
-.pf-contact__card .pf-glow--indigo { width: 90%; height: 120%; left: 5%; top: -70%; }
-.pf-contact__card .pf-glow--cyan { width: 60%; height: 80%; right: -25%; bottom: -50%; }
-.pf-contact__card .index { justify-content: center; }
-.pf-contact h2 { font-size: clamp(38px, 5vw, 76px); }
-.pf-contact__card > p { max-width: 46ch; margin: 24px auto 0; font-size: 17px; line-height: 1.6; color: var(--pf-dim); }
+/* ─── Kontakt: Sonnenuntergang. Das Licht, das über dem Berg aufging, geht hier unter. ── */
+.pf-contact { --hue: var(--pf-t-ember); min-height: 92svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding-bottom: 20vh; }
+.pf-contact .index { justify-content: center; }
+.pf-contact h2 { font-size: clamp(38px, 5.2vw, 80px); }
+.pf-contact > p { max-width: 46ch; margin: 24px auto 0; font-size: 17px; line-height: 1.6; color: var(--pf-fg); }
 .pf-contact__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px 32px; margin-top: 44px; }
 .pf-contact__actions .ds-refs { display: block; }
+.pf-horizon {
+  position: absolute !important; left: 0; right: 0; bottom: 14vh; height: 1px; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(var(--pf-t-ember) / .55) 35%, rgb(255 214 170 / .9) 50%, rgb(var(--pf-t-ember) / .55) 65%, transparent);
+  box-shadow: 0 0 24px 2px rgb(var(--pf-t-ember) / .35);
+}
+/* Unter dem Horizont: dunkler Boden, das Licht reicht nur noch als Schimmer hinein. */
+.pf-horizon::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 1px; height: 14vh;
+  background: linear-gradient(rgb(9 10 12 / .7), var(--pf-bg) 70%);
+}
+.pf-horizon::after {
+  content: ''; position: absolute; left: 50%; bottom: 0; width: 60vw; height: 22vh; translate: -50% 0; border-radius: 50% 50% 0 0;
+  background: radial-gradient(50% 100% at 50% 100%, rgb(255 190 140 / .22), rgb(var(--pf-t-ember) / .08) 45%, transparent 75%);
+}
 
 .pf-footer {
   display: flex; justify-content: space-between; align-items: center; gap: 16px 32px; flex-wrap: wrap; padding-top: 24px;
@@ -444,11 +493,15 @@ a { color: inherit; }
   }
   .about-stats dd { font-size: 28px; }
   .pf-row__name { font-size: 19px; }
-  .pf-stack { grid-template-columns: 1fr; gap: 12px; margin-top: 7vh; }
-  .pf-stack--numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pf-stack > div { padding: 18px 20px; }
+  .pf-stack { grid-template-columns: 1fr; gap: 26px; margin-top: 7vh; }
+  .pf-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pf-figures > div, .pf-figures > div + div { padding: 20px 0 22px; border-left: 0; }
+  .pf-figures > div:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--pf-line); }
+  .pf-figures > div:nth-child(n + 3) { border-top: 1px solid var(--pf-line); }
+  .pf-contact { min-height: 80svh; padding-bottom: 15vh; }
+  .pf-horizon { bottom: 8vh; }
+  .pf-horizon::before { height: 8vh; }
   .pf-tools { padding: 22px 18px 16px; }
-  .pf-panel { padding: 28px 20px; }
   .pf-dialog { inset: auto 0 0 0; width: 100vw; height: auto; max-height: 90dvh; border-radius: 22px 22px 0 0; border-width: 1px 0 0; }
   @keyframes pf-panel-in { from { translate: 0 100%; } }
   @keyframes pf-panel-out { to { translate: 0 100%; } }
@@ -458,6 +511,5 @@ a { color: inherit; }
 }
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto; }
-  .pf-aurora i { animation: none; }
   .pf-menu, .pf-menu *, .pf-preview__layer, .pf-list__bar, .pf-dialog { transition-duration: .01s !important; transition-delay: 0s !important; }
 }

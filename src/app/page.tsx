@@ -5,8 +5,12 @@ import { HomeScene } from '@/components/home/HomeScene';
 import { ProximityText } from '@/components/home/ProximityText';
 import { ToolDock } from '@/components/home/ToolDock';
 import { WorkList } from '@/components/home/WorkList';
-import { profile, projects, stack } from '@/content/profile';
+import { Light } from '@/components/light/Light';
+import { profile, projects, stack, type Hue } from '@/content/profile';
 import { labStats, loadLab } from '@/lab/load';
+
+/** Jede Stack-Spalte trägt eine Lichtfarbe, in derselben Familie wie die Projekte. */
+const STACK_HUES: Hue[] = ['lilac', 'ice', 'mint', 'sand'];
 
 const AGE_WORDS: Record<number, string> = { 15: 'Fifteen', 16: 'Sixteen', 17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen', 20: 'Twenty' };
 
@@ -37,7 +41,7 @@ export default function HomePage() {
             <div><dt>Languages</dt><dd>6</dd></div>
           </dl>
           <div className="footer" aria-hidden="true">
-            <div className="instruction"><span className="mountain-instruction">MOVE TO DISTURB</span><span className="earth-instruction">MOVE TO ILLUMINATE</span><span className="touch-instruction">TOUCH TO INTERACT</span></div>
+            <div className="instruction"><span className="mountain-instruction">MOVE TO LIGHT THE RIDGE</span><span className="earth-instruction">MOVE TO ILLUMINATE</span><span className="touch-instruction">TOUCH TO INTERACT</span></div>
             <div className="scroll-cue"><span className="mountain-instruction">SCROLL TO EXPLORE</span><span className="earth-instruction">SCROLL FOR WORK</span><span className="arrow">↓</span></div>
             <span className="medium">GENERATIVE / REALTIME</span>
           </div>
@@ -55,63 +59,65 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="approach" className="pf-section">
+        <section id="approach" className="pf-section pf-approach">
           <span className="index">Approach</span>
           <ProximityText text="Most of what I build starts as a conversation with a model and ends as code I understand line by line. The part I care about is where it actually works." />
           <dl className="pf-stack">
-            {stack.map((s) => <div key={s.label} className="pf-card"><dt>{s.label}</dt><dd>{s.items}</dd></div>)}
+            {stack.map((s, i) => (
+              <div key={s.label} style={{ '--hue': `var(--pf-t-${STACK_HUES[i % STACK_HUES.length]})` } as React.CSSProperties}>
+                <dt>{s.label}</dt><dd>{s.items}</dd>
+              </div>
+            ))}
           </dl>
-          <div className="pf-tools pf-card">
+          <div className="pf-tools">
             <dl><div><dt>Every day</dt><dd>The tools open on my machine right now, from the models I think with to where the code ships.</dd></div></dl>
-            <ToolDock />
+            <div className="pf-tools__stage">
+              <span className="pf-tools__floor" aria-hidden="true" />
+              <ToolDock />
+            </div>
           </div>
         </section>
 
-        <section id="lab" className="pf-section">
-          <div className="pf-card pf-panel">
-            <span className="pf-glow pf-glow--indigo" aria-hidden="true" />
-            <span className="pf-glow pf-glow--cyan" aria-hidden="true" />
-            <header className="pf-section__head">
-              <span className="index">AI Lab · {stats.runs} runs</span>
-              <h2>Every model.<br /><span className="pf-soft">Every result.</span></h2>
-              <p>{stats.runs} runs of {stats.models} models on the same prompts, failures included. Where a model produced a site, you can open it exactly as it came out.</p>
-            </header>
-            <dl className="pf-stack pf-stack--numbers">
-              <div><dt>Runs</dt><dd>{stats.runs}</dd></div>
-              <div><dt>Models</dt><dd>{stats.models}</dd></div>
-              <div><dt>Live previews</dt><dd>{stats.previews}</dd></div>
-              <div><dt>Success rate</dt><dd>{stats.successRate}%</dd></div>
-            </dl>
-            {featured.length > 0 && (
-              <ul className="pf-featured">
-                {featured.map((r) => (
-                  <li key={r.href}>
-                    <a href={r.href!} target="_blank" rel="noopener noreferrer">
-                      <span className="pf-featured__title">{r.featured}</span>
-                      <span className="pf-featured__model">{r.model}</span>
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <div className="pf-section__cta pf-section__cta--start">
-              <RainbowButton href="/lab">Open the Lab</RainbowButton>
-            </div>
+        <section id="lab" className="pf-section pf-lab">
+          <Light palette="ice" seed={7} className="pf-light--band" />
+          <header className="pf-section__head">
+            <span className="index">AI Lab · {stats.runs} runs</span>
+            <h2>Every model.<br /><span className="pf-soft">Every result.</span></h2>
+            <p>{stats.runs} runs of {stats.models} models on the same prompts, failures included. Where a model produced a site, you can open it exactly as it came out.</p>
+          </header>
+          <dl className="pf-figures">
+            <div><dt>Runs</dt><dd>{stats.runs}</dd></div>
+            <div><dt>Models</dt><dd>{stats.models}</dd></div>
+            <div><dt>Live previews</dt><dd>{stats.previews}</dd></div>
+            <div><dt>Success rate</dt><dd>{stats.successRate}<small>%</small></dd></div>
+          </dl>
+          {featured.length > 0 && (
+            <ul className="pf-featured">
+              {featured.map((r) => (
+                <li key={r.href}>
+                  <a href={r.href!} target="_blank" rel="noopener noreferrer">
+                    <span className="pf-featured__title">{r.featured}</span>
+                    <span className="pf-featured__model">{r.model}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="pf-section__cta pf-section__cta--start">
+            <RainbowButton href="/lab">Open the Lab</RainbowButton>
           </div>
         </section>
 
         <section id="contact" className="pf-section pf-contact">
-          <div className="pf-card pf-contact__card">
-            <span className="pf-glow pf-glow--indigo" aria-hidden="true" />
-            <span className="pf-glow pf-glow--cyan" aria-hidden="true" />
-            <span className="index">Contact</span>
-            <h2>Got something that<br /><span className="pf-soft">needs building?</span></h2>
-            <p>Open for internships, collaborations and client projects. <Link href="/services" className="pf-inline-link">See what I offer →</Link></p>
-            <div className="pf-contact__actions">
-              <ShinyButton href={`mailto:${profile.email}`}>Email me</ShinyButton>
-              <a className="pf-textlink" href={profile.github} target="_blank" rel="noreferrer">GitHub <span>@LePro10</span> ↗</a>
-            </div>
+          <Light palette="ember" seed={11} className="pf-light--bottom" />
+          <span className="pf-horizon" aria-hidden="true" />
+          <span className="index">Contact</span>
+          <h2>Got something that<br /><span className="pf-soft">needs building?</span></h2>
+          <p>Open for internships, collaborations and client projects. <Link href="/services" className="pf-inline-link">See what I offer →</Link></p>
+          <div className="pf-contact__actions">
+            <ShinyButton href={`mailto:${profile.email}`}>Email me</ShinyButton>
+            <a className="pf-textlink" href={profile.github} target="_blank" rel="noreferrer">GitHub <span>@LePro10</span> ↗</a>
           </div>
         </section>
       </main>
