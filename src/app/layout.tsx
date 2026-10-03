@@ -7,6 +7,11 @@ import { profile, site } from '@/content/profile';
 import '@/components/buttons/buttons.css';
 import './globals.css';
 import './pages.css';
+// Bewegung je Bereich, nach den Grundstilen geladen, damit sie gezielt überschreiben können.
+import './motion-hero.css';
+import './motion-work.css';
+import './motion-sections.css';
+import './motion-chrome.css';
 
 const sans = DM_Sans({ subsets: ['latin'], variable: '--font-sans', axes: ['opsz'], display: 'swap' });
 const mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono', display: 'swap' });

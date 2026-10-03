@@ -88,9 +88,9 @@
 .pf-steps li { position: relative; }
 /* Die Linie zeichnet sich, die Stationen leuchten nacheinander auf. */
 .pf-motion .pf-steps::before { scale: 0 1; transform-origin: left; transition: scale 1.8s var(--pf-ease-out) .2s; }
-.pf-motion .pf-steps.is-in::before { scale: 1 1; }
+.pf-motion .pf-steps[data-in]::before { scale: 1 1; }
 .pf-motion .pf-steps li { opacity: 0; translate: 0 14px; transition: opacity .8s var(--pf-ease-out), translate .8s var(--pf-ease-out); }
-.pf-motion .pf-steps.is-in li { opacity: 1; translate: 0 0; }
+.pf-motion .pf-steps[data-in] li { opacity: 1; translate: 0 0; }
 .pf-steps li:nth-child(2) { transition-delay: .35s; }
 .pf-steps li:nth-child(3) { transition-delay: .7s; }
 .pf-steps li:nth-child(4) { transition-delay: 1.05s; }
@@ -136,7 +136,7 @@
   .pf-steps { grid-template-columns: 1fr; }
   .pf-steps { row-gap: 28px; }
   .pf-motion .pf-steps::before { scale: 1 0; transform-origin: top; }
-  .pf-motion .pf-steps.is-in::before { scale: 1 1; }
+  .pf-motion .pf-steps[data-in]::before { scale: 1 1; }
   .pf-steps::before { display: block; left: 19px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; background: linear-gradient(rgb(var(--pf-t-ice) / .6), rgb(var(--pf-t-lilac) / .6), rgb(var(--pf-t-sand) / .6), rgb(var(--pf-t-ember) / .6)); }
   .pf-steps li { display: grid; grid-template-columns: 38px 1fr; gap: 4px 18px; }
   .pf-steps span { grid-row: span 2; margin: 0; }

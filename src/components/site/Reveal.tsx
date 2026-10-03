@@ -20,8 +20,10 @@ function countUp(el: HTMLElement) {
 }
 
 /**
- * Ein Beobachter für die ganze Seite: Elemente mit [data-reveal] bekommen .is-in, sobald
- * sie ins Bild kommen; das Aussehen davor und danach steht in globals.css. Zahlen mit
+ * Ein Beobachter für die ganze Seite: Elemente mit [data-reveal] bekommen [data-in], sobald
+ * sie ins Bild kommen; das Aussehen davor und danach steht in globals.css. Ein Attribut,
+ * keine Klasse: React setzt className beim Neu-Rendern (z. B. Hover) komplett neu und
+ * würde .is-in wieder entfernen — die Zeile wäre dann unsichtbar. Zahlen mit
  * [data-count] zählen dabei hoch. Ohne JS, ohne IntersectionObserver oder mit reduzierter
  * Bewegung fehlt .pf-motion, und alles steht einfach da.
  */
@@ -30,16 +32,16 @@ export function Reveal() {
 
   useEffect(() => {
     const root = document.documentElement;
-    const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-in)')];
+    const els = [...document.querySelectorAll<HTMLElement>('[data-reveal]:not([data-in])')];
     if (!root.classList.contains('pf-motion') || !('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-in'));
+      els.forEach((el) => el.setAttribute('data-in', ''));
       return;
     }
     const io = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         const el = entry.target as HTMLElement;
-        el.classList.add('is-in');
+        el.setAttribute('data-in', '');
         el.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
         io.unobserve(el);
       }
