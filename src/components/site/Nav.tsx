@@ -91,7 +91,12 @@ export function Nav() {
             <Link key={l.href} href={l.href} aria-current={isCurrent(l) ? 'page' : undefined}>{l.label}</Link>
           ))}
         </nav>
-        <Link href="/#contact" className="pf-pill" onClick={close}>Get in touch</Link>
+        {/* Der grüne Punkt heisst: offen für Projekte (siehe Kontakt). */}
+        <Link href="/#contact" className="pf-cta" onClick={close}>
+          <span className="pf-cta__live" aria-hidden="true" />
+          <span className="pf-cta__label">Get in touch</span>
+          <span className="pf-cta__arrow" aria-hidden="true">→</span>
+        </Link>
         <button type="button" className="pf-toggle" aria-expanded={open} aria-controls="pf-menu" onClick={() => setOpen(!open)}>
           <span>{open ? 'Close' : 'Menu'}</span><i /><i />
         </button>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { DM_Sans, IBM_Plex_Mono, Inter } from 'next/font/google';
 import { Nav } from '@/components/site/Nav';
 import { Footer } from '@/components/site/Footer';
+import { MOTION_SCRIPT, Reveal } from '@/components/site/Reveal';
 import { profile, site } from '@/content/profile';
 import '@/components/buttons/buttons.css';
 import './globals.css';
@@ -22,8 +23,12 @@ export const viewport: Viewport = { themeColor: '#090a0c', colorScheme: 'dark' }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable} ${button.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${button.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: MOTION_SCRIPT }} />
+      </head>
       <body id="top">
+        <Reveal />
         <Nav />
         <div className="grain" aria-hidden="true" />
         {children}

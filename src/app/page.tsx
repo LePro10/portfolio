@@ -5,19 +5,25 @@ import { HomeScene } from '@/components/home/HomeScene';
 import { ProximityText } from '@/components/home/ProximityText';
 import { ToolDock } from '@/components/home/ToolDock';
 import { WorkList } from '@/components/home/WorkList';
+import { RunField, type FieldGroup } from '@/components/lab/RunField';
 import { Light } from '@/components/light/Light';
 import { profile, projects, stack, type Hue } from '@/content/profile';
 import { labStats, loadLab } from '@/lab/load';
 
 /** Jede Stack-Spalte trägt eine Lichtfarbe, in derselben Familie wie die Projekte. */
 const STACK_HUES: Hue[] = ['lilac', 'ice', 'mint', 'sand'];
+const COLLECTION_HUES: Hue[] = ['lilac', 'mint', 'sand'];
 
 const AGE_WORDS: Record<number, string> = { 15: 'Fifteen', 16: 'Sixteen', 17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen', 20: 'Twenty' };
 
 export default function HomePage() {
   const { collections } = loadLab();
   const stats = labStats(collections);
-  const featured = collections.flatMap((c) => c.runs).filter((r) => r.featured && r.href);
+  const groups: FieldGroup[] = collections.map((c, i) => ({
+    title: c.title,
+    hue: COLLECTION_HUES[i % COLLECTION_HUES.length],
+    runs: c.runs.map((r) => ({ slug: r.slug, model: r.model, status: r.status, href: r.href, note: r.note })),
+  }));
 
   return (
     <>
@@ -47,64 +53,51 @@ export default function HomePage() {
           </div>
         </div>
 
-        <section id="work" className="pf-section">
-          <header className="pf-section__head">
+        <section id="work" className="pf-section pf-work">
+          <Light palette="night" seed={6} className="pf-light--top pf-light--soft" />
+          <header className="pf-section__head" data-reveal="">
             <span className="index">Selected work · {projects.length} projects</span>
             <h2>Things I built<br /><span className="pf-soft">and still use.</span></h2>
             <p>From agents to client work. Open a project for the full story; public ones link to their repository.</p>
           </header>
           <WorkList />
-          <div className="pf-section__cta">
+          <div className="pf-section__cta" data-reveal="">
             <RainbowButton href={profile.github} target="_blank" rel="noopener noreferrer">All repositories ↗</RainbowButton>
           </div>
         </section>
 
         <section id="approach" className="pf-section pf-approach">
-          <span className="index">Approach</span>
+          <Light palette="moss" seed={8} className="pf-light--band" />
+          <span className="index" data-reveal="">Approach</span>
           <ProximityText text="Most of what I build starts as a conversation with a model and ends as code I understand line by line. The part I care about is where it actually works." />
-          <dl className="pf-stack">
+          <dl className="pf-stack" data-reveal="">
             {stack.map((s, i) => (
               <div key={s.label} style={{ '--hue': `var(--pf-t-${STACK_HUES[i % STACK_HUES.length]})` } as React.CSSProperties}>
                 <dt>{s.label}</dt><dd>{s.items}</dd>
               </div>
             ))}
           </dl>
-          <div className="pf-tools">
+          <div className="pf-tools" data-reveal="">
             <dl><div><dt>Every day</dt><dd>The tools open on my machine right now, from the models I think with to where the code ships.</dd></div></dl>
-            <div className="pf-tools__stage">
-              <span className="pf-tools__floor" aria-hidden="true" />
-              <ToolDock />
-            </div>
+            <ToolDock />
           </div>
         </section>
 
         <section id="lab" className="pf-section pf-lab">
           <Light palette="ice" seed={7} className="pf-light--band" />
-          <header className="pf-section__head">
+          <header className="pf-section__head" data-reveal="">
             <span className="index">AI Lab · {stats.runs} runs</span>
             <h2>Every model.<br /><span className="pf-soft">Every result.</span></h2>
             <p>{stats.runs} runs of {stats.models} models on the same prompts, failures included. Where a model produced a site, you can open it exactly as it came out.</p>
           </header>
-          <dl className="pf-figures">
-            <div><dt>Runs</dt><dd>{stats.runs}</dd></div>
-            <div><dt>Models</dt><dd>{stats.models}</dd></div>
-            <div><dt>Live previews</dt><dd>{stats.previews}</dd></div>
-            <div><dt>Success rate</dt><dd>{stats.successRate}<small>%</small></dd></div>
+          <dl className="pf-figures" data-reveal="">
+            <div><dt>Runs</dt><dd data-count={stats.runs}>{stats.runs}</dd></div>
+            <div><dt>Models</dt><dd data-count={stats.models}>{stats.models}</dd></div>
+            <div><dt>Live previews</dt><dd data-count={stats.previews}>{stats.previews}</dd></div>
+            <div><dt>Success rate</dt><dd><span data-count={stats.successRate}>{stats.successRate}</span><small>%</small></dd></div>
           </dl>
-          {featured.length > 0 && (
-            <ul className="pf-featured">
-              {featured.map((r) => (
-                <li key={r.href}>
-                  <a href={r.href!} target="_blank" rel="noopener noreferrer">
-                    <span className="pf-featured__title">{r.featured}</span>
-                    <span className="pf-featured__model">{r.model}</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-          <div className="pf-section__cta pf-section__cta--start">
+          <RunField groups={groups} />
+          <div className="pf-section__cta pf-section__cta--start" data-reveal="">
             <RainbowButton href="/lab">Open the Lab</RainbowButton>
           </div>
         </section>
@@ -112,10 +105,10 @@ export default function HomePage() {
         <section id="contact" className="pf-section pf-contact">
           <Light palette="ember" seed={11} className="pf-light--bottom" />
           <span className="pf-horizon" aria-hidden="true" />
-          <span className="index">Contact</span>
-          <h2>Got something that<br /><span className="pf-soft">needs building?</span></h2>
-          <p>Open for internships, collaborations and client projects. <Link href="/services" className="pf-inline-link">See what I offer →</Link></p>
-          <div className="pf-contact__actions">
+          <span className="index" data-reveal="">Contact</span>
+          <h2 data-reveal="">Got something that<br /><span className="pf-soft">needs building?</span></h2>
+          <p data-reveal="" style={{ '--d': '.12s' } as React.CSSProperties}>Open for internships, collaborations and client projects. <Link href="/services" className="pf-inline-link">See what I offer →</Link></p>
+          <div className="pf-contact__actions" data-reveal="" style={{ '--d': '.24s' } as React.CSSProperties}>
             <ShinyButton href={`mailto:${profile.email}`}>Email me</ShinyButton>
             <a className="pf-textlink" href={profile.github} target="_blank" rel="noreferrer">GitHub <span>@LePro10</span> ↗</a>
           </div>

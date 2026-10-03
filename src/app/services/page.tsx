@@ -18,7 +18,7 @@ export default function ServicesPage() {
   return (
     <main className="pf-page" style={{ '--hue': 'var(--pf-t-sand)' } as React.CSSProperties}>
       <Light palette="sand" seed={4} className="pf-light--top" />
-      <header className="pf-page__head">
+      <header className="pf-page__head" data-reveal="">
         <span className="index">Services · {packages.length} packages</span>
         <h1>Three packages.<br /><span className="pf-soft">One standard.</span></h1>
         <p>Concept, design, code and hosting from one person. You get a fixed-price offer before anything starts.</p>
@@ -26,7 +26,7 @@ export default function ServicesPage() {
 
       <section className="pf-page__block pf-packages" aria-label="Packages">
         {packages.map((p, i) => (
-          <article key={p.title} className="pf-package pf-card">
+          <article key={p.title} className="pf-package pf-card" data-reveal="" style={{ '--d': `${i * 0.08}s` } as React.CSSProperties}>
             <Light palette={PACKAGE_LIGHT[i % PACKAGE_LIGHT.length]} seed={i + 2} intensity={0.7} className="pf-package__light" />
             <span className="pf-package__nr">{String(i + 1).padStart(2, '0')}</span>
             <div>
@@ -42,7 +42,7 @@ export default function ServicesPage() {
       <section className="pf-page__block">
         <span className="index">Process</span>
         <h2 className="pf-page__h2">How I work.</h2>
-        <ol className="pf-steps">
+        <ol className="pf-steps" data-reveal="">
           {process.map((s, i) => (
             <li key={s.title}><span>{i + 1}</span><h3>{s.title}</h3><p>{s.description}</p></li>
           ))}
@@ -52,7 +52,7 @@ export default function ServicesPage() {
       <section className="pf-page__block">
         <span className="index">Questions</span>
         <h2 className="pf-page__h2">Honest answers.</h2>
-        <div className="pf-faq">
+        <div className="pf-faq" data-reveal="">
           {faq.map((f) => (
             <details key={f.q}>
               <summary>{f.q}</summary>
@@ -62,7 +62,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="pf-page__block pf-page__cta">
+      <section className="pf-page__block pf-page__cta" data-reveal="">
         <h2 className="pf-page__h2">Does one of these fit?</h2>
         <div className="pf-contact__actions">
           <ShinyButton href={`mailto:${profile.email}?subject=${encodeURIComponent('Project request')}`}>Email me</ShinyButton>

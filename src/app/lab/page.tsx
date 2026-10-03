@@ -21,7 +21,7 @@ export default function LabPage() {
   return (
     <main className="pf-page" style={{ '--hue': 'var(--pf-t-ice)' } as React.CSSProperties}>
       <Light palette="ice" seed={2} className="pf-light--top" />
-      <header className="pf-page__head">
+      <header className="pf-page__head" data-reveal="">
         <span className="index">AI Lab · {stats.runs} runs</span>
         <h1>Every model.<br /><span className="pf-soft">Every result.</span></h1>
         <p>
@@ -30,15 +30,15 @@ export default function LabPage() {
         </p>
       </header>
 
-      <dl className="pf-figures">
-        <div><dt>Runs</dt><dd>{stats.runs}</dd></div>
-        <div><dt>Models</dt><dd>{stats.models}</dd></div>
-        <div><dt>Live previews</dt><dd>{stats.previews}</dd></div>
-        <div><dt>Success rate</dt><dd>{stats.successRate}<small>%</small></dd></div>
+      <dl className="pf-figures" data-reveal="">
+        <div><dt>Runs</dt><dd data-count={stats.runs}>{stats.runs}</dd></div>
+        <div><dt>Models</dt><dd data-count={stats.models}>{stats.models}</dd></div>
+        <div><dt>Live previews</dt><dd data-count={stats.previews}>{stats.previews}</dd></div>
+        <div><dt>Success rate</dt><dd><span data-count={stats.successRate}>{stats.successRate}</span><small>%</small></dd></div>
       </dl>
 
       {featured.length > 0 && (
-        <section className="pf-page__block" aria-label="Featured runs">
+        <section className="pf-page__block" aria-label="Featured runs" data-reveal="">
           <FeaturedPreview items={featured} />
         </section>
       )}
@@ -54,7 +54,7 @@ const COLLECTION_HUES = ['lilac', 'mint', 'sand'] as const;
 function Collection({ collection, letter, hue }: { collection: LabCollection; letter: string; hue: string }) {
   const withPreview = collection.runs.filter((r) => r.href).length;
   return (
-    <section id={collection.slug} className="pf-page__block" style={{ '--hue': `var(--pf-t-${hue})` } as React.CSSProperties}>
+    <section id={collection.slug} className="pf-page__block" data-reveal="" style={{ '--hue': `var(--pf-t-${hue})` } as React.CSSProperties}>
       <header className="pf-collection__head">
         <span className="index">Collection {letter}</span>
         <h2>{collection.title}</h2>

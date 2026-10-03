@@ -9,6 +9,7 @@ const TO = 720;
  * After hyperiux/variable-text-proximity: every letter's weight follows its distance to
  * the cursor. Uses DM Sans' variable wght axis, locks each glyph to its heavier width so
  * the paragraph never reflows, and only runs its frame loop while the pointer is near.
+ * The same nearness (--k) tints the letter mint in CSS, so the cursor reads as a small light.
  */
 export function ProximityText({ text, radius = 110 }: { text: string; radius?: number }) {
   const rootRef = useRef<HTMLParagraphElement>(null);
@@ -33,6 +34,7 @@ export function ProximityText({ text, radius = 110 }: { text: string; radius?: n
         const d = Math.hypot(centers[i].x - pos.x, centers[i].y - pos.y);
         const k = d < radius ? Math.exp(-((d / (radius / 2)) ** 2) / 2) : 0;
         l.style.fontVariationSettings = `'wght' ${Math.round(FROM + (TO - FROM) * k)}`;
+        l.style.setProperty('--k', k.toFixed(3));
       });
       frame = Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) > 0.3 ? requestAnimationFrame(tick) : 0;
     };
@@ -57,7 +59,7 @@ export function ProximityText({ text, radius = 110 }: { text: string; radius?: n
   }, [radius, text]);
 
   return (
-    <p ref={rootRef} className="pf-proximity" aria-label={text}>
+    <p ref={rootRef} className="pf-proximity" aria-label={text} data-reveal="">
       {text.split(' ').map((word, w) => (
         <Fragment key={w}>
           {w > 0 && ' '}

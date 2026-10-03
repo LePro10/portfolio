@@ -63,7 +63,8 @@ export function WorkList() {
         <div
           key={p.name}
           className={`pf-row ${active === i ? 'is-active' : ''}`}
-          style={{ '--hue': `var(--pf-t-${p.hue})` } as React.CSSProperties}
+          data-reveal=""
+          style={{ '--hue': `var(--pf-t-${p.hue})`, '--d': `${(i % 4) * 0.06}s` } as React.CSSProperties}
           onPointerEnter={(e) => e.pointerType === 'mouse' && enter(i, e.currentTarget)}
         >
           <button type="button" className="pf-row__line" aria-haspopup="dialog" onClick={() => setOpen(i)}>
