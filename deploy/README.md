@@ -58,8 +58,7 @@ Vorher im LAN prüfen: `curl -H 'Host: neuralhub.dev' http://192.168.30.64/lab`.
 
 ## Was Caddy zusätzlich macht
 
-- Alte Adressen: `/dashboard/*` → 308 auf `dashboard.neuralhub.dev`,
-  `/test-sites/<sammlung>-<lauf>/` → `/sites/<sammlung>/<lauf>/`,
+- Alte Adressen: `/test-sites/<sammlung>-<lauf>/` → `/sites/<sammlung>/<lauf>/`,
   `/ai-test-results` → `/lab`, `/leistungen` → `/services`,
   `/about`, `/projects`, `/contact` → Abschnitte der Startseite.
 - `/sites/*` (AI-Lab-Artefakte) mit CSP-Sandbox: eigene undurchsichtige Origin,

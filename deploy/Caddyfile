@@ -25,9 +25,8 @@
 	}
 
 	# ── Alte Adressen ──────────────────────────────────────────────────────
-	# Dashboard lebt auf eigenem Host; Präfix fällt weg, 308 erhält POST.
-	@dashboard path_regexp dash ^/dashboard(?:/(.*))?$
-	redir @dashboard https://dashboard.neuralhub.dev/{re.dash.1}{?query} 308
+	# Das Dashboard ist ein unabhängiges Projekt: /dashboard wird bewusst
+	# nicht weitergeleitet, sondern endet wie jede unbekannte Adresse im 404.
 
 	# /test-sites/<sammlung>-<lauf>/… → /sites/<sammlung>/<lauf>/
 	@oldsite path_regexp old ^/test-sites/(biggy|websites)-([a-z0-9-]+)
