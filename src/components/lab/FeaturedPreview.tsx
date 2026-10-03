@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useGlide } from '@/components/chrome/useGlide';
 
 export interface FeaturedItem {
   href: string;
@@ -20,6 +21,7 @@ export function FeaturedPreview({ items }: { items: FeaturedItem[] }) {
   const [seen, setSeen] = useState<Record<number, true>>({ 0: true });
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const current = items[active];
+  const [tabsRef, glideRef] = useGlide<HTMLDivElement, HTMLSpanElement>('[role="tab"]', active);
 
   const select = (i: number) => {
     setActive(i);
@@ -36,7 +38,9 @@ export function FeaturedPreview({ items }: { items: FeaturedItem[] }) {
 
   return (
     <div className="pf-preview-box">
-      <div role="tablist" aria-label="Featured runs" className="pf-preview-box__tabs">
+      <div role="tablist" aria-label="Featured runs" className="pf-preview-box__tabs" ref={tabsRef}>
+        {/* Helle Markierung gleitet zum gewählten Tab (useGlide). */}
+        <span className="pf-glide pf-glide--bright" ref={glideRef} aria-hidden="true" />
         {items.map((item, i) => (
           <button
             key={item.href}

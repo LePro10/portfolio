@@ -112,17 +112,66 @@ function draw(ctx: CanvasRenderingContext2D, kind: CoverKind, seed: number, hue:
   ctx.globalAlpha = 1;
 }
 
-export function Cover({ kind, name, hue = 'ice', className = '' }: { kind: CoverKind; name: string; hue?: Hue; className?: string }) {
+/** Höhe eines Streifens, in dem die Punkte beim Atmen gemeinsam wandern (CSS-Pixel). */
+const BAND = 4;
+
+/**
+ * Das Bild wird einmal in eine Vorlage gezeichnet. Mit `live` (Vorschau offen, Dialog offen)
+ * wandern seine Streifen danach sanft wie Luft über Wärme: pro Bild nur ~90 drawImage-Aufrufe
+ * statt die ganze Punktwolke neu zu rechnen. Ohne `live` oder mit reduzierter Bewegung steht es still.
+ */
+export function Cover({ kind, name, hue = 'ice', className = '', live = false }: { kind: CoverKind; name: string; hue?: Hue; className?: string; live?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const source = useRef<HTMLCanvasElement | null>(null);
+  const clock = useRef(0);
+
   useEffect(() => {
     const canvas = ref.current;
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    draw(ctx, kind, hash(name), hue);
+    const plate = document.createElement('canvas');
+    plate.width = canvas.width = W * dpr;
+    plate.height = canvas.height = H * dpr;
+    const pctx = plate.getContext('2d');
+    if (!pctx) return;
+    pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw(pctx, kind, hash(name), hue);
+    source.current = plate;
+    ctx.drawImage(plate, 0, 0);
   }, [kind, name, hue]);
+
+  useEffect(() => {
+    const canvas = ref.current;
+    const ctx = canvas?.getContext('2d');
+    if (!live || !canvas || !ctx || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let frame = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const plate = source.current;
+      // Zeit läuft nur, solange das Bild lebt; beim nächsten Öffnen geht es nahtlos weiter.
+      clock.current += Math.min(now - last, 50) / 1000;
+      last = now;
+      if (plate) {
+        const t = clock.current;
+        const k = plate.width / W;
+        const band = BAND * k;
+        // Ganz leichtes Atmen: das Bild schwillt um gut 1 % an und ab.
+        const breathe = 1.025 + Math.sin(t * 0.7) * 0.012;
+        const bw = plate.width * breathe;
+        ctx.fillStyle = '#0c0d10';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for (let y = 0; y < plate.height; y += band) {
+          const v = y / k;
+          const dx = (Math.sin(t * 0.9 + v * 0.031) * 1.7 + Math.sin(t * 0.43 - v * 0.012) * 1.3) * k;
+          ctx.drawImage(plate, 0, y, plate.width, band, (plate.width - bw) / 2 + dx, y, bw, band);
+        }
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [live]);
+
   return <canvas ref={ref} className={`pf-cover ${className}`} aria-hidden="true" />;
 }

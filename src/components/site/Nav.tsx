@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import { FlameButton } from '@/components/buttons/FlameButton';
+import { useGlide } from '@/components/chrome/useGlide';
 import { nav, profile } from '@/content/profile';
 
 /** Each character slides up to reveal a copy of itself underneath, staggered (CSS only). */
@@ -25,8 +26,10 @@ const PAGE_SECTION: Record<string, string> = { '/lab': 'lab', '/services': 'serv
  * Sektion, deren Anfang das obere Drittel des Fensters passiert hat.
  * `scrolled` wird wahr, sobald Inhalt unter den Header läuft (auf der Startseite erst
  * nach der Partikelszene), damit die Szene frei von Glas bleibt.
+ * Nebenbei schreibt derselbe Frame den Lesefortschritt (0–1) als --p auf die Lichtlinie
+ * unter dem Header — direkt per DOM, damit Scrollen kein Neu-Rendern auslöst.
  */
-function useNavState(pathname: string) {
+function useNavState(pathname: string, progress: RefObject<HTMLSpanElement | null>) {
   const [state, setState] = useState<{ current: string | null; scrolled: boolean }>({ current: null, scrolled: false });
 
   useEffect(() => {
@@ -44,6 +47,8 @@ function useNavState(pathname: string) {
         }
         if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = 'contact';
       }
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.current?.style.setProperty('--p', String(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0));
       setState((s) => (s.current === current && s.scrolled === scrolled ? s : { current, scrolled }));
     };
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
@@ -55,7 +60,7 @@ function useNavState(pathname: string) {
       window.removeEventListener('resize', onScroll);
       cancelAnimationFrame(frame);
     };
-  }, [pathname]);
+  }, [pathname, progress]);
 
   return state;
 }
@@ -68,9 +73,12 @@ function useNavState(pathname: string) {
 export function Nav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { current, scrolled } = useNavState(pathname);
+  const progress = useRef<HTMLSpanElement>(null);
+  const { current, scrolled } = useNavState(pathname, progress);
   const isCurrent = (item: (typeof nav)[number]) =>
     item.href === '/' ? pathname === '/' && current === null : (item.section ?? PAGE_SECTION[item.href]) === current;
+  const pill = nav.slice(1, -1);
+  const [pillRef, glideRef] = useGlide<HTMLElement, HTMLSpanElement>('a', pill.findIndex(isCurrent));
 
   useEffect(() => {
     document.documentElement.classList.toggle('pf-locked', open);
@@ -86,8 +94,10 @@ export function Nav() {
     <>
       <header className={`pf-header ${open ? 'is-open' : ''} ${scrolled ? 'is-scrolled' : ''}`}>
         <Link href="/" className="identity" onClick={close}><i aria-hidden="true" />{profile.name}</Link>
-        <nav className="pf-header__links" aria-label="Main">
-          {nav.slice(1, -1).map((l) => (
+        <nav className="pf-header__links" aria-label="Main" ref={pillRef}>
+          {/* Die Markierung gleitet zum aktiven Link, statt zu springen (useGlide). */}
+          <span className="pf-glide" ref={glideRef} aria-hidden="true" />
+          {pill.map((l) => (
             <Link key={l.href} href={l.href} aria-current={isCurrent(l) ? 'page' : undefined}>{l.label}</Link>
           ))}
         </nav>
@@ -100,6 +110,8 @@ export function Nav() {
         <button type="button" className="pf-toggle" aria-expanded={open} aria-controls="pf-menu" onClick={() => setOpen(!open)}>
           <span>{open ? 'Close' : 'Menu'}</span><i /><i />
         </button>
+        {/* Haarfeine Lichtlinie: wie weit die Seite gelesen ist. */}
+        <span className="pf-header__progress" ref={progress} aria-hidden="true" />
       </header>
       <div id="pf-menu" className={`pf-menu ${open ? 'is-open' : ''}`} inert={!open}>
         <div className="pf-menu__inner">

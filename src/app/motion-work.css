@@ -1,1 +1,95 @@
-/* motion-work — siehe Kommentar im Kopf, von einem Subagenten gepflegt. Lädt nach globals.css und pages.css. */
+/* motion-work — Bewegung der Work-Liste (components/home/WorkList.tsx, ProjectDialog.tsx).
+   Lädt nach globals.css und pages.css und darf deren Work-Regeln verfeinern.
+   Grundsatz: Farbe nur als Licht, jede Zeile in ihrem eigenen --hue. Ohne .pf-motion
+   steht alles sichtbar da; die Orientierung (Linie, aktuelle Zeile) bleibt auch dann. */
+
+/* ─── Lichtlinie links: füllt sich mit dem Scrollen (--fill 0…1), Farbe der Zeile an der
+   Lesezeile (--rail-hue). Beides setzt WorkList per Scroll-Messung. */
+.pf-list__rail {
+  position: absolute; z-index: 0; top: 0; bottom: 0; left: -26px; width: 1px; pointer-events: none;
+  background: linear-gradient(transparent, rgb(255 255 255 / .08) 6%, rgb(255 255 255 / .08) 94%, transparent);
+}
+.pf-list__rail i {
+  position: absolute; inset: 0; display: block; transform-origin: top; scale: 1 var(--fill, 0);
+  background-color: rgb(var(--rail-hue, var(--pf-t-ice)) / .85);
+  box-shadow: 0 0 10px rgb(var(--rail-hue, var(--pf-t-ice)) / .55);
+  -webkit-mask-image: linear-gradient(transparent, #000 18%); mask-image: linear-gradient(transparent, #000 18%);
+  transition: background-color .6s ease, box-shadow .6s ease;
+}
+/* Der Kopf der Linie: ein kleiner Lichtpunkt genau auf Höhe der Lesezeile. */
+.pf-list__rail::after {
+  content: ''; position: absolute; left: -3px; top: calc(var(--fill, 0) * 100%); width: 7px; height: 7px; margin-top: -3.5px;
+  border-radius: 50%; background: #fff; opacity: 0;
+  box-shadow: 0 0 0 3px rgb(var(--rail-hue, var(--pf-t-ice)) / .18), 0 0 14px 2px rgb(var(--rail-hue, var(--pf-t-ice)) / .8);
+  transition: opacity .4s ease, box-shadow .6s ease;
+}
+.pf-list:has(> .pf-row[data-current]) .pf-list__rail::after { opacity: 1; }
+
+/* Die Zeile an der Lesezeile: ihre Nummer leuchtet in ihrem Licht. */
+.pf-row[data-current] .pf-row__index { color: rgb(var(--hue)); text-shadow: 0 0 12px rgb(var(--hue) / .7); }
+
+/* ─── Hover: der Name gleitet und nimmt einen Hauch seines Lichts an. */
+.pf-row__name { transition: translate .6s var(--pf-ease-out), color .4s ease, text-shadow .4s ease; }
+.pf-row.is-active .pf-row__name {
+  translate: 8px 0;
+  color: color-mix(in oklab, rgb(var(--hue)) 22%, #fff);
+  text-shadow: 0 0 22px rgb(var(--hue) / .35);
+}
+.pf-row__summary { transition: translate .7s var(--pf-ease-out) .03s, color .3s; }
+.pf-row.is-active .pf-row__summary { translate: 4px 0; }
+.pf-row.is-active .pf-row__plus { color: rgb(var(--hue)); }
+
+/* ─── Touch: keine Vorschau, dafür ein weiches Licht auf der Zeile, die gerade gelesen wird. */
+@media not ((hover: hover) and (pointer: fine)) {
+  .pf-row::before {
+    content: ''; position: absolute; inset: 0 -10px; z-index: 0; border-radius: 16px; pointer-events: none; opacity: 0;
+    background:
+      radial-gradient(70% 110% at 0% 40%, rgb(var(--hue) / .11), transparent 72%),
+      linear-gradient(90deg, rgb(var(--hue) / .7), rgb(var(--hue) / 0)) left center / 2px 56% no-repeat;
+    transition: opacity .7s ease;
+  }
+  .pf-row { position: relative; }
+  .pf-row[data-current]::before { opacity: 1; }
+  .pf-row__name, .pf-row__plus { transition: color .5s ease, rotate .3s; }
+  .pf-row[data-current] .pf-row__name { color: color-mix(in oklab, rgb(var(--hue)) 18%, #fff); }
+  .pf-row[data-current] .pf-row__plus { color: rgb(var(--hue)); }
+  /* Die Linie würde auf dem Handy am Rand kleben; das Zeilenlicht übernimmt die Orientierung. */
+  .pf-list__rail { display: none; }
+}
+@media (max-width: 900px) and (hover: hover) and (pointer: fine) {
+  .pf-list__rail { left: -14px; }
+}
+
+/* ─── Dialog: oben ein weiches Licht in der Farbe des Projekts, Inhalt steigt gestaffelt auf. */
+.pf-dialog {
+  background:
+    radial-gradient(90% 34% at 50% 0%, rgb(var(--hue, var(--pf-c-indigo)) / .26), transparent 72%),
+    radial-gradient(60% 30% at 100% 0%, rgb(var(--pf-c-indigo) / .1), transparent 70%),
+    rgb(14 16 20 / .9);
+}
+.pf-dialog__panel::before {
+  content: ''; position: absolute; top: 0; left: 12%; right: 12%; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(var(--hue, var(--pf-t-ice)) / .75), transparent);
+}
+.pf-dialog__cover { --i: 0; }
+.pf-dialog__body > :nth-child(1) { --i: 1; }
+.pf-dialog__body > :nth-child(2) { --i: 2; }
+.pf-dialog__body > :nth-child(3) { --i: 3; }
+.pf-dialog__body > :nth-child(4) { --i: 4; }
+.pf-dialog__body > :nth-child(5) { --i: 5; }
+.pf-motion .pf-dialog[open] :is(.pf-dialog__cover, .pf-dialog__body > *) {
+  animation: pf-dialog-rise .9s var(--pf-ease-out) both;
+  animation-delay: calc(.16s + var(--i, 0) * 60ms);
+}
+@keyframes pf-dialog-rise { from { opacity: 0; translate: 0 18px; filter: blur(6px); } }
+
+/* Schliessen: das Panel beschleunigt sanft hinaus, der Inhalt blendet zuerst ab. */
+.pf-dialog[data-closing] { animation: pf-panel-out .36s cubic-bezier(.55, 0, .8, .25) forwards; }
+.pf-dialog[data-closing]::backdrop { animation: pf-fade .36s ease-in reverse forwards; }
+.pf-dialog__panel { transition: opacity .22s ease; }
+.pf-dialog[data-closing] .pf-dialog__panel { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-list__rail i, .pf-list__rail::after, .pf-row::before, .pf-row__name, .pf-row__summary { transition: none !important; }
+  .pf-dialog[data-closing], .pf-dialog[data-closing]::backdrop { animation-duration: .01s; }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { RainbowButton } from '@/components/buttons/RainbowButton';
 import { ShinyButton } from '@/components/buttons/ShinyButton';
+import { Spotlight } from '@/components/chrome/Spotlight';
 import { Light } from '@/components/light/Light';
 import type { Palette } from '@/components/light/palettes';
 import { profile } from '@/content/profile';
@@ -28,15 +29,17 @@ export default function ServicesPage() {
         {packages.map((p, i) => (
           <article key={p.title} className="pf-package pf-card" data-reveal="" style={{ '--d': `${i * 0.08}s` } as React.CSSProperties}>
             <Light palette={PACKAGE_LIGHT[i % PACKAGE_LIGHT.length]} seed={i + 2} intensity={0.7} className="pf-package__light" />
+            <span className="pf-spot" data-spot="" aria-hidden="true" />
             <span className="pf-package__nr">{String(i + 1).padStart(2, '0')}</span>
             <div>
               <h2>{p.title}</h2>
               <p>{p.audience}</p>
               <p className="pf-package__tags">{p.tags}</p>
             </div>
-            <ul>{p.scope.map((s) => <li key={s}>{s}</li>)}</ul>
+            <ul>{p.scope.map((s, j) => <li key={s} style={{ '--j': j } as React.CSSProperties}>{s}</li>)}</ul>
           </article>
         ))}
+        <Spotlight selector=".pf-package" />
       </section>
 
       <section className="pf-page__block">

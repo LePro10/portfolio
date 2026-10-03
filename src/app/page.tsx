@@ -6,6 +6,7 @@ import { ProximityText } from '@/components/home/ProximityText';
 import { ToolDock } from '@/components/home/ToolDock';
 import { WorkList } from '@/components/home/WorkList';
 import { RunField, type FieldGroup } from '@/components/lab/RunField';
+import { CopyEmail, HorizonGlow, Magnetic } from '@/components/sections/ContactMotion';
 import { Light } from '@/components/light/Light';
 import { profile, projects, stack, type Hue } from '@/content/profile';
 import { labStats, loadLab } from '@/lab/load';
@@ -32,8 +33,20 @@ export default function HomePage() {
         <div className="scene-track">
           <section className="study mountain-title" aria-label="Introduction">
             <div className="index">Portfolio · {profile.location}</div>
-            <h1>{profile.name}</h1>
-            <p>I build AI tools, agents and the interfaces around them.</p>
+            {/* Name steigt Buchstabe für Buchstabe aus einer Maske (motion-hero.css); Screenreader lesen den ganzen Namen. */}
+            <h1 className="hero-name">
+              <span className="pf-sr">{profile.name}</span>
+              <span aria-hidden="true">
+                {profile.name.split(' ').map((word, w, words) => (
+                  <span key={w} className="hero-word">
+                    {[...word].map((ch, c) => (
+                      <span key={c} className="hero-char" style={{ '--i': words.slice(0, w).join('').length + c } as React.CSSProperties}>{ch}</span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+            </h1>
+            <p className="hero-sub">I build AI tools, agents and the interfaces around them.</p>
           </section>
           <span id="about" className="scene-anchor" />
           <section className="study earth-title" aria-label="About">
@@ -42,13 +55,13 @@ export default function HomePage() {
             <p className="about-copy">Most of my time goes where AI meets real software: agents that do actual work, tools that make me faster, and interfaces that make both usable. Most of my repositories started as something I needed myself.</p>
           </section>
           <dl className="about-stats earth-stats">
-            <div><dt>Age</dt><dd>{profile.age}</dd></div>
-            <div><dt>Repositories</dt><dd>19</dd></div>
-            <div><dt>Languages</dt><dd>6</dd></div>
+            <div><dt>Age</dt><dd data-earth-count={profile.age}>{profile.age}</dd></div>
+            <div><dt>Repositories</dt><dd data-earth-count={19}>19</dd></div>
+            <div><dt>Languages</dt><dd data-earth-count={6}>6</dd></div>
           </dl>
           <div className="footer" aria-hidden="true">
             <div className="instruction"><span className="mountain-instruction">MOVE TO LIGHT THE RIDGE</span><span className="earth-instruction">MOVE TO ILLUMINATE</span><span className="touch-instruction">TOUCH TO INTERACT</span></div>
-            <div className="scroll-cue"><span className="mountain-instruction">SCROLL TO EXPLORE</span><span className="earth-instruction">SCROLL FOR WORK</span><span className="arrow">↓</span></div>
+            <div className="scroll-cue"><span className="mountain-instruction">SCROLL TO EXPLORE</span><span className="earth-instruction">SCROLL FOR WORK</span><span className="hero-drop"><i /></span></div>
             <span className="medium">GENERATIVE / REALTIME</span>
           </div>
         </div>
@@ -104,13 +117,16 @@ export default function HomePage() {
 
         <section id="contact" className="pf-section pf-contact">
           <Light palette="ember" seed={11} className="pf-light--bottom" />
-          <span className="pf-horizon" aria-hidden="true" />
+          <HorizonGlow />
           <span className="index" data-reveal="">Contact</span>
-          <h2 data-reveal="">Got something that<br /><span className="pf-soft">needs building?</span></h2>
-          <p data-reveal="" style={{ '--d': '.12s' } as React.CSSProperties}>Open for internships, collaborations and client projects. <Link href="/services" className="pf-inline-link">See what I offer →</Link></p>
+          <h2 data-reveal="" style={{ '--d': '.08s' } as React.CSSProperties}>Got something that<br /><span className="pf-soft">needs building?</span></h2>
+          <p data-reveal="" style={{ '--d': '.16s' } as React.CSSProperties}>Open for internships, collaborations and client projects. <Link href="/services" className="pf-inline-link">See what I offer →</Link></p>
           <div className="pf-contact__actions" data-reveal="" style={{ '--d': '.24s' } as React.CSSProperties}>
-            <ShinyButton href={`mailto:${profile.email}`}>Email me</ShinyButton>
+            <Magnetic><ShinyButton href={`mailto:${profile.email}`}>Email me</ShinyButton></Magnetic>
             <a className="pf-textlink" href={profile.github} target="_blank" rel="noreferrer">GitHub <span>@LePro10</span> ↗</a>
+          </div>
+          <div className="pf-contact__copy" data-reveal="" style={{ '--d': '.32s' } as React.CSSProperties}>
+            <CopyEmail email={profile.email} />
           </div>
         </section>
       </main>

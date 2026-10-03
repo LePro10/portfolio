@@ -8,6 +8,8 @@ import type { Project } from '@/content/profile';
 /**
  * Project detail as a native <dialog>: side panel on desktop, bottom sheet on phones.
  * showModal() gives focus trapping, Escape and inert page content for free.
+ * Schliessen läuft über [data-closing] statt einer Klasse: React würde className beim
+ * nächsten Rendern zurücksetzen und die Ausblendung mitten drin abbrechen.
  */
 export function ProjectDialog({ project, index, onClose }: { project: Project | null; index: number; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -22,8 +24,9 @@ export function ProjectDialog({ project, index, onClose }: { project: Project | 
   function close() {
     const dialog = ref.current;
     if (!dialog?.open) return onClose();
-    dialog.classList.add('is-closing');
-    setTimeout(() => { dialog.classList.remove('is-closing'); dialog.close(); }, 320);
+    if (dialog.hasAttribute('data-closing')) return;
+    dialog.setAttribute('data-closing', '');
+    setTimeout(() => { dialog.removeAttribute('data-closing'); dialog.close(); }, 360);
   }
 
   return (
@@ -42,7 +45,7 @@ export function ProjectDialog({ project, index, onClose }: { project: Project | 
             <span>{String(index + 1).padStart(2, '0')} / Project</span>
             <button type="button" onClick={close} aria-label="Close">Close <i /><i /></button>
           </header>
-          <Cover kind={project.cover} name={project.name} hue={project.hue} className="pf-dialog__cover" />
+          <Cover kind={project.cover} name={project.name} hue={project.hue} className="pf-dialog__cover" live />
           <div className="pf-dialog__body">
             <h3 id="pf-dialog-title">{project.name}</h3>
             <p className="pf-dialog__lead">{project.summary}</p>

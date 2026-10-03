@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { Light } from '@/components/light/Light';
 
+const PHASES = ['Ridge', 'Wind', 'Earth'];
+
 const SceneCanvas = dynamic(() => import('./SceneCanvas'), { ssr: false });
 
 /**
@@ -53,10 +55,15 @@ export function HomeScene() {
         <Light palette="dusk" seed={3} className="pf-sky__dusk" />
         <Light palette="night" seed={5} className="pf-sky__night" />
         <span className="pf-sun" />
+        <span className="hero-stars" />
       </div>
       <div className="canvas-wrap"><SceneCanvas running={running} onError={onError} /></div>
       <div className="frame" aria-hidden="true"><span className="corner top-left" /><span className="corner top-right" /><span className="corner bottom-left" /><span className="corner bottom-right" /></div>
-      <div className="progress-track" aria-hidden="true"><span /></div>
+      {/* Orientierung: drei Stationen der Szene, ein Lichtpunkt wandert mit --progress zwischen ihnen. */}
+      <div className="hero-phases" aria-hidden="true">
+        <span className="hero-phases__rail"><i /></span>
+        {PHASES.map((label, i) => <span key={label} className="hero-phases__stop" style={{ '--at': i / (PHASES.length - 1) } as React.CSSProperties}>{label}</span>)}
+      </div>
       {error && <p role="alert" className="fallback">Earth data could not load. Refresh to try again.</p>}
     </>
   );

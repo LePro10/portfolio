@@ -80,7 +80,7 @@ function Collection({ collection, letter, hue }: { collection: LabCollection; le
           <span role="columnheader">Result</span>
           <span role="columnheader"><span className="pf-sr">Link</span></span>
         </div>
-        {collection.runs.map((run) => {
+        {collection.runs.map((run, i) => {
           const cells = (
             <>
               <span role="cell" className="pf-runs__model">{run.model}</span>
@@ -93,10 +93,12 @@ function Collection({ collection, letter, hue }: { collection: LabCollection; le
               <span role="cell" className="pf-runs__open">{run.href ? 'Open ↗' : ''}</span>
             </>
           );
+          // Zeilen steigen beim Scrollen in kleinen Gruppen auf: Verzögerung zählt je sechs Zeilen neu.
+          const reveal = { 'data-reveal': '', style: { '--d': `${(i % 6) * 0.05}s` } as React.CSSProperties };
           return run.href ? (
-            <a key={run.slug} role="row" className="pf-runs__row is-link" href={run.href} target="_blank" rel="noopener noreferrer">{cells}</a>
+            <a key={run.slug} role="row" className="pf-runs__row is-link" href={run.href} target="_blank" rel="noopener noreferrer" {...reveal}>{cells}</a>
           ) : (
-            <div key={run.slug} role="row" className="pf-runs__row">{cells}</div>
+            <div key={run.slug} role="row" className="pf-runs__row" {...reveal}>{cells}</div>
           );
         })}
       </div>

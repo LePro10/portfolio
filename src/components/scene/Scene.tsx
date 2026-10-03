@@ -11,6 +11,22 @@ import { earthVertex, mountainVertex, particleFragment } from './shaders';
 
 type Land = { features: { geometry: { type: string; coordinates: number[][][] | number[][][][] } }[] };
 type Input = { pointer: THREE.Vector2; velocity: THREE.Vector2; active: number; scroll: number; wind: number };
+/** Zählt die About-Werte ([data-earth-count]) von 0 auf ihren echten Wert; der Wert selbst steht im HTML. */
+function countUp() {
+  const start=performance.now();
+  const els=[...document.querySelectorAll<HTMLElement>('[data-earth-count]')];
+  els.forEach((el,i)=>{
+    const target=Number(el.dataset.earthCount);
+    if(!Number.isFinite(target))return;
+    el.textContent='0';
+    const frame=(now:number)=>{
+      const t=THREE.MathUtils.clamp((now-start-i*140)/1300,0,1);
+      el.textContent=String(Math.round(target*(1-(1-t)**4)));
+      if(t<1)requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  });
+}
 const damping = (a: number, b: number, speed: number, dt: number) => THREE.MathUtils.damp(a,b,speed,dt);
 
 function makeGeometry(positions: number[], seeds: number[], lights: number[]) {
@@ -71,7 +87,7 @@ export function Scene({onError}:{onError:()=>void}) {
   const mountainRef=useRef<THREE.Points>(null),earthRef=useRef<THREE.Points>(null);
   const input=useRef<Input>({pointer:new THREE.Vector2(3,3),velocity:new THREE.Vector2(),active:0,scroll:0,wind:0});
   const reduced=useRef(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const motion=useRef({earthTime:0,scroll:0,touch:false,touchDown:false,lastTouch:0});
+  const motion=useRef({earthTime:0,scroll:0,touch:false,touchDown:false,lastTouch:0,counted:false});
   // A small persistent screen-space height field retains the entire swipe.
   const cloth=useMemo(()=>{
     const width=96,height=64,data=new Uint8Array(width*height);
@@ -145,7 +161,11 @@ export function Scene({onError}:{onError:()=>void}) {
     const titleShift=THREE.MathUtils.smoothstep(u.uProgress.value,.04,.86);
     document.documentElement.style.setProperty('--mountain-shift',String(titleShift));
     document.documentElement.style.setProperty('--mountain-title-shift',`${-titleShift*stableViewport.current.height*.18}px`);
-    document.documentElement.style.setProperty('--earth-label',String(THREE.MathUtils.smoothstep(u.uProgress.value,.90,.99)));
+    const earthLabel=THREE.MathUtils.smoothstep(u.uProgress.value,.90,.99);
+    document.documentElement.style.setProperty('--earth-label',String(earthLabel));
+    // Kommt die Erde an, zählen die Zahlen daneben hoch; erst nach dem Wegscrollen wieder.
+    if(earthLabel>.12&&!motion.current.counted){motion.current.counted=true;if(!reduced.current&&document.documentElement.classList.contains('pf-motion'))countUp();}
+    else if(earthLabel<.01)motion.current.counted=false;
   });
   // Fast Refresh replaces memoized uniforms; remount materials to clear Three's uniform cache.
   return <>

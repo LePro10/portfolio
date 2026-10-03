@@ -1,1 +1,172 @@
-/* motion-chrome — siehe Kommentar im Kopf, von einem Subagenten gepflegt. Lädt nach globals.css und pages.css. */
+/* motion-chrome — Header, Fuss und Unterseiten (Lab, Services, 404).
+   Lädt nach globals.css und pages.css und überschreibt gezielt. Versteckte Startzustände
+   nur unter .pf-motion: ohne JS oder mit reduzierter Bewegung steht alles einfach da. */
+
+/* ─── Header ───────────────────────────────────────────────────────────── */
+/* Nach dem Scrollen wird der Header etwas flacher; ruhig, ohne Sprung. */
+.pf-header { transition: height .5s var(--pf-ease-out); }
+.pf-header.is-scrolled:not(.is-open) { height: 64px; }
+
+/* Gleitende Markierung in der Pille (useGlide): ersetzt den springenden Hintergrund. */
+.pf-header__links { position: relative; isolation: isolate; }
+.pf-header__links a[aria-current] { background: none; }
+.pf-glide {
+  position: absolute; z-index: -1; left: 0; top: 0; pointer-events: none;
+  width: var(--gw, 0); height: var(--gh, 0); translate: var(--gx, 0) var(--gy, 0);
+  border-radius: 999px; opacity: var(--go, 0);
+  background: rgb(255 255 255 / .11);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .08), 0 0 18px -6px rgb(var(--pf-t-ice) / .35);
+  transition: opacity .3s;
+}
+.pf-glide[data-ready] { transition: translate .55s var(--pf-ease-out), width .55s var(--pf-ease-out), opacity .3s; }
+
+/* Lesefortschritt als haarfeine Lichtlinie an der Unterkante (--p aus Nav.tsx). */
+.pf-header__progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgb(var(--pf-t-ice) / 0), rgb(var(--pf-t-ice) / .8) 40%, rgb(var(--pf-t-mint) / .9));
+  transform-origin: left; scale: var(--p, 0) 1;
+  opacity: 0; transition: opacity .4s ease-out;
+}
+.pf-header.is-scrolled:not(.is-open) .pf-header__progress { opacity: 1; }
+/* Ein weicher Lichtpunkt an der Spitze. */
+.pf-header__progress::after {
+  content: ''; position: absolute; right: 0; top: -2px; width: 40px; height: 5px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(var(--pf-t-mint) / .7), transparent);
+  filter: blur(1px);
+}
+
+/* Menü (Handy): der aktuelle Ort bekommt einen kleinen Lichtpunkt, die Trennlinien
+   zeichnen sich beim Öffnen mit derselben Staffelung wie die Links. */
+.pf-roll[aria-current]::after {
+  content: ''; display: inline-block; width: 8px; height: 8px; margin-left: 14px; border-radius: 50%; vertical-align: middle;
+  background: var(--pf-accent); box-shadow: 0 0 12px rgb(var(--pf-t-ice) / .8);
+}
+.pf-menu__links > div { position: relative; border-bottom-color: transparent; }
+.pf-menu__links > div::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--pf-line);
+  transform-origin: left; scale: 0 1; transition: scale 1s var(--pf-ease-out); transition-delay: inherit;
+}
+.pf-menu.is-open .pf-menu__links > div::after { scale: 1 1; }
+@media (prefers-reduced-motion: reduce) { .pf-menu__links > div::after { scale: 1 1; } }
+
+/* ─── Fuss: Abschied ───────────────────────────────────────────────────── */
+.pf-signoff { position: relative; overflow: hidden; padding-top: 10vh; }
+.pf-signoff::before {
+  /* Leises Licht von unten, das hinter der Wortmarke aufsteigt. */
+  content: ''; position: absolute; left: 50%; bottom: -30%; width: 120%; height: 80%; translate: -50% 0; pointer-events: none;
+  background: radial-gradient(50% 60% at 50% 100%, rgb(var(--pf-t-ice) / .09), rgb(var(--pf-t-mint) / .04) 45%, transparent 75%);
+}
+.pf-signoff > * { position: relative; }
+.pf-signoff__top { display: flex; justify-content: space-between; align-items: end; gap: 24px 40px; flex-wrap: wrap; }
+.pf-signoff__links { display: flex; gap: 8px; flex-wrap: wrap; }
+.pf-signoff__links a {
+  display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 999px;
+  border: 1px solid var(--pf-glass-line); background: rgb(255 255 255 / .03);
+  font-size: 15px; color: var(--pf-fg); text-decoration: none;
+  transition: color .25s, background-color .25s, border-color .25s;
+}
+.pf-signoff__links a:hover { color: var(--pf-bright); background: rgb(255 255 255 / .07); border-color: rgb(255 255 255 / .16); }
+.pf-signoff__clock { display: grid; justify-items: end; gap: 6px; margin: 0; }
+.pf-signoff__clock > span { font: 11px var(--font-mono), monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--pf-dim); }
+.pf-clock { font-size: 28px; letter-spacing: -.02em; color: var(--pf-bright); font-variant-numeric: tabular-nums; }
+.pf-clock > span[aria-hidden] { display: inline-block; margin-inline: 1px; }
+.pf-motion .pf-clock[data-live] > span[aria-hidden] { animation: pf-tick 2s ease-in-out infinite; }
+@keyframes pf-tick { 50% { opacity: .25; } }
+
+.pf-signoff__mark {
+  margin: 8vh 0 4vh; white-space: nowrap; text-align: center; user-select: none;
+  font-size: clamp(48px, 12.4vw, 230px); line-height: .9; letter-spacing: -.055em; font-weight: 500;
+}
+.pf-signoff__mark > span[aria-hidden] { display: inline-block; }
+/* Verlauf je Buchstabe: background-clip am Elternteil malt nicht durch transformierte Kinder. */
+.pf-signoff__mark > span[aria-hidden] > span {
+  display: inline-block; padding-bottom: .08em;
+  background: linear-gradient(180deg, rgb(var(--pf-t-ice) / .42), rgb(var(--pf-t-mint) / .12) 72%, transparent);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* Buchstaben steigen gestaffelt aus der Unschärfe; die Wortmarke selbst bleibt ruhig. */
+.pf-motion .pf-signoff__mark[data-reveal] { opacity: 1; translate: none; filter: none; }
+.pf-motion .pf-signoff__mark > span[aria-hidden] > span {
+  opacity: 0; translate: 0 .35em; filter: blur(10px);
+  transition: opacity 1s var(--pf-ease-out), translate 1.2s var(--pf-ease-out), filter 1s var(--pf-ease-out);
+  transition-delay: calc(var(--i) * 45ms);
+}
+.pf-motion .pf-signoff__mark[data-in] > span[aria-hidden] > span { opacity: 1; translate: 0 0; filter: none; }
+
+.pf-signoff .pf-footer { padding-top: 22px; }
+.pf-top { display: inline-flex; align-items: center; gap: 10px; }
+.pf-top__arrow {
+  display: inline-grid; width: 28px; height: 28px; border-radius: 50%; overflow: hidden;
+  border: 1px solid var(--pf-glass-line); place-items: center;
+  transition: border-color .25s, background-color .25s;
+}
+.pf-top__arrow i { grid-area: 1 / 1; font-style: normal; font-size: 13px; transition: translate .5s var(--pf-ease-out); }
+.pf-top__arrow i + i { translate: 0 150%; }
+.pf-top:hover .pf-top__arrow { border-color: rgb(var(--pf-t-mint) / .5); background: rgb(var(--pf-t-mint) / .08); }
+.pf-top:hover .pf-top__arrow i:first-child { translate: 0 -150%; }
+.pf-top:hover .pf-top__arrow i + i { translate: 0 0; }
+
+@media (max-width: 700px) {
+  .pf-signoff { padding-top: 10vh; }
+  .pf-signoff__top { flex-direction: column; align-items: stretch; }
+  .pf-signoff__clock { justify-items: start; grid-auto-flow: row; }
+  .pf-signoff__mark { font-size: 14.6vw; margin: 7vh 0 3vh; text-align: left; }
+  .pf-signoff .pf-footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+/* ─── Services ─────────────────────────────────────────────────────────── */
+/* Lichtkegel unter dem Zeiger (Spotlight.tsx): weiches Licht innen, hellere Kante nah am Zeiger. */
+.pf-package > .pf-spot {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
+  opacity: 0; transition: opacity .5s var(--pf-ease-out);
+}
+.pf-package > .pf-spot[data-on] { opacity: 1; }
+.pf-spot::before, .pf-spot::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.pf-spot::before {
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--pf-t-ice) / .11), transparent 65%);
+}
+.pf-spot::after {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--pf-t-ice) / .6), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.pf-package li { transition: border-color .3s, background-color .3s; }
+.pf-package li:hover { border-color: rgb(255 255 255 / .14); }
+/* Leistungen gestaffelt, nachdem die Karte aufgestiegen ist. */
+.pf-motion .pf-package li {
+  opacity: 0; translate: 0 10px;
+  transition: opacity .7s var(--pf-ease-out), translate .8s var(--pf-ease-out), border-color .3s, background-color .3s;
+  transition-delay: calc(var(--d, 0s) + .35s + var(--j, 0) * 70ms), calc(var(--d, 0s) + .35s + var(--j, 0) * 70ms), 0s, 0s;
+}
+.pf-motion .pf-package[data-in] li { opacity: 1; translate: 0 0; }
+
+/* ─── Lab ──────────────────────────────────────────────────────────────── */
+/* Zeilen der Lauf-Tabellen: kurzer Aufstieg ohne Unschärfe (viele Zeilen, soll leicht bleiben). */
+.pf-motion .pf-runs__row[data-reveal] {
+  filter: none; translate: 0 12px;
+  transition: opacity .7s var(--pf-ease-out) var(--d, 0s), translate .8s var(--pf-ease-out) var(--d, 0s), background-color .2s;
+}
+.pf-motion .pf-runs__row[data-reveal][data-in] { translate: 0 0; }
+/* Erfolgreiche Läufe melden sich beim Erscheinen einmal mit einem Lichtring. */
+.pf-dot { position: relative; }
+.pf-dot--success::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; opacity: 0;
+  box-shadow: 0 0 0 1px rgb(var(--pf-t-mint) / .8);
+}
+.pf-motion .pf-runs__row[data-in] .pf-dot--success::after { animation: pf-dot-ring 1.4s var(--pf-ease-out) calc(var(--d, 0s) + .3s) 1 both; }
+@keyframes pf-dot-ring { 0% { opacity: .9; scale: 1; } 100% { opacity: 0; scale: 3.2; } }
+
+/* Vorschau-Tabs: die helle Pille gleitet, der Text folgt kurz danach. */
+.pf-preview-box__tabs { position: relative; isolation: isolate; }
+.pf-preview-box__tabs button { transition: color .3s .08s, background-color .2s; }
+.pf-preview-box__tabs button[aria-selected="true"] { background: none; }
+.pf-preview-box__tabs button[aria-selected="true"]:hover { background: none; }
+.pf-glide--bright { background: var(--pf-bright); box-shadow: 0 6px 20px -8px rgb(var(--pf-t-ice) / .55); }
+/* Neues Panel blendet weich ein und setzt sich, statt hart umzuschalten. */
+.pf-motion .pf-preview-box__stage > [role="tabpanel"]:not([hidden]) { animation: pf-panel-swap .6s var(--pf-ease-out) both; }
+@keyframes pf-panel-swap { from { opacity: 0; scale: 1.015; filter: blur(6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-glide, .pf-glide[data-ready], .pf-header, .pf-header__progress { transition: none; }
+}

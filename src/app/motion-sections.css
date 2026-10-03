@@ -1,1 +1,101 @@
-/* motion-sections — siehe Kommentar im Kopf, von einem Subagenten gepflegt. Lädt nach globals.css und pages.css. */
+/* motion-sections — Bewegung für Approach, AI-Lab-Teaser und Kontakt auf der Startseite.
+   Lädt nach globals.css und pages.css und darf dort überschreiben. Alles, was etwas
+   versteckt oder bewegt, hängt an .pf-motion: ohne JS oder mit reduzierter Bewegung steht
+   jeder Inhalt einfach da. Gemeinsamer Takt: Geschwister staffeln in Schritten von 80 ms. */
+
+/* ─── Approach: der Satz liest sich beim Scrollen ─────────────────────────
+   --s (0…1) setzt ProximityText pro Wort. Gedimmte Wörter bleiben als Kontur lesbar;
+   das Mint der Cursor-Nähe (--k) liegt obendrauf. */
+.pf-motion .pf-proximity__word { --s: 0; }
+.pf-motion .pf-proximity [data-l] {
+  color: color-mix(in oklab, rgb(var(--pf-t-mint)) calc(var(--k, 0) * 100%),
+    color-mix(in oklab, var(--pf-bright) calc(var(--s, 1) * 100%), rgb(255 255 255 / .2)));
+}
+
+/* Stack-Spalten und Lab-Zahlen kommen nacheinander, im selben Takt wie die Lichtstriche. */
+.pf-motion .pf-stack > div,
+.pf-motion .pf-figures > div {
+  opacity: 0; translate: 0 14px;
+  transition: opacity .8s var(--pf-ease-out), translate 1s var(--pf-ease-out);
+  transition-delay: calc(var(--n, 0) * 80ms + .1s);
+}
+.pf-motion .pf-stack > div:nth-child(2), .pf-motion .pf-figures > div:nth-child(2) { --n: 1; }
+.pf-motion .pf-stack > div:nth-child(3), .pf-motion .pf-figures > div:nth-child(3) { --n: 2; }
+.pf-motion .pf-stack > div:nth-child(4), .pf-motion .pf-figures > div:nth-child(4) { --n: 3; }
+.pf-motion .pf-stack[data-in] > div,
+.pf-motion .pf-figures[data-in] > div { opacity: 1; translate: 0 0; }
+
+/* ─── Lauf-Matrix: Legende als Filter ─────────────────────────────────── */
+.pf-runfield__legend { gap: 8px; justify-content: flex-end; }
+.pf-runfield__chip {
+  display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px;
+  border: 1px solid var(--pf-line); border-radius: 999px; background: rgb(255 255 255 / .025);
+  font: inherit; font-size: 14px; color: var(--pf-fg); cursor: pointer;
+  transition: color .25s, background-color .25s, border-color .25s, opacity .25s;
+}
+.pf-runfield__chip:hover { color: var(--pf-bright); border-color: rgb(255 255 255 / .2); }
+.pf-runfield__chip[aria-pressed="true"] { color: var(--pf-bright); background: rgb(255 255 255 / .09); border-color: rgb(255 255 255 / .4); }
+.pf-runfield[data-filter] .pf-runfield__chip[aria-pressed="false"] { opacity: .6; }
+.pf-runfield[data-filter] .pf-runfield__chip[aria-pressed="false"]:hover { opacity: 1; }
+
+/* Gefiltert: nur die gewählten Felder leuchten, die übrigen treten fast ganz zurück. */
+.pf-run { transition: scale .25s var(--pf-ease-out), box-shadow .25s, opacity .45s var(--pf-ease-out), filter .45s; }
+.pf-runfield[data-filter="success"] .pf-run:not(.pf-run--success),
+.pf-runfield[data-filter="template"] .pf-run:not(.pf-run--template),
+.pf-runfield[data-filter="server-only"] .pf-run:not(.pf-run--server-only),
+.pf-runfield[data-filter="failed"] .pf-run:not(.pf-run--failed) { opacity: .12; filter: saturate(0); }
+
+/* Nach dem Hochfahren zieht einmal ein ruhiger Lichtschein über die Matrix (Overlay:
+   auf dem dunklen Grund fast unsichtbar, auf den Feldern ein Aufhellen). */
+.pf-runfield__groups { position: relative; }
+.pf-motion .pf-runfield__groups::after {
+  content: ''; position: absolute; inset: -8px 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(100deg, transparent 42%, rgb(255 255 255 / .75) 50%, transparent 58%) 120% 0 / 250% 100% no-repeat;
+  mix-blend-mode: overlay;
+}
+.pf-motion .pf-runfield[data-in] .pf-runfield__groups::after { animation: pf-scan 2.6s var(--pf-ease) 2.9s both; }
+@keyframes pf-scan {
+  0% { opacity: 0; background-position: 120% 0; }
+  15%, 80% { opacity: 1; }
+  100% { opacity: 0; background-position: -20% 0; }
+}
+
+/* ─── Kontakt ──────────────────────────────────────────────────────────── */
+/* Die Sonne folgt der Maus ein Stück entlang des Horizonts (--sun-x aus HorizonGlow). */
+.pf-horizon::after { translate: calc(-50% + var(--sun-x, 0px)) 0; }
+
+.pf-magnetic { display: inline-flex; translate: var(--mx, 0px) var(--my, 0px); transition: translate .5s var(--pf-ease-out); }
+
+.pf-contact__copy { display: flex; justify-content: center; width: 100%; margin-top: 22px; }
+.pf-mailcopy {
+  display: inline-flex; align-items: center; gap: 12px; padding: 5px 5px 5px 16px;
+  border: 1px solid var(--pf-line); border-radius: 999px; background: rgb(9 10 12 / .45);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  font: 14px var(--font-mono), monospace; color: var(--pf-fg); cursor: pointer;
+  transition: border-color .3s, color .3s;
+}
+.pf-mailcopy__addr { white-space: nowrap; }
+.pf-mailcopy__act {
+  flex: none; min-width: 64px; padding: 7px 13px; border-radius: 999px; background: rgb(255 255 255 / .07);
+  font: 500 13px var(--font-sans), sans-serif; color: var(--pf-bright);
+  transition: background-color .3s, color .3s;
+}
+.pf-mailcopy:hover { color: var(--pf-bright); border-color: rgb(var(--pf-t-ember) / .35); }
+.pf-mailcopy:hover .pf-mailcopy__act { background: rgb(255 255 255 / .13); }
+.pf-mailcopy[data-state="copied"] { border-color: rgb(var(--pf-t-mint) / .4); }
+.pf-mailcopy[data-state="copied"] .pf-mailcopy__act { background: rgb(var(--pf-t-mint) / .16); color: rgb(var(--pf-t-mint)); }
+.pf-motion .pf-mailcopy[data-state="copied"] .pf-mailcopy__act { animation: pf-copied .5s var(--pf-ease-out); }
+@keyframes pf-copied { 0% { scale: .86; } 60% { scale: 1.06; } 100% { scale: 1; } }
+
+@media (max-width: 700px) {
+  .pf-runfield__legend { justify-content: flex-start; }
+  .pf-runfield__chip { min-height: 40px; padding: 0 12px; }
+  .pf-contact__copy { margin-top: 18px; }
+}
+
+/* Kontakt-Licht läuft vor dem Sektionsende aus; sonst bricht es links und rechts
+   (wo der Boden unter dem Horizont ausgeblendet ist) mit harter Kante zum Footer ab. */
+.pf-contact > .pf-light {
+  -webkit-mask-image: linear-gradient(transparent, #000 45%, #000 78%, transparent 96%);
+  mask-image: linear-gradient(transparent, #000 45%, #000 78%, transparent 96%);
+}

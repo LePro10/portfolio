@@ -27,10 +27,15 @@ const STATUSES: RunStatus[] = ['success', 'template', 'server-only', 'failed'];
  * Ergebnisses stehen. Maus oder Fokus zeigen den Lauf in der Anzeigezeile; ein Klick auf
  * ein schon gezeigtes Feld öffnet die Seite. Auf Touch heisst das: erst tippen, dann
  * nochmals tippen. Tastatur: ein Tabstopp, Pfeiltasten wandern durch alle Felder.
+ *
+ * Die Legende ist ein Filter: ein Status gedrückt (aria-pressed) lässt nur seine Felder
+ * leuchten, die anderen treten zurück. Der Zustand steht als data-filter am Wurzelelement,
+ * gerendert von React, nicht per DOM gesetzt.
  */
 export function RunField({ groups }: { groups: FieldGroup[] }) {
   const flat = groups.flatMap((g) => g.runs.map((run) => ({ run, group: g.title })));
   const [selected, setSelected] = useState<number | null>(null);
+  const [filter, setFilter] = useState<RunStatus | null>(null);
   const cells = useRef<(HTMLButtonElement | null)[]>([]);
   const counts = STATUSES.map((s) => ({ status: s, n: flat.filter((f) => f.run.status === s).length })).filter((c) => c.n > 0);
   const current = selected === null ? null : flat[selected];
@@ -52,7 +57,7 @@ export function RunField({ groups }: { groups: FieldGroup[] }) {
 
   let index = 0;
   return (
-    <div className="pf-runfield" data-reveal="">
+    <div className="pf-runfield" data-reveal="" data-filter={filter ?? undefined}>
       <div className="pf-runfield__groups">
         {groups.map((g) => (
           <div key={g.title} className="pf-runfield__group" style={{ '--hue': `var(--pf-t-${g.hue})` } as React.CSSProperties}>
@@ -96,9 +101,19 @@ export function RunField({ groups }: { groups: FieldGroup[] }) {
         )}
       </div>
 
-      <ul className="pf-runfield__legend" aria-label="Results">
+      <ul className="pf-runfield__legend" aria-label="Show only one result">
         {counts.map((c) => (
-          <li key={c.status}><i className={`pf-dot pf-dot--${c.status}`} aria-hidden="true" />{STATUS_LABEL[c.status]}<b>{c.n}</b></li>
+          <li key={c.status}>
+            <button
+              type="button"
+              className="pf-runfield__chip"
+              data-status={c.status}
+              aria-pressed={filter === c.status}
+              onClick={() => setFilter((f) => (f === c.status ? null : c.status))}
+            >
+              <i className={`pf-dot pf-dot--${c.status}`} aria-hidden="true" />{STATUS_LABEL[c.status]}<b>{c.n}</b>
+            </button>
+          </li>
         ))}
       </ul>
     </div>
